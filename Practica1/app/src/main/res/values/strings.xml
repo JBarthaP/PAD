@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="sumar">Sumar</string>
+    <string name="hintNumber1">Número 1</string>
+    <string name="hintNumber2">Número 2</string>
+    <string name="label">El resultado es:</string>
+</resources>
