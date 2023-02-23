@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class CalculatorResultActivity extends AppCompatActivity {
 
     private TextView txtView;
+
+
+    private Button returnButton;
 
     private static final String TAG = CalculatorResultActivity.class.getSimpleName();
 
@@ -27,5 +31,10 @@ public class CalculatorResultActivity extends AppCompatActivity {
 
         txtView = findViewById(R.id.resultado);
         txtView.setText(Double.toString(suma));
+
+        returnButton = findViewById(R.id.button2);
+        returnButton.setOnClickListener(view -> {
+            this.finish();
+        });
     }
 }
