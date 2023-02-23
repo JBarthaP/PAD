@@ -4,4 +4,5 @@
     <string name="hintNumber1">Número 1</string>
     <string name="hintNumber2">Número 2</string>
     <string name="label">El resultado es:</string>
+    <string name="volver_msg">Volver</string>
 </resources>

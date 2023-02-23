@@ -32,7 +32,7 @@ public class CalculatorResultActivity extends AppCompatActivity {
         txtView = findViewById(R.id.resultado);
         txtView.setText(Double.toString(suma));
 
-        returnButton = findViewById(R.id.button2);
+        returnButton = findViewById(R.id.return_button);
         returnButton.setOnClickListener(view -> {
             this.finish();
         });
