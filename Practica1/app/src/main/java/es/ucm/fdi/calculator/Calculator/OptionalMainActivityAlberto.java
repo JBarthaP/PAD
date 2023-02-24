@@ -97,6 +97,14 @@ public class OptionalMainActivityAlberto extends AppCompatActivity {
         Button buttonEqual = findViewById(R.id.buttonEqual);
 
         buttonEqual.setOnClickListener(view -> {
+
+            if(textViews.get(0).getText() == ""){
+                textViews.get(0).setText("0");
+            }
+            if(textViews.get(1).getText() == ""){
+                textViews.get(1).setText("0");
+            }
+
             this.addXandY();
         });
 
@@ -110,7 +118,7 @@ public class OptionalMainActivityAlberto extends AppCompatActivity {
         });
 
         buttonC.setOnClickListener(view -> {
-            textViews.get(this.selectedTextView).setText("");
+            textViews.get(selectedTextView).setText("");
         });
 
 
@@ -126,9 +134,40 @@ public class OptionalMainActivityAlberto extends AppCompatActivity {
         Button button8 = findViewById(R.id.buttonNumber8);
         Button button9 = findViewById(R.id.buttonNumber9);
 
+        button0.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"0");
+        });
+        button00.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"00");
+        });
         button1.setOnClickListener(view -> {
             textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"1");
         });
+        button2.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"2");
+        });
+        button3.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"3");
+        });
+        button4.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"4");
+        });
+        button5.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"5");
+        });
+        button6.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"6");
+        });
+        button7.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"7");
+        });
+        button8.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"8");
+        });
+        button9.setOnClickListener(view -> {
+            textViews.get(this.selectedTextView).setText(textViews.get(this.selectedTextView).getText()+"9");
+        });
+
 
 
         Button buttonSum = findViewById(R.id.buttonSum);
@@ -137,6 +176,10 @@ public class OptionalMainActivityAlberto extends AppCompatActivity {
 
             if(this.selectedTextView == 0){
                 this.setSelectedTextView(1);
+
+                if(textViews.get(0).getText() == ""){
+                    textViews.get(0).setText("0");
+                }
             }
 
         });
