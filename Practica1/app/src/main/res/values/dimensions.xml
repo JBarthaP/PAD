@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="buttonGrid">25sp</dimen>
+    <dimen name="heightgrid">80dp</dimen>
+    <dimen name="marginGrid">3dp</dimen>
+
+</resources>

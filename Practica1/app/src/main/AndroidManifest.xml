@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Calculator"
         tools:targetApi="31">
         <activity
+            android:name=".OptionalMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".CalculatorResultActivity"
             android:exported="false" />
         <activity
