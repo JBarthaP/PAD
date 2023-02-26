@@ -8,271 +8,348 @@
     tools:context=".OptionalMainActivity">
 
 
+    <Button
+        android:id="@+id/buttonMult"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+        android:layout_marginEnd="28dp"
+
+        android:enabled="false"
+        android:text="X"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDiff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber9"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDiv" />
+
+    <Button
+        android:id="@+id/buttonEqual"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="28dp"
+        android:text="="
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonDecimal"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSum" />
+
+    <Button
+        android:id="@+id/buttonNumber6"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+
+        android:text="6"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber3"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDiff"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber5"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber9" />
+
+    <Button
+        android:id="@+id/buttonDiv"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+        android:layout_marginEnd="28dp"
+
+        android:enabled="false"
+        android:text="/"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonPercentage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/buttonNumber1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+        android:text="1"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber00"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNumber2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber4" />
+
+    <Button
+        android:id="@+id/buttonNumber4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+
+        android:text="4"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber1"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNumber5"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/number2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber7" />
+
+    <Button
+        android:id="@+id/buttonNumber00"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+        android:text="00"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNumber0"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber1" />
+
+    <Button
+        android:id="@+id/buttonNumber3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+
+        android:text="3"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSum"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber2"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber6" />
+
+    <Button
+        android:id="@+id/buttonC"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+        android:text="C"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber8"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPercentage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonCA"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonNumber5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+        android:text="5"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber2"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNumber6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber4"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber8" />
+
+    <Button
+        android:id="@+id/buttonPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+        android:layout_marginEnd="6dp"
+
+        android:enabled="false"
+        android:text="%"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber9"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDiv"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonC"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonNumber2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+        android:text="2"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber0"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNumber3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber1"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber5" />
+
+    <Button
+        android:id="@+id/buttonCA"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+
+        android:layout_marginEnd="6dp"
+        android:text="CA"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber7"
+        app:layout_constraintEnd_toStartOf="@+id/buttonC"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSum"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="28dp"
+        android:text="+"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonEqual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber3"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDiff" />
+
+    <Button
+        android:id="@+id/buttonDiff"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+        android:layout_marginEnd="28dp"
+
+        android:enabled="false"
+        android:text="-"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber6"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMult" />
+
+    <Button
+        android:id="@+id/buttonNumber7"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+        android:text="7"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber4"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNumber8"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCA" />
+
+    <Button
+        android:id="@+id/buttonNumber8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+        android:text="8"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber5"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNumber9"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber7"
+        app:layout_constraintTop_toBottomOf="@+id/buttonC" />
+
+    <Button
+        android:id="@+id/buttonNumber0"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+
+        android:text="0"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDecimal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber00"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber2" />
+
+    <Button
+        android:id="@+id/buttonNumber9"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+        android:text="9"
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNumber6"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMult"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber8"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPercentage" />
+
+    <Button
+        android:id="@+id/buttonDecimal"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/marginGridLand"
+
+        android:layout_marginEnd="6dp"
+
+        android:text="."
+        android:textSize="@dimen/buttonGridLand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEqual"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNumber0"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNumber3" />
+
     <TextView
         android:id="@+id/number1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hintNumber1"
-        android:textSize="@dimen/buttonGridLand"
         android:textColor="@color/white"
+        android:textSize="@dimen/buttonGridLand"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103" />
+        app:layout_constraintVertical_bias="0.122" />
 
     <TextView
         android:id="@+id/number2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hintNumber2"
-        android:textSize="@dimen/buttonGridLand"
         android:textColor="@color/white"
+        android:textSize="@dimen/buttonGridLand"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number1"
-        app:layout_constraintVertical_bias="0.105" />
-
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="450dp"
-        android:layout_height="wrap_content"
-        android:padding="1dip"
-        android:stretchColumns="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number2">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/buttonCA"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-
-                android:text="CA"
-                android:textSize="@dimen/buttonGridLand" />
-
-
-            <Button
-                android:id="@+id/buttonC"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="C"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonPercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-                android:enabled="false"
-                android:text="%"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonDiv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-                android:enabled="false"
-                android:text="/"
-
-                android:textSize="@dimen/buttonGridLand" />
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/buttonNumber7"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="7"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonNumber8"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="8"
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonNumber9"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="9"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonMult"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-                android:enabled="false"
-                android:text="X"
-
-                android:textSize="@dimen/buttonGridLand" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/buttonNumber4"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="4"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonNumber5"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="5"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonNumber6"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="6"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonDiff"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-                android:enabled="false"
-                android:text="-"
-
-                android:textSize="@dimen/buttonGridLand" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/buttonNumber1"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="1"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonNumber2"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="2"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonNumber3"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="3"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonSum"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="+"
-
-                android:textSize="@dimen/buttonGridLand" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/buttonNumber00"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="00"
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonNumber0"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="0"
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonDecimal"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="."
-
-                android:textSize="@dimen/buttonGridLand" />
-
-            <Button
-                android:id="@+id/buttonEqual"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/heightgrid"
-                android:layout_marginHorizontal="@dimen/marginGridLand"
-
-                android:text="="
-
-                android:textSize="@dimen/buttonGridLand" />
-        </TableRow>
-
-    </TableLayout>
+        app:layout_constraintVertical_bias="0.481" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
         Button button = findViewById(R.id.button);
 
         button.setOnClickListener(view -> {
-            this.addXandY();
+
+            try {
+                this.addXandY();
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+            }
         });
 
 

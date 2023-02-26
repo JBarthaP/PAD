@@ -4,6 +4,6 @@
     <dimen name="heightgrid">80dp</dimen>
     <dimen name="marginGrid">3dp</dimen>
 
-    <dimen name="buttonGridLand">30sp</dimen>
+    <dimen name="buttonGridLand">25sp</dimen>
     <dimen name="marginGridLand">6dp</dimen>
 </resources>
