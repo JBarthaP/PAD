@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GoogleBooksClient</string>
+    <string name="search_button">Search for Books</string>
 </resources>
