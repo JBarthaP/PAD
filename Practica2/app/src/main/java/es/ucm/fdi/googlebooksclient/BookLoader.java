@@ -31,8 +31,6 @@ public class BookLoader extends AsyncTaskLoader<String> {
 
     private static final String TAG = BookLoader.class.getSimpleName();
 
-
-
     public BookLoader(@NonNull Context context)
     {
         super(context);
@@ -110,8 +108,9 @@ public class BookLoader extends AsyncTaskLoader<String> {
 
     @Override
     public String loadInBackground() {
-        List<String> volumenes = new ArrayList<String>();
 
-        return volumenes;
     }
+    @Override
+    protected void onStartLoading() { forceLoad(); }
+
 }
