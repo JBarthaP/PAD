@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int BOOK_LOADER_ID = 0;
     private EditText buscador;
 
     private RadioGroup filtros;
@@ -28,10 +29,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         buscador = findViewById(R.id.buscador);
-        bookLoaderCallbacks = new BookLoaderCallbacks();
+        filtros = findViewById(R.id.filtros);
+        bookLoaderCallbacks = new BookLoaderCallbacks(this);
         LoaderManager loaderManager = LoaderManager.getInstance(this);
-        if(loaderManager.getLoader(BOOK_LOADER_ID) != null){
-            loaderManager.initLoader(BOOK_LOADER_ID,null, bookLoaderCallbacks);
+        if (loaderManager.getLoader(BOOK_LOADER_ID) != null) {
+            loaderManager.initLoader(BOOK_LOADER_ID, null, bookLoaderCallbacks);
         }
 
         Button button = findViewById(R.id.search_button);
@@ -43,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void searchBooks(View view) {
         String queryString = buscador.getText().toString();
-        int printType = filtros.getCheckedRadioButtonId();
+        int choosenFilter = filtros.getCheckedRadioButtonId();
+        String printType = "books";
         //Queda comprobacion
         Bundle queryBundle = new Bundle();
         queryBundle.putString(BookLoaderCallbacks.EXTRA_QUERY, queryString);

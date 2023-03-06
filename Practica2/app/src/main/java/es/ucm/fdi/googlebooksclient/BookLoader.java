@@ -28,12 +28,16 @@ public class BookLoader extends AsyncTaskLoader<String> {
 
     private static final String PRINT_TYPES = "printType";
 
+    private String queryString;
+
+    private String printType;
 
     private static final String TAG = BookLoader.class.getSimpleName();
 
-    public BookLoader(@NonNull Context context)
-    {
+    public BookLoader(@NonNull Context context, String queryString, String printType) {
         super(context);
+        this.queryString = queryString;
+        this.printType = printType;
     }
 
     private URL builtUrl(String queryText, String printTypes) {
@@ -41,7 +45,7 @@ public class BookLoader extends AsyncTaskLoader<String> {
             Uri builtURI = Uri.parse(BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, queryText)
                     .appendQueryParameter(PRINT_TYPES, printTypes)
-                    .appendQueryParameter("key",KEY)
+                    .appendQueryParameter("key", KEY)
                     .build();
             URL requestURL = new URL(builtURI.toString());
             return requestURL;
@@ -71,11 +75,11 @@ public class BookLoader extends AsyncTaskLoader<String> {
     }
 
     private String getBookInfoJson(String queryString, String printTypes) {
-        URL requestURL = builtUrl(queryString,printTypes);
+        URL requestURL = builtUrl(queryString, printTypes);
         HttpURLConnection conn = null;
         InputStream is = null;
         try {
-            conn  = (HttpURLConnection) requestURL.openConnection();
+            conn = (HttpURLConnection) requestURL.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestMethod("GET");
@@ -84,13 +88,12 @@ public class BookLoader extends AsyncTaskLoader<String> {
             int response = conn.getResponseCode();
             is = conn.getInputStream();
             String contentAsString = convertIsToString(is);
+            Log.d(TAG, contentAsString);
             return contentAsString;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.e(TAG, e.getMessage());
-        }
-        finally {
-            if( conn != null) {
+        } finally {
+            if (conn != null) {
                 conn.disconnect();
             }
             if (is != null) {
@@ -105,12 +108,14 @@ public class BookLoader extends AsyncTaskLoader<String> {
     }
 
 
-
     @Override
     public String loadInBackground() {
-
+        return getBookInfoJson(queryString, printType);
     }
+
     @Override
-    protected void onStartLoading() { forceLoad(); }
+    protected void onStartLoading() {
+        forceLoad();
+    }
 
 }
