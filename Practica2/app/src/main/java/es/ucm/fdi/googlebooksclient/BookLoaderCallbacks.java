@@ -13,7 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<String> {
+import java.util.List;
+
+public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<List<BookInfo>> {
 
     public static final String EXTRA_QUERY = "queryString";
     public static final String EXTRA_PRINT_TYPE = "printType";
@@ -22,14 +24,17 @@ public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<String
 
     private Context context;
 
-    public BookLoaderCallbacks(Context context) {
+    private BooksResultListAdapter bookAdapter;
+
+    public BookLoaderCallbacks(Context context, BooksResultListAdapter bookAdapter) {
         this.context = context;
+        this.bookAdapter = bookAdapter;
     }
 
     //Metodo que se llama cuando se instancia el loader
     @NonNull
     @Override
-    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
+    public Loader<List<BookInfo>> onCreateLoader(int id, @Nullable Bundle args) {
         String queryString = "";
         String printType = "";
         if (args != null) {
@@ -41,39 +46,11 @@ public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<String
 
     //Metodo que se llama cuando se termina la tarea asincrona
     @Override
-    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        try {
-            JSONObject jsonObject = new JSONObject(data);
-            JSONArray itemsArray = jsonObject.getJSONArray("items");
-
-            int i = 0;
-            String title = null;
-            String author = null;
-            while (i < itemsArray.length()) {
-                //Cogemos la información necesaria
-                JSONObject libro = itemsArray.getJSONObject(i);
-                JSONObject info = libro.getJSONObject("volumeInfo");
-
-                try {
-                    title = info.getString("title");
-                    author = info.getString("authors");
-
-                    Log.d(TAG, title + "" + author);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e(TAG, e.getMessage());
-                }
-
-                i++;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    public void onLoadFinished(@NonNull Loader<List<BookInfo>> loader, List<BookInfo> data) {
+       context.setBooksData(data);
     }
 
     //Limpia los datos del loader
     @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {
-    }
+    public void onLoaderReset(@NonNull Loader<List<BookInfo>> loader) {}
 }

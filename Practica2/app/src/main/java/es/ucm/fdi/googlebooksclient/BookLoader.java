@@ -9,6 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookLoader extends AsyncTaskLoader<String> {
+public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
 
     private static final String KEY = "AIzaSyAXEcmlI4XnU3lADHcwZGBiIemMm8zXjzw";
 
@@ -39,6 +43,48 @@ public class BookLoader extends AsyncTaskLoader<String> {
         this.queryString = queryString;
         this.printType = printType;
     }
+
+    private List<BookInfo> fromJsonResponse(String data) {
+        List<BookInfo> newData = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            JSONArray itemsArray = jsonObject.getJSONArray("items");
+
+            int i = 0;
+            String title = null;
+            String author = null;
+            String urlInfo = null;
+            while (i < itemsArray.length()) {
+                //Cogemos la información necesaria
+                JSONObject libro = itemsArray.getJSONObject(i);
+                JSONObject info = libro.getJSONObject("volumeInfo");
+
+                try {
+                    title = info.getString("title");
+                    author = info.getString("authors");
+
+//                    Log.d(TAG, title + "" + author);
+                    urlInfo = info.getString("infoLink");
+                    newData.add(new BookInfo(title, author, new URL(Uri.parse(urlInfo).toString())));
+
+
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e(TAG, e.getMessage());
+                }
+
+                i++;
+            }
+            Log.d(TAG, newData.toString());
+            return newData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     private URL builtUrl(String queryText, String printTypes) {
         try {
@@ -74,7 +120,7 @@ public class BookLoader extends AsyncTaskLoader<String> {
         return null;
     }
 
-    private String getBookInfoJson(String queryString, String printTypes) {
+    private List<BookInfo> getBookInfoJson(String queryString, String printTypes) {
         URL requestURL = builtUrl(queryString, printTypes);
         HttpURLConnection conn = null;
         InputStream is = null;
@@ -88,8 +134,8 @@ public class BookLoader extends AsyncTaskLoader<String> {
             int response = conn.getResponseCode();
             is = conn.getInputStream();
             String contentAsString = convertIsToString(is);
-            Log.d(TAG, contentAsString);
-            return contentAsString;
+//            Log.d(TAG, contentAsString);
+            return fromJsonResponse(contentAsString);
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         } finally {
@@ -109,7 +155,7 @@ public class BookLoader extends AsyncTaskLoader<String> {
 
 
     @Override
-    public String loadInBackground() {
+    public List<BookInfo> loadInBackground() {
         return getBookInfoJson(queryString, printType);
     }
 

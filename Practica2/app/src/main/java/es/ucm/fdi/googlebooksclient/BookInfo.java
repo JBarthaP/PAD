@@ -22,11 +22,16 @@ public class BookInfo {
         return authors;
     }
 
-
     public URL getInfoLink() {
         return infoLink;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "BookInfo {" +
+                "title='" + title + '\'' +
+                ", authors='" + authors + '\'' +
+                ", infoLink=" + infoLink +
+                '}';
+    }
 }

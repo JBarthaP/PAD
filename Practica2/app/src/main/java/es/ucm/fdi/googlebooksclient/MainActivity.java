@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         buscador = findViewById(R.id.buscador);
         filtros = findViewById(R.id.filtros);
-        bookLoaderCallbacks = new BookLoaderCallbacks(this);
+        bookLoaderCallbacks = new BookLoaderCallbacks(this, bookAdapter); // TODO preguntar si esto es correcto, necesario sacar el adapter del algun lado
         LoaderManager loaderManager = LoaderManager.getInstance(this);
         if (loaderManager.getLoader(BOOK_LOADER_ID) != null) {
             loaderManager.initLoader(BOOK_LOADER_ID, null, bookLoaderCallbacks);
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerView = findViewById(R.id.recyclerview);
+        myBookList = new ArrayList<>();
         bookAdapter = new BooksResultListAdapter(this, myBookList);
         recyclerView.setAdapter(bookAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -62,16 +63,17 @@ public class MainActivity extends AppCompatActivity {
     public void searchBooks(View view) {
         String queryString = buscador.getText().toString();
         int choosenFilter = filtros.getCheckedRadioButtonId();
+        queryString = "Game";
         String printType = "books";
         //Queda comprobacion
         Bundle queryBundle = new Bundle();
         queryBundle.putString(BookLoaderCallbacks.EXTRA_QUERY, queryString);
         queryBundle.putString(BookLoaderCallbacks.EXTRA_PRINT_TYPE, printType);
-        LoaderManager.getInstance(this)
-                .restartLoader(BOOK_LOADER_ID, queryBundle, bookLoaderCallbacks);
+        LoaderManager.getInstance(this).restartLoader(BOOK_LOADER_ID, queryBundle, bookLoaderCallbacks);
     }
 
     void updateBooksResultList(List<BookInfo> bookInfos) {
-
+        bookAdapter.setBooksData(bookInfos);
+        bookAdapter.notifyDataSetChanged();
     }
 }

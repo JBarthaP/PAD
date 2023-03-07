@@ -23,7 +23,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
         private TextView bookItemView;
 
         private BooksResultListAdapter mAdapter;
-        
+
         public BookViewHolder(View itemView, BooksResultListAdapter adapter) {
 
             super(itemView);
@@ -35,20 +35,13 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
             itemView.setOnClickListener(this);
         }
 
-
-
         @Override
         public void onClick(View view) {
 
         }
     }
 
-
-
-
-
     public BooksResultListAdapter(Context context, ArrayList<BookInfo> mBooksData) {
-
         this.mBooksData = mBooksData;
     }
 
@@ -63,9 +56,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
     @Override
     public void onBindViewHolder(@NonNull BooksResultListAdapter.BookViewHolder holder, int position) {
         // Retrieve the data for that position
-        String mTitleCurrent = mBooksData.get(position).getTitle();
-        String mAuthorsCurrent = mBooksData.get(position).getAuthors();
-        String mCurrent = mTitleCurrent.concat(mAuthorsCurrent);
+        String mCurrent = mBooksData.get(position).toString();
         // Add the data to the view
         holder.bookItemView.setText(mCurrent);
     }
@@ -76,6 +67,6 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
     }
 
     public void setBooksData(List<BookInfo> data) {
-
+        mBooksData = new ArrayList<BookInfo>(data);
     }
 }
