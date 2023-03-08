@@ -28,7 +28,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
             super(itemView);
             // Get the layout
-            bookItemView = itemView.findViewById(R.id.word);
+            bookItemView = itemView.findViewById(R.id.book);
             // Associate with this adapter
             this.mAdapter = adapter;
             // Add click listener, if desired
@@ -37,19 +37,21 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
         @Override
         public void onClick(View view) {
-
+            //TODO hacer onclikc de los holders
         }
     }
 
     public BooksResultListAdapter(Context context, ArrayList<BookInfo> mBooksData) {
         this.mBooksData = mBooksData;
+
+        //TODO iniciar mInflater por ahora esta con Layout.from()
     }
 
     @NonNull
     @Override
     public BooksResultListAdapter.BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Create view from layout
-        View mItemView = mInflater.inflate(R.layout.element_recyclerview, parent, false);
+        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.element_recyclerview, parent, false);
         return new BookViewHolder(mItemView, this);
     }
 

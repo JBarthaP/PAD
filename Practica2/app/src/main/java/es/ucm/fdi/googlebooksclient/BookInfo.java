@@ -28,10 +28,8 @@ public class BookInfo {
 
     @Override
     public String toString() {
-        return "BookInfo {" +
+        return
                 "title='" + title + '\'' +
-                ", authors='" + authors + '\'' +
-                ", infoLink=" + infoLink +
-                '}';
+                ", authors='" + authors + '\'';
     }
 }

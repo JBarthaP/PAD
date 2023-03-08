@@ -61,7 +61,9 @@ public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
 
                 try {
                     title = info.getString("title");
-                    author = info.getString("authors");
+                    if(info.has("authors")) {
+                        author = info.getString("authors");
+                    }
 
 //                    Log.d(TAG, title + "" + author);
                     urlInfo = info.getString("infoLink");
