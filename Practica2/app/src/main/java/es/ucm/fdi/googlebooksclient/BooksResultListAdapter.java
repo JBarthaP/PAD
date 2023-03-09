@@ -1,6 +1,9 @@
 package es.ucm.fdi.googlebooksclient;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +18,9 @@ import java.util.List;
 public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultListAdapter.BookViewHolder> {
 
     private ArrayList<BookInfo> mBooksData;
+    private static final String TAG = BooksResultListAdapter.class.getSimpleName();
 
-    private LayoutInflater mInflater;
+    private Context context;
 
     public static class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -43,8 +47,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
     public BooksResultListAdapter(Context context, ArrayList<BookInfo> mBooksData) {
         this.mBooksData = mBooksData;
-
-        //TODO iniciar mInflater por ahora esta con Layout.from()
+        this.context = context;
     }
 
     @NonNull
@@ -58,9 +61,15 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
     @Override
     public void onBindViewHolder(@NonNull BooksResultListAdapter.BookViewHolder holder, int position) {
         // Retrieve the data for that position
-        String mCurrent = mBooksData.get(position).toString();
+        BookInfo currentBook = mBooksData.get(position);
+        String mCurrent = currentBook.toString();
         // Add the data to the view
         holder.bookItemView.setText(mCurrent);
+
+        holder.bookItemView.setOnClickListener(view -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentBook.getInfoLink().toString()));
+            context.startActivity(browserIntent);
+        });
     }
 
     @Override
@@ -70,5 +79,9 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
     public void setBooksData(List<BookInfo> data) {
         mBooksData = new ArrayList<BookInfo>(data);
+    }
+
+    public ArrayList<BookInfo> getmBooksData() {
+        return mBooksData;
     }
 }

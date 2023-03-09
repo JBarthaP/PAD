@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GoogleBooksClient</string>
+    <string name="search_button">Search</string>
+    <string name="results">Results</string>
+    <string name="books">Books</string>
+    <string name="magazines">Magazines</string>
+    <string name="all">Both</string>
+    <string name="title">Title</string>
+    <string name="authors">Authors</string>
+    <string name="titleApp">Search for your books or magazines</string>
+    <string name="loading">Loading...</string>
+    <string name="no_data">No results</string>
+    <string name="no_search">Please introduce something to search</string>
+    <string name="no_network">Please check your connection and try again</string>
+</resources>

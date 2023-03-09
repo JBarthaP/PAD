@@ -1,10 +1,7 @@
 package es.ucm.fdi.googlebooksclient;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,17 +9,22 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+//TODO hacer el buscador bien
+//TODO utilizar cardView en los holder de recycler view
+//TODO desactivar el input de autores cuando le de a magazines
+//TODO meter maxResults
 public class MainActivity extends AppCompatActivity {
 
     private static final int BOOK_LOADER_ID = 0;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private BooksResultListAdapter bookAdapter;
 
     private RecyclerView recyclerView;
+    private static final String TAG =MainActivity.class.getSimpleName();
 
 
     @Override
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         bookAdapter = new BooksResultListAdapter(this, myBookList);
         recyclerView.setAdapter(bookAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        bookLoaderCallbacks = new BookLoaderCallbacks(this, bookAdapter); // TODO preguntar si esto es correcto, necesario sacar el adapter del algun lado
+        bookLoaderCallbacks = new BookLoaderCallbacks(this);
         LoaderManager loaderManager = LoaderManager.getInstance(this);
         if (loaderManager.getLoader(BOOK_LOADER_ID) != null) {
             loaderManager.initLoader(BOOK_LOADER_ID, null, bookLoaderCallbacks);
@@ -74,7 +77,22 @@ public class MainActivity extends AppCompatActivity {
     public void searchBooks(View view) {
 
         String queryString = "";
-        queryString += tituloTxt.getText().toString();
+        String tituloBuscador = tituloTxt.getText().toString();
+        String autoresBuscador = autorTxt.getText().toString();
+
+        if(tituloBuscador.length() != 0) {
+            queryString += (String.format("intitle:%s", tituloBuscador));
+            //q=intitle:robert+inauthor:Hola
+        }
+
+        if(autoresBuscador.length() != 0) {
+            queryString += (String.format("+inauthor:%s", autoresBuscador));
+            //q=intitle:robert+inauthor:Hola
+        }
+
+        Log.d(TAG, queryString);
+
+
         int choosenFilter = filtros.getCheckedRadioButtonId();
         String printType = "";
         switch(choosenFilter) {
@@ -123,10 +141,14 @@ public class MainActivity extends AppCompatActivity {
             if (queryString.length() == 0) {
                 autorTxt.setText("");
                 tituloTxt.setText("");
+                bookAdapter.getmBooksData().clear();
+                bookAdapter.notifyDataSetChanged();
                 resultadosTxt.setText(R.string.no_search);
             } else {
                 autorTxt.setText("");
                 tituloTxt.setText("");
+                bookAdapter.getmBooksData().clear();
+                bookAdapter.notifyDataSetChanged();
                 resultadosTxt.setText(R.string.no_network);
             }
         }
@@ -134,13 +156,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void updateBooksResultList(List<BookInfo> bookInfos) {
-        bookAdapter.setBooksData(bookInfos);
-        bookAdapter.notifyDataSetChanged();
-        if(bookInfos.size() == 0) {
+        if(bookInfos == null || bookInfos.size() == 0) {
             resultadosTxt.setText(R.string.no_data);
+            bookAdapter.getmBooksData().clear();
+            bookAdapter.notifyDataSetChanged();
         }
         else {
             resultadosTxt.setText(R.string.results);
+            bookAdapter.setBooksData(bookInfos);
+            bookAdapter.notifyDataSetChanged();
         }
     }
 }

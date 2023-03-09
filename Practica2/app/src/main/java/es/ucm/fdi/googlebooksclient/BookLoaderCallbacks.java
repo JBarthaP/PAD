@@ -1,18 +1,12 @@
 package es.ucm.fdi.googlebooksclient;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -25,11 +19,9 @@ public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<List<B
 
     private Context context;
 
-    private BooksResultListAdapter bookAdapter;
 
-    public BookLoaderCallbacks(Context context, BooksResultListAdapter bookAdapter) {
+    public BookLoaderCallbacks(Context context) {
         this.context = context;
-        this.bookAdapter = bookAdapter;
     }
 
     //Metodo que se llama cuando se instancia el loader
@@ -42,15 +34,15 @@ public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<List<B
             queryString = args.getString(EXTRA_QUERY);
             printType = args.getString(EXTRA_PRINT_TYPE);
         }
-        return new BookLoader(context, queryString, printType); //TODO no habría que borrar el anterior?
+        return new BookLoader(context, queryString, printType);
     }
 
     //Metodo que se llama cuando se termina la tarea asincrona
     @Override
     public void onLoadFinished(@NonNull Loader<List<BookInfo>> loader, List<BookInfo> data) {
-        Log.d(TAG, data.toString());
-        bookAdapter.setBooksData(data);
-        bookAdapter.notifyDataSetChanged();
+//        Log.d(TAG, data.toString());
+        MainActivity activity = (MainActivity) context;
+        activity.updateBooksResultList(data);
     }
 
     //Limpia los datos del loader

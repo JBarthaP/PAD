@@ -2,11 +2,9 @@ package es.ucm.fdi.googlebooksclient;
 
 import android.content.Context;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
 
 import org.json.JSONArray;

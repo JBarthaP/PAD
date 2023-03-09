@@ -11,7 +11,7 @@
     <string name="loading">Cargando...</string>
     <string name="no_data">No hay resultados</string>
     <string name="no_search">Por favor introduzca un campo de búsqueda</string>
-    <string name="no_network">Por favor conmpruebe su conexión y intentelo de nuevo</string>
+    <string name="no_network">Por favor compruebe su conexión y intentelo de nuevo</string>
 
 
 </resources>
