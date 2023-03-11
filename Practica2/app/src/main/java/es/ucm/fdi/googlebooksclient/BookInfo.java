@@ -1,5 +1,7 @@
 package es.ucm.fdi.googlebooksclient;
 
+import org.json.JSONArray;
+
 import java.net.URL;
 
 public class BookInfo {
@@ -20,6 +22,25 @@ public class BookInfo {
 
     public String getAuthors() {
         return authors;
+    }
+
+    public String getAuthorsSeparadosPorComas() {
+
+        try{
+            JSONArray jsonArray = new JSONArray(authors);
+
+            String autoresString = jsonArray.getString(0);
+
+            for (int i = 1; i < jsonArray.length(); i++){
+                autoresString += ", " + jsonArray.getString(i);
+            }
+
+            return autoresString;
+
+        }
+        catch(Exception e){
+            return "";
+        }
     }
 
     public URL getInfoLink() {

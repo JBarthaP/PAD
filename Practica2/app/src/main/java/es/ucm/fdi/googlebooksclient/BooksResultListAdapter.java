@@ -3,7 +3,6 @@ package es.ucm.fdi.googlebooksclient;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,9 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
     public static class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView bookItemView;
+        private TextView tituloView;
+        private TextView autoresView;
+
 
         private BooksResultListAdapter mAdapter;
 
@@ -32,7 +35,8 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
             super(itemView);
             // Get the layout
-            bookItemView = itemView.findViewById(R.id.book);
+            tituloView = itemView.findViewById(R.id.titulo);
+            autoresView = itemView.findViewById(R.id.autores);
             // Associate with this adapter
             this.mAdapter = adapter;
             // Add click listener, if desired
@@ -63,10 +67,12 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
         // Retrieve the data for that position
         BookInfo currentBook = mBooksData.get(position);
         String mCurrent = currentBook.toString();
-        // Add the data to the view
-        holder.bookItemView.setText(mCurrent);
 
-        holder.bookItemView.setOnClickListener(view -> {
+        // Add the data to the view
+        holder.tituloView.setText(currentBook.getTitle());
+        holder.autoresView.setText(currentBook.getAuthorsSeparadosPorComas());
+
+        holder.tituloView.setOnClickListener(view -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentBook.getInfoLink().toString()));
             context.startActivity(browserIntent);
         });
@@ -84,4 +90,5 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
     public ArrayList<BookInfo> getmBooksData() {
         return mBooksData;
     }
+
 }
