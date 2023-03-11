@@ -61,16 +61,6 @@ public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
                     title = info.getString("title");
                     if(info.has("authors")) {
                         author = info.getString("authors");
-                        /*JSONArray autores = info.getJSONArray("authors");
-
-                        String autoresString = "";
-
-                        for (int j=0;j<autores.length();j++){
-                            autoresString += ", " + autores.getString(j);
-                        }
-
-                        author = autoresString;*/
-
                     }
 
 //                    Log.d(TAG, title + "" + author);

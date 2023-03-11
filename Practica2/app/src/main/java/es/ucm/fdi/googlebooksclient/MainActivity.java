@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -71,6 +72,25 @@ public class MainActivity extends AppCompatActivity {
             this.searchBooks(view);
 
         });
+
+        filtros.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                switch(checkedId)
+                {
+                    case R.id.radio_magazines:
+                        autorTxt.setEnabled(false);
+                        autorTxt.setText("");
+                        break;
+
+                    default:
+                        autorTxt.setEnabled(true);
+                        break;
+                }
+            }
+        });
+
 
     }
 
@@ -167,4 +187,5 @@ public class MainActivity extends AppCompatActivity {
             bookAdapter.notifyDataSetChanged();
         }
     }
+
 }
