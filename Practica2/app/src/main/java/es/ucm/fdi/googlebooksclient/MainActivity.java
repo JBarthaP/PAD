@@ -106,7 +106,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(autoresBuscador.length() != 0) {
-            queryString += (String.format("+inauthor:%s", autoresBuscador));
+            if(tituloBuscador.length() != 0){
+                queryString += "+";
+            }
+
+            queryString += (String.format("inauthor:%s", autoresBuscador));
             //q=intitle:robert+inauthor:Hola
         }
 
