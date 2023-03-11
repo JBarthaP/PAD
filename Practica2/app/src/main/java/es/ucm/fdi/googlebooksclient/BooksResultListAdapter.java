@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
@@ -25,6 +26,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
     public static class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private CardView bookCard;
         private TextView tituloView;
         private TextView autoresView;
 
@@ -35,6 +37,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
             super(itemView);
             // Get the layout
+            bookCard = itemView.findViewById(R.id.book_card);
             tituloView = itemView.findViewById(R.id.titulo);
             autoresView = itemView.findViewById(R.id.autores);
             // Associate with this adapter
@@ -72,7 +75,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
         holder.tituloView.setText(currentBook.getTitle());
         holder.autoresView.setText(currentBook.getAuthorsSeparadosPorComas());
 
-        holder.tituloView.setOnClickListener(view -> {
+        holder.bookCard.setOnClickListener(view -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentBook.getInfoLink().toString()));
             context.startActivity(browserIntent);
         });
