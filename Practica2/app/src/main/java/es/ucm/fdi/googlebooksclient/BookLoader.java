@@ -30,6 +30,8 @@ public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
 
     private static final String PRINT_TYPES = "printType";
 
+    private static final String MAX_RESULTS = "maxResults";
+
     private String queryString;
 
     private String printType;
@@ -91,6 +93,7 @@ public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
             Uri builtURI = Uri.parse(BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, queryText)
                     .appendQueryParameter(PRINT_TYPES, printTypes)
+                    .appendQueryParameter(MAX_RESULTS, "40")
                     .appendQueryParameter("key", KEY)
                     .build();
             URL requestURL = new URL(builtURI.toString());
