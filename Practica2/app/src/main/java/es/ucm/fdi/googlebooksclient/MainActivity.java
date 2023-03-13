@@ -21,11 +21,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-
-//TODO hacer el buscador bien
-//TODO utilizar cardView en los holder de recycler view
-//TODO desactivar el input de autores cuando le de a magazines
-//TODO meter maxResults
 public class MainActivity extends AppCompatActivity {
 
     private static final int BOOK_LOADER_ID = 0;
@@ -43,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private BooksResultListAdapter bookAdapter;
 
     private RecyclerView recyclerView;
-    private static final String TAG =MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
 
 
     @Override
@@ -73,12 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        filtros.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+        filtros.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId)
-            {
-                switch(checkedId)
-                {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
                     case R.id.radio_magazines:
                         autorTxt.setEnabled(false);
                         autorTxt.setText("");
@@ -94,24 +87,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
+     * Para realizar una búsqueda en la aplicación el string formado tiene
+     * el siguiente formato
+     *
+     * intitle:placeholderTitulo+inauthor:placeholderAutor
+     *
+     * Y si queremos buscar los libros o revistas con titulo Game con los autores Tomas el string
+     * quedaría algo así
+     *
+     * intitle:Game+inauthor:Tomas
+     * */
+
     public void searchBooks(View view) {
 
         String queryString = "";
         String tituloBuscador = tituloTxt.getText().toString();
         String autoresBuscador = autorTxt.getText().toString();
 
-        if(tituloBuscador.length() != 0) {
+        if (tituloBuscador.length() != 0) {
             queryString += (String.format("intitle:%s", tituloBuscador));
-            //q=intitle:robert+inauthor:Hola
         }
 
-        if(autoresBuscador.length() != 0) {
-            if(tituloBuscador.length() != 0){
+        if (autoresBuscador.length() != 0) {
+            if (tituloBuscador.length() != 0) {
                 queryString += "+";
             }
-
             queryString += (String.format("inauthor:%s", autoresBuscador));
-            //q=intitle:robert+inauthor:Hola
         }
 
         Log.d(TAG, queryString);
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         int choosenFilter = filtros.getCheckedRadioButtonId();
         String printType = "";
-        switch(choosenFilter) {
+        switch (choosenFilter) {
             case R.id.radio_books:
                 printType = "books";
                 break;
@@ -137,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        if (inputManager != null ) {
+        if (inputManager != null) {
             inputManager.hideSoftInputFromWindow(view.getWindowToken(),
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
@@ -160,8 +162,7 @@ public class MainActivity extends AppCompatActivity {
             queryBundle.putString(BookLoaderCallbacks.EXTRA_QUERY, queryString);
             queryBundle.putString(BookLoaderCallbacks.EXTRA_PRINT_TYPE, printType);
             LoaderManager.getInstance(this).restartLoader(BOOK_LOADER_ID, queryBundle, bookLoaderCallbacks);
-        }
-        else {
+        } else {
             if (queryString.length() == 0) {
                 autorTxt.setText("");
                 tituloTxt.setText("");
@@ -180,12 +181,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void updateBooksResultList(List<BookInfo> bookInfos) {
-        if(bookInfos == null || bookInfos.size() == 0) {
+        if (bookInfos == null || bookInfos.size() == 0) {
             resultadosTxt.setText(R.string.no_data);
             bookAdapter.getmBooksData().clear();
             bookAdapter.notifyDataSetChanged();
-        }
-        else {
+        } else {
             resultadosTxt.setText(R.string.results);
             bookAdapter.setBooksData(bookInfos);
             bookAdapter.notifyDataSetChanged();

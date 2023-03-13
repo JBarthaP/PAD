@@ -48,7 +48,7 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
         @Override
         public void onClick(View view) {
-            //TODO hacer onclikc de los holders
+            //Hecho en onBind
         }
     }
 

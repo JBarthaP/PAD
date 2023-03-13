@@ -26,19 +26,18 @@ public class BookInfo {
 
     public String getAuthorsSeparadosPorComas() {
 
-        try{
+        try {
             JSONArray jsonArray = new JSONArray(authors);
 
             String autoresString = jsonArray.getString(0);
 
-            for (int i = 1; i < jsonArray.length(); i++){
+            for (int i = 1; i < jsonArray.length(); i++) {
                 autoresString += ", " + jsonArray.getString(i);
             }
 
             return autoresString;
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return "";
         }
     }
@@ -51,6 +50,6 @@ public class BookInfo {
     public String toString() {
         return
                 "title='" + title + '\'' +
-                ", authors='" + authors + '\'';
+                        ", authors='" + authors + '\'';
     }
 }

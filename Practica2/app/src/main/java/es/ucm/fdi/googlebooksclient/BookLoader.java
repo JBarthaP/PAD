@@ -22,7 +22,7 @@ import java.util.List;
 
 public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
 
-    private static final String KEY = "AIzaSyAXEcmlI4XnU3lADHcwZGBiIemMm8zXjzw";
+    private static final String KEY_VALUE = "AIzaSyAXEcmlI4XnU3lADHcwZGBiIemMm8zXjzw";
 
     private static final String BASE_URL = "https://www.googleapis.com/books/v1/volumes?";
 
@@ -31,6 +31,10 @@ public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
     private static final String PRINT_TYPES = "printType";
 
     private static final String MAX_RESULTS = "maxResults";
+
+    private static final String KEY = "key";
+
+    private static final String MAX_RESULTS_VALUE = "40";
 
     private String queryString;
 
@@ -93,8 +97,8 @@ public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
             Uri builtURI = Uri.parse(BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, queryText)
                     .appendQueryParameter(PRINT_TYPES, printTypes)
-                    .appendQueryParameter(MAX_RESULTS, "40")
-                    .appendQueryParameter("key", KEY)
+                    .appendQueryParameter(MAX_RESULTS, MAX_RESULTS_VALUE)
+                    .appendQueryParameter(KEY, KEY_VALUE)
                     .build();
             URL requestURL = new URL(builtURI.toString());
             return requestURL;
