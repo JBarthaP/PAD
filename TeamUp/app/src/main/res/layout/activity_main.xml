@@ -4,15 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <Button
+        android:id="@+id/createGameButton"
+        android:layout_width="212dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="148dp"
+        android:backgroundTint="#FF9800"
+        android:text="@string/createGameButton"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/createTeamButton"
+        android:layout_width="212dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FF5252"
+        android:text="@string/createTeamsButton"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createGameButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
