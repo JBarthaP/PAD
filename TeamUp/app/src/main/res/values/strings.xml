@@ -2,5 +2,12 @@
     <string name="app_name">TeamUp</string>
     <string name="createGameButton">Crear Partida</string>
     <string name="createTeamsButton">Crear Equipos</string>
-    <string name="members_per_team_text">Participantes por equipo: </string>
+    <string name="total_members_label">Numero de participantes totales: </string>
+    <string name="team_number_label">Número de equipos: </string>
+    <string name="generate_custom_teams_button">Generar equipos personalizados </string>
+    <string name="generate_random_teams_button">Generar equipos aleatorios: </string>
+    <string name="introduce_members_label">Introduzca todos los miembros para formar los equipos: </string>
+    <string name="generate">Generar equipos: </string>
+    <string name="regenerate">Volver a generar: </string>
+    <string name="generated_teams_label">Equipos generados: </string>
 </resources>

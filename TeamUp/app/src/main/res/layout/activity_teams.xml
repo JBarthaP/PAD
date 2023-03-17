@@ -7,24 +7,71 @@
     tools:context=".TeamsActivity">
 
     <TextView
-        android:id="@+id/members_per_team_text"
+        android:id="@+id/team_number_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/members_per_team_text"
+        android:layout_marginTop="188dp"
+        android:text="@string/team_number_label"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumber"
-        style="@style/Widget.Material3.AutoCompleteTextView.FilledBox"
+        android:id="@+id/team_number_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="number"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="111dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_number_label" />
+
+    <TextView
+        android:id="@+id/total_members_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/total_members_label"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.678"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/total_members_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_members_label" />
+
+    <Button
+        android:id="@+id/generate_custom_teams_button"
+        android:layout_width="259dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/generate_custom_teams_button"
+        app:layout_constraintBottom_toTopOf="@+id/generate_random_teams_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/generate_random_teams_button"
+        android:layout_width="260dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="76dp"
+        android:text="@string/generate_random_teams_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
