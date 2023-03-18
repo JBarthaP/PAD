@@ -1,10 +1,12 @@
-package es.ucm.fdi.teamup;
+package es.ucm.fdi.teamup.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import es.ucm.fdi.teamup.R;
 
 public class MainActivity extends AppCompatActivity {
 

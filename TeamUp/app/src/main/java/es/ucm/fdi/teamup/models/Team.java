@@ -1,7 +1,8 @@
-package es.ucm.fdi.teamup;
+package es.ucm.fdi.teamup.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Team implements Serializable {
     String name;
@@ -22,4 +23,6 @@ public class Team implements Serializable {
     public ArrayList<String> getMembers() {
         return members;
     }
+
+
 }

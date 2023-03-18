@@ -1,4 +1,4 @@
-package es.ucm.fdi.teamup;
+package es.ucm.fdi.teamup.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+
+import es.ucm.fdi.teamup.R;
+import es.ucm.fdi.teamup.models.TeamManager;
 
 public class RandomTeamInputActivity extends AppCompatActivity {
 
@@ -30,19 +33,18 @@ public class RandomTeamInputActivity extends AppCompatActivity {
         generateButton = findViewById(R.id.regenerate_random_teams_button);
         int team_number = actualIntent.getIntExtra("team_number", 0);
         int member_number = actualIntent.getIntExtra("member_number", 0);
-        for(int i = 0; i<member_number; i++){
+        for (int i = 0; i < member_number; i++) {
             EditText inputText = new EditText(this);
-            inputText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+            inputText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             membersLayout.addView(inputText);
             allMemberInputs.add(inputText);
         }
-        generateButton.setOnClickListener((view->{
-
-            for (EditText input:allMemberInputs){
-                if(input.getText().toString().equals("")) return;
+        generateButton.setOnClickListener((view -> {
+            for (EditText input : allMemberInputs) {
+                if (input.getText().toString().equals("")) return; //TODO controlar mejor los inputs
             }
             TeamManager teamManager = new TeamManager(team_number);
-            for (EditText input:allMemberInputs){
+            for (EditText input : allMemberInputs) {
                 teamManager.addMember(input.getText().toString());
             }
             teamManager.generateRandomTeams();
