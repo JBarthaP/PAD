@@ -35,7 +35,7 @@
             app:layout_constraintTop_toBottomOf="@+id/generated_teams_label"></LinearLayout>
 
         <Button
-            android:id="@+id/generate_random_teams_confirmation"
+            android:id="@+id/regenerate_random_teams_button"
             android:layout_width="277dp"
             android:layout_height="53dp"
             android:layout_marginTop="8dp"

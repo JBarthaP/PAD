@@ -27,7 +27,7 @@ public class RandomTeamInputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_random_team_input);
         actualIntent = getIntent();
         membersLayout = findViewById(R.id.generated_random_teams_layout);
-        generateButton = findViewById(R.id.generate_random_teams_confirmation);
+        generateButton = findViewById(R.id.regenerate_random_teams_button);
         int team_number = actualIntent.getIntExtra("team_number", 0);
         int member_number = actualIntent.getIntExtra("member_number", 0);
         for(int i = 0; i<member_number; i++){
