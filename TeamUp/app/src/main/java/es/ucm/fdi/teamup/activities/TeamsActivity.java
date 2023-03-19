@@ -28,12 +28,15 @@ public class TeamsActivity extends AppCompatActivity {
         teams_input = findViewById(R.id.team_number_input);
         generate_custom = findViewById(R.id.generate_custom_teams_button);
         generate_random = findViewById(R.id.generate_random_teams_button);
+
+
         generate_random.setOnClickListener((view) -> {
             int teamNumber = getInputValueAsInt(teams_input);
             int memberNumber = getInputValueAsInt(members_input);
             Log.d(TAG, "" + teamNumber);
             //Caso que los inputs no sean correctos
             if (teamNumber == -1 || memberNumber == -1) {
+                return;
                 //TODO hacer popup o algo vistoso
             }
             Intent intent = new Intent(this, RandomTeamInputActivity.class);
@@ -41,6 +44,21 @@ public class TeamsActivity extends AppCompatActivity {
             intent.putExtra("member_number", memberNumber);
             startActivity(intent);
         });
+
+        generate_custom.setOnClickListener((view -> {
+            int teamNumber = getInputValueAsInt(teams_input);
+            int memberNumber = getInputValueAsInt(members_input);
+            Log.d(TAG, "" + teamNumber);
+            //Caso que los inputs no sean correctos
+            if (teamNumber == -1 || memberNumber == -1) {
+                return;
+                //TODO hacer popup o algo vistoso
+            }
+            Intent intent = new Intent(this, CustomTeamInputActivity.class);
+            intent.putExtra("team_number", teamNumber);
+            intent.putExtra("member_number", memberNumber);
+            startActivity(intent);
+        }));
 
     }
 
@@ -50,4 +68,5 @@ public class TeamsActivity extends AppCompatActivity {
             return Integer.parseInt(inputString);
         return -1;
     }
+
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import es.ucm.fdi.teamup.R;
 import es.ucm.fdi.teamup.models.TeamManager;
+import es.ucm.fdi.teamup.models.ViewUtils;
 
 public class RandomTeamInputActivity extends AppCompatActivity {
 
@@ -29,13 +30,12 @@ public class RandomTeamInputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_team_input);
         actualIntent = getIntent();
-        membersLayout = findViewById(R.id.generated_random_teams_layout);
+        membersLayout = findViewById(R.id.custom_teams_input_layout);
         generateButton = findViewById(R.id.regenerate_random_teams_button);
         int team_number = actualIntent.getIntExtra("team_number", 0);
         int member_number = actualIntent.getIntExtra("member_number", 0);
         for (int i = 0; i < member_number; i++) {
-            EditText inputText = new EditText(this);
-            inputText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            EditText inputText = ViewUtils.createStyledEditText(this, "");
             membersLayout.addView(inputText);
             allMemberInputs.add(inputText);
         }

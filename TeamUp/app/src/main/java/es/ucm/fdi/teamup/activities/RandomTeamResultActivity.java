@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import es.ucm.fdi.teamup.R;
 import es.ucm.fdi.teamup.models.Team;
 import es.ucm.fdi.teamup.models.TeamManager;
+import es.ucm.fdi.teamup.models.ViewUtils;
 
 public class RandomTeamResultActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class RandomTeamResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_team_result);
         actualIntent = getIntent();
-        teamsLayout = findViewById(R.id.generated_random_teams_layout);
+        teamsLayout = findViewById(R.id.custom_teams_input_layout);
         reGenerateTeams = findViewById(R.id.regenerate_random_teams_button);
         teamManager = (TeamManager) actualIntent.getSerializableExtra("teamManager");
 
@@ -51,19 +52,10 @@ public class RandomTeamResultActivity extends AppCompatActivity {
         teamsLayout.removeAllViews();
         ArrayList<Team> teams = teamManager.getTeams();
         for (Team team : teams) {
-            EditText teamName = new EditText(this);
-            teamName.setText(team.getName());
-            teamName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            teamName.setTextColor(Color.BLACK);
-            LinearLayout linearLayout = new LinearLayout(this);
-            linearLayout.setOrientation(LinearLayout.VERTICAL);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(20, 0, 0, 0);
-            linearLayout.setLayoutParams(params);
+            EditText teamName = ViewUtils.createStyledEditText(this,team.getName());
+            LinearLayout linearLayout = ViewUtils.createStyledLinearLayout(this);
             for (String member : team.getMembers()) {
-                TextView memberText = new TextView(this);
-                memberText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                memberText.setText(member);
+                TextView memberText = ViewUtils.createStyledTextView(this,member);
                 linearLayout.addView(memberText);
             }
 

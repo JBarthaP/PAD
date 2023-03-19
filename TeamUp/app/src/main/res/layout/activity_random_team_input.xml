@@ -11,7 +11,7 @@
         tools:context=".activities.RandomTeamInputActivity">
 
         <TextView
-            android:id="@+id/generated_teams_label"
+            android:id="@+id/custom_input_teams_label"
             android:layout_width="356dp"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/generated_random_teams_layout"
+            android:id="@+id/custom_teams_input_layout"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.262"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generated_teams_label"></LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/custom_input_teams_label"></LinearLayout>
 
         <Button
             android:id="@+id/regenerate_random_teams_button"
@@ -43,6 +43,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.664"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generated_random_teams_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/custom_teams_input_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

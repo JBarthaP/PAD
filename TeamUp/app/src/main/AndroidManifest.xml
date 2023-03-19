@@ -12,6 +12,9 @@
         android:theme="@style/Theme.TeamUp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.CustomTeamInputActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.RandomTeamResultActivity"
             android:exported="false" />
         <activity

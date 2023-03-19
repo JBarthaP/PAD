@@ -4,11 +4,27 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import kotlin.Triple;
+
 public class TeamManager implements Serializable {
     private ArrayList<String> members;
 
     private int nTeams;
     private ArrayList<Team> teams;
+
+
+    public static Triple<Integer, Integer, Integer> getTeamsSize(int nTeams, int nMembers){
+        int membersPerGroup = (int) Math.ceil((double) nMembers / (double) nTeams);
+        int bigTeams = nTeams;
+        int smallTeams = 0;
+
+        //Dependiendo si el número de equipos es impar habrá que hacer equipos con números diferentes
+        if (nMembers % nTeams != 0) {
+            bigTeams = nMembers - ((membersPerGroup - 1) * nTeams);
+            smallTeams = nTeams - bigTeams;
+        }
+        return new Triple(membersPerGroup,bigTeams,smallTeams);
+    }
 
     public TeamManager(int nTeams) {
         this.members = new ArrayList<>();
@@ -25,15 +41,11 @@ public class TeamManager implements Serializable {
 
     public void generateRandomTeams() {
 
-        int membersPerGroup = (int) Math.ceil((double) members.size() / (double) this.nTeams);
-        int bigTeams = this.nTeams;
-        int smallTeams = 0;
+        Triple<Integer, Integer, Integer> teamSize = TeamManager.getTeamsSize(this.nTeams, this.members.size());
+        int membersPerGroup = teamSize.getFirst();
+        int bigTeams = teamSize.getSecond();
+        int smallTeams = teamSize.getThird();
 
-        //Dependiendo si el número de equipos es impar habrá que hacer equipos con números diferentes
-        if (members.size() % this.nTeams != 0) {
-            bigTeams = this.members.size() - ((membersPerGroup - 1) * this.nTeams);
-            smallTeams = this.nTeams - bigTeams;
-        }
         teams = new ArrayList<>();
         Random rand = new Random();
         ArrayList<String> membersBag = new ArrayList<>(this.members);
@@ -59,6 +71,8 @@ public class TeamManager implements Serializable {
             this.teams.add(new Team("Team " + (i + bigTeams + 1), team));
         }
     }
+
+
 
     public ArrayList<Team> getTeams() {
         return teams;

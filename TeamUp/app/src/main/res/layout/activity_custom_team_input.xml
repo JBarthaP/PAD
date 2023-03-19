@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,10 +13,10 @@
 
         <TextView
             android:id="@+id/custom_input_teams_label"
-            android:layout_width="354dp"
-            android:layout_height="33dp"
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/generated_teams_label"
+            android:text="@string/introduce_custom_teams_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,15 +35,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/custom_input_teams_label"></LinearLayout>
 
-        <Button
-            android:id="@+id/regenerate_random_teams_button"
-            android:layout_width="277dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/regenerate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.664"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/custom_teams_input_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

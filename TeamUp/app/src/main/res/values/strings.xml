@@ -7,6 +7,7 @@
     <string name="generate_custom_teams_button">Generar equipos personalizados </string>
     <string name="generate_random_teams_button">Generar equipos aleatorios: </string>
     <string name="introduce_members_label">Introduzca todos los miembros para formar los equipos: </string>
+    <string name="introduce_custom_teams_label">Introduzca los participantes y equipos correspondientes: </string>
     <string name="generate">Generar equipos: </string>
     <string name="regenerate">Volver a generar: </string>
     <string name="generated_teams_label">Equipos generados: </string>
