@@ -25,6 +25,10 @@ public class TeamManager implements Serializable {
         }
         return new Triple(membersPerGroup,bigTeams,smallTeams);
     }
+    public TeamManager() {
+        this.members = new ArrayList<>();
+        this.nTeams = 0;
+    }
 
     public TeamManager(int nTeams) {
         this.members = new ArrayList<>();
@@ -72,7 +76,21 @@ public class TeamManager implements Serializable {
         }
     }
 
+    public ArrayList<String> getMembers() {
+        return members;
+    }
 
+    public void setMembers(ArrayList<String> members) {
+        this.members = members;
+    }
+
+    public void setnTeams(int nTeams) {
+        this.nTeams = nTeams;
+    }
+
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
+    }
 
     public ArrayList<Team> getTeams() {
         return teams;

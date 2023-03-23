@@ -1,8 +1,10 @@
 package es.ucm.fdi.teamup;
 
+import android.app.Application;
+
 import es.ucm.fdi.teamup.models.TeamManager;
 
-public class Controlador {
+public class Controlador extends Application {
 
     private TeamManager teamManager;
 
@@ -11,7 +13,7 @@ public class Controlador {
     }
 
     public Controlador() {
-
+        teamManager = new TeamManager();
     }
 
 //    public void tratarEvento(Evento event, Object[] data) {
@@ -19,4 +21,12 @@ public class Controlador {
 //            case Evento.GENERARQUIPOS: teamManager.generarEquipos()
 //        }
 //    }
+
+    public TeamManager getTeamManager() {
+        return teamManager;
+    }
+
+    public void setTeamManager(TeamManager teamManager) {
+        this.teamManager = teamManager;
+    }
 }

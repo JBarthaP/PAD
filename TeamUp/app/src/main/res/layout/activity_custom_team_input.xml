@@ -11,6 +11,14 @@
         android:layout_height="match_parent"
         tools:context=".activities.RandomTeamInputActivity">
 
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/continue_text"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="99dp" />
+
         <TextView
             android:id="@+id/custom_input_teams_label"
             android:layout_width="358dp"

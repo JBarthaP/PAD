@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import es.ucm.fdi.teamup.Controlador;
 import es.ucm.fdi.teamup.R;
 
 public class TeamsActivity extends AppCompatActivity {
@@ -20,9 +21,12 @@ public class TeamsActivity extends AppCompatActivity {
 
     Button generate_random;
 
+    Controlador controller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        controller = (Controlador) getApplication();
         setContentView(R.layout.activity_teams);
         members_input = findViewById(R.id.total_members_input);
         teams_input = findViewById(R.id.team_number_input);

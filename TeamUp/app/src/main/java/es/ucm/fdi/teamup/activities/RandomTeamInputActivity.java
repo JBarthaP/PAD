@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import es.ucm.fdi.teamup.Controlador;
 import es.ucm.fdi.teamup.R;
 import es.ucm.fdi.teamup.models.TeamManager;
 import es.ucm.fdi.teamup.models.ViewUtils;
@@ -24,11 +25,13 @@ public class RandomTeamInputActivity extends AppCompatActivity {
 
     ArrayList<EditText> allMemberInputs = new ArrayList<>();
 
+    Controlador controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_team_input);
+        controller = (Controlador) getApplication();
         actualIntent = getIntent();
         membersLayout = findViewById(R.id.custom_teams_input_layout);
         generateButton = findViewById(R.id.regenerate_random_teams_button);
@@ -43,14 +46,13 @@ public class RandomTeamInputActivity extends AppCompatActivity {
             for (EditText input : allMemberInputs) {
                 if (input.getText().toString().equals("")) return; //TODO controlar mejor los inputs
             }
-            TeamManager teamManager = new TeamManager(team_number);
+            TeamManager teamManager = controller.getTeamManager();
+            teamManager.setnTeams(team_number);
             for (EditText input : allMemberInputs) {
                 teamManager.addMember(input.getText().toString());
             }
             teamManager.generateRandomTeams();
-
             Intent intent = new Intent(this, RandomTeamResultActivity.class);
-            intent.putExtra("teamManager", teamManager);
             startActivity(intent);
         }));
     }
