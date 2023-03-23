@@ -35,42 +35,15 @@ public class TeamsActivity extends AppCompatActivity {
 
 
         generate_random.setOnClickListener((view) -> {
-            int teamNumber = getInputValueAsInt(teams_input);
-            int memberNumber = getInputValueAsInt(members_input);
-            Log.d(TAG, "" + teamNumber);
-            //Caso que los inputs no sean correctos
-            if (teamNumber == -1 || memberNumber == -1) {
-                return;
-                //TODO hacer popup o algo vistoso
-            }
-            Intent intent = new Intent(this, RandomTeamInputActivity.class);
-            intent.putExtra("team_number", teamNumber);
-            intent.putExtra("member_number", memberNumber);
-            startActivity(intent);
+            controller.generateRandomTeamsListener(teams_input,members_input);
         });
 
         generate_custom.setOnClickListener((view -> {
-            int teamNumber = getInputValueAsInt(teams_input);
-            int memberNumber = getInputValueAsInt(members_input);
-            Log.d(TAG, "" + teamNumber);
-            //Caso que los inputs no sean correctos
-            if (teamNumber == -1 || memberNumber == -1) {
-                return;
-                //TODO hacer popup o algo vistoso
-            }
-            Intent intent = new Intent(this, CustomTeamInputActivity.class);
-            intent.putExtra("team_number", teamNumber);
-            intent.putExtra("member_number", memberNumber);
-            startActivity(intent);
+            controller.generateCustomTeamsListener(teams_input,members_input);
         }));
 
     }
 
-    private int getInputValueAsInt(EditText input) {
-        String inputString = input.getText().toString();
-        if (!inputString.equals("") || inputString.equals("0"))
-            return Integer.parseInt(inputString);
-        return -1;
-    }
+
 
 }
