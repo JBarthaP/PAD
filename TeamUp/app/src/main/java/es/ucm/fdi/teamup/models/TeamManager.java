@@ -76,6 +76,11 @@ public class TeamManager implements Serializable {
         }
     }
 
+
+    public void addTeam(Team team){
+        teams.add(team);
+    }
+
     public ArrayList<String> getMembers() {
         return members;
     }
