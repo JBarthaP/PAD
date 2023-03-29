@@ -8,14 +8,16 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import es.ucm.fdi.teamup.Controlador;
 import es.ucm.fdi.teamup.R;
 
 public class TeamsActivity extends AppCompatActivity {
 
     private static final String TAG = TeamsActivity.class.getSimpleName();
-    EditText members_input;
-    EditText teams_input;
+    TextInputLayout members_input;
+    TextInputLayout teams_input;
 
     Button generate_custom;
 
