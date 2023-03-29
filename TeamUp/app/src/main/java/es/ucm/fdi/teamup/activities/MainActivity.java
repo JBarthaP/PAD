@@ -12,7 +12,9 @@ import es.ucm.fdi.teamup.R;
 public class MainActivity extends AppCompatActivity {
 
     Button createTeamsButton;
+
     Controlador controller;
+    Button createGameButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TeamsActivity.class);
             startActivity(intent);
         });
+
+        createGameButton = findViewById(R.id.createGameButton);
+        createGameButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, GameActivity.class);
+            startActivity(intent);
+        });
+
 
 
     }
