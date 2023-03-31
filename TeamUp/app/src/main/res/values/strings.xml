@@ -9,10 +9,11 @@
     <string name="introduce_members_label">Introduzca todos los miembros para formar los equipos: </string>
     <string name="introduce_custom_teams_label">Introduzca los participantes y equipos correspondientes: </string>
     <string name="generate">Generar equipos: </string>
-    <string name="regenerate">Volver a generar: </string>
+    <string name="regenerate">Volver a generar </string>
     <string name="generated_teams_label">Equipos generados: </string>
     <string name="continue_text">Continuar</string>
-
+    <string name="continue_to_teams_text">Continuar a crear equipos</string>
+    <string name="gameNameText">Nombre de la partida:</string>
     <string name="example_team_label">Ejemplo: 4</string>
     <string name="example_members_label">Ejemplo: 12</string>
 </resources>

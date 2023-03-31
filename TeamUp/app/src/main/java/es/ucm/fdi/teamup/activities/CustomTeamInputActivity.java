@@ -69,12 +69,12 @@ public class CustomTeamInputActivity extends AppCompatActivity {
         memberNamesInput = new ArrayList<>();
 
         for (int i = 0; i < bigTeams; i++) {
-            EditText teamName = ViewUtils.createStyledEditText(this,"Team " + (i+1));
+            EditText teamName = ViewUtils.createStyledEditText(this,"Team " + (i+1), (e)->{});
             teamNamesInput.add(teamName);
             ArrayList<EditText> teamMembersInput = new ArrayList<>();
-            LinearLayout linearLayout = ViewUtils.createStyledLinearLayout(this);
+            LinearLayout linearLayout = ViewUtils.createStyledLinearLayout(this, (e)->{});
             for (int j = 0; j < membersPerGroup; j++) {
-                EditText memberText = ViewUtils.createStyledEditText(this, "Member " + (j+1));
+                EditText memberText = ViewUtils.createStyledEditText(this, "Member " + (j+1), (e)->{});
                 teamMembersInput.add(memberText);
                 linearLayout.addView(memberText);
             }
@@ -83,11 +83,11 @@ public class CustomTeamInputActivity extends AppCompatActivity {
             teamsLayout.addView(linearLayout);
         }
         for (int i = 0; i < smallTeams; i++) {
-            EditText teamName = ViewUtils.createStyledEditText(this,"Team " + (i+bigTeams+1));
-            LinearLayout linearLayout = ViewUtils.createStyledLinearLayout(this);
+            EditText teamName = ViewUtils.createStyledEditText(this,"Team " + (i+bigTeams+1), (e)->{});
+            LinearLayout linearLayout = ViewUtils.createStyledLinearLayout(this, (e)->{});
 
             for (int j = 0; j < membersPerGroup-1; j++) {
-                EditText memberText = ViewUtils.createStyledEditText(this, "Member " + (j+1));
+                EditText memberText = ViewUtils.createStyledEditText(this, "Member " + (j+1), (e)->{});
 
                 linearLayout.addView(memberText);
             }

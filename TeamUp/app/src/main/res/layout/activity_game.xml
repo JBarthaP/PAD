@@ -7,160 +7,75 @@
     android:layout_height="match_parent"
     tools:context=".activities.GameActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="229dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="56dp"
-        android:textSize="30dp"
-        android:text="Partida"
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="396dp"
+        android:layout_height="84dp"
+        android:background="@color/orange"
+        android:backgroundTint="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
+    <TextView
+        android:id="@+id/gameName"
+        android:layout_width="396dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:text="Partida"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="344dp"
+        android:layout_height="390dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintBottom_toTopOf="@+id/createAgainButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.061">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#F6F6F6"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FF9800"
-                    android:padding="10dp"
-                    android:text="Equipo 1" />
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Mario G" />
-
-                        <TextView
-                            android:id="@+id/textView10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Jose" />
-
-                        <TextView
-                            android:id="@+id/textView12"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Jose" />
-
-
-                    </LinearLayout>
-                </ScrollView>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/textView6"
+        <LinearLayout
+            android:id="@+id/gameTeamLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="VS" />
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#F6F6F6"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FF9800"
-                    android:padding="10dp"
-                    android:text="Equipo 1" />
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Mario G" />
-
-                        <TextView
-                            android:id="@+id/textView10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Jose" />
-                    </LinearLayout>
-                </ScrollView>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/createAgainButton"
         android:layout_width="236dp"
         android:layout_height="74dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#EA8E07"
         android:text="Generar equipos de nuevo"
         app:layout_constraintBottom_toTopOf="@+id/storeGameButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.371"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.97"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/storeGameButton"
-        android:layout_width="228dp"
-        android:layout_height="74dp"
+        android:layout_width="236dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="28dp"
         android:backgroundTint="#EA8E07"
         android:text="Guardar partida"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.355"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createAgainButton" />
-
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

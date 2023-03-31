@@ -38,7 +38,7 @@ public class RandomTeamInputActivity extends AppCompatActivity {
         int team_number = actualIntent.getIntExtra("team_number", 0);
         int member_number = actualIntent.getIntExtra("member_number", 0);
         for (int i = 0; i < member_number; i++) {
-            EditText inputText = ViewUtils.createStyledEditText(this, "");
+            EditText inputText = ViewUtils.createStyledEditText(this, "", (e)->{});
             membersLayout.addView(inputText);
             allMemberInputs.add(inputText);
         }

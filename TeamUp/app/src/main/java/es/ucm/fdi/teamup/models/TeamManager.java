@@ -6,7 +6,7 @@ import java.util.Random;
 
 import kotlin.Triple;
 
-public class TeamManager implements Serializable {
+public class TeamManager {
     private ArrayList<String> members;
 
     private int nTeams;

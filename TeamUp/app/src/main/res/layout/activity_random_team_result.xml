@@ -36,13 +36,26 @@
 
         <Button
             android:id="@+id/regenerate_random_teams_button"
-            android:layout_width="277dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="193dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#FF5252"
             android:text="@string/regenerate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.664"
+            app:layout_constraintHorizontal_bias="0.057"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/custom_teams_input_layout" />
+
+        <Button
+            android:id="@+id/finish_random_teams"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#EA8E07"
+            android:text="@string/continue_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.448"
+            app:layout_constraintStart_toEndOf="@+id/regenerate_random_teams_button"
             app:layout_constraintTop_toBottomOf="@+id/custom_teams_input_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

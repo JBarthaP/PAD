@@ -15,6 +15,7 @@
             android:id="@+id/continue_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#EA8E07"
             android:text="@string/continue_text"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="99dp" />
