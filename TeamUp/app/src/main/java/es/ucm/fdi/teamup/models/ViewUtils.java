@@ -4,11 +4,15 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+
+import java.util.ArrayList;
 
 public class ViewUtils {
 
@@ -20,6 +24,15 @@ public class ViewUtils {
     public static LinearLayout createStyledLinearLayout(Context context, Function<LinearLayout> function){
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        linearLayout.setLayoutParams(params);
+        function.aply(linearLayout);
+        return linearLayout;
+    }
+
+    public static LinearLayout createStyledHorizontalLinearLayout(Context context, Function<LinearLayout> function){
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         linearLayout.setLayoutParams(params);
         function.aply(linearLayout);
@@ -70,6 +83,17 @@ public class ViewUtils {
         separator.setLayoutParams(params);
         separator.setBackgroundColor(Color.BLACK);
         return separator;
+    }
+
+    public static Spinner createSpinner(Context context, ArrayList<String> options, Function<Spinner> function){
+        Spinner spinner = new Spinner(context);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, options);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        function.aply(spinner);
+        System.out.print("Creando spinner: " + spinner.toString());
+        return spinner;
     }
 
 }

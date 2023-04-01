@@ -53,9 +53,7 @@ public class TeamManager {
         teams = new ArrayList<>();
         Random rand = new Random();
         ArrayList<String> membersBag = new ArrayList<>(this.members);
-        System.out.println(membersBag.size());
-        System.out.println(membersPerGroup);
-        System.out.println(this.nTeams);
+
         for (int i = 0; i < bigTeams; i++) {
             ArrayList<String> team = new ArrayList<>();
             for (int j = 0; j < membersPerGroup; j++) {

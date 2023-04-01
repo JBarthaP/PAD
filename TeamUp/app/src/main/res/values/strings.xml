@@ -14,6 +14,9 @@
     <string name="continue_text">Continuar</string>
     <string name="continue_to_teams_text">Continuar a crear equipos</string>
     <string name="gameNameText">Nombre de la partida:</string>
+    <string name="saveText">Guardar partida</string>
     <string name="example_team_label">Ejemplo: 4</string>
     <string name="example_members_label">Ejemplo: 12</string>
+    <string name="positions">Posiciones</string>
+    <string name="discard_game">Descartar partida</string>
 </resources>

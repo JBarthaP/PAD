@@ -4,11 +4,18 @@ import android.content.Intent;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import kotlin.Triple;
 
 public class Utils {
+
+    @FunctionalInterface
+    public interface Function<T, R>{
+        R aply(T element);
+    }
+
     public static int getInputValueAsInt(TextInputLayout input) {
         String inputString = input.getEditText().getText().toString();
         if (!inputString.equals("") || inputString.equals("0"))
@@ -26,8 +33,18 @@ public class Utils {
         return (calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH)+1) + "/" + calendar.get(Calendar.YEAR));
     }
 
-    public Triple<Integer, Integer, Integer> getActualDate(){
+    public static Triple<Integer, Integer, Integer> getActualDate(){
         Calendar calendar = Calendar.getInstance();
         return new Triple<>(calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.YEAR));
     }
+
+    public static <T, R>ArrayList<R> map(ArrayList<T> list, Function<T,R> function){
+        ArrayList<R> newlist = new ArrayList<>();
+        for(T element: list){
+            newlist.add(function.aply(element));
+        }
+        return newlist;
+    }
+
+
 }
