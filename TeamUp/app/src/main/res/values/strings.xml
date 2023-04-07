@@ -19,4 +19,11 @@
     <string name="example_members_label">Ejemplo: 12</string>
     <string name="positions">Posiciones</string>
     <string name="discard_game">Descartar partida</string>
+    <string name="first_name_hint">Nombre</string>
+    <string name="last_name_hint">Apellidos</string>
+    <string name="username_hint">Usuario</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="password2_hint">Confirmar contraseña</string>
+    <string name="sign_up_button">Regístrate!</string>
+
 </resources>
