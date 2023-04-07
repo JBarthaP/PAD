@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     Controlador controller;
     Button createGameButton;
+
+    Button registerButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, GameStartActivity.class);
             startActivity(intent);
         });
+
+        registerButton = findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RegisterActivity.class);
+            startActivity(intent);
+        });
+
 
 
 
