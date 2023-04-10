@@ -5,10 +5,10 @@
     <string name="total_members_label">Numero de participantes totales: </string>
     <string name="team_number_label">Número de equipos: </string>
     <string name="generate_custom_teams_button">Generar equipos personalizados </string>
-    <string name="generate_random_teams_button">Generar equipos aleatorios: </string>
-    <string name="introduce_members_label">Introduzca todos los miembros para formar los equipos: </string>
-    <string name="introduce_custom_teams_label">Introduzca los participantes y equipos correspondientes: </string>
-    <string name="generate">Generar equipos: </string>
+    <string name="generate_random_teams_button">Generar equipos aleatorios </string>
+    <string name="introduce_members_label">Introduzca todos los miembros para formar los equipos </string>
+    <string name="introduce_custom_teams_label">Introduzca los participantes y equipos correspondientes </string>
+    <string name="generate">Generar equipos </string>
     <string name="regenerate">Volver a generar </string>
     <string name="generated_teams_label">Equipos generados: </string>
     <string name="continue_text">Continuar</string>
@@ -25,5 +25,9 @@
     <string name="password_hint">Contraseña</string>
     <string name="password2_hint">Confirmar contraseña</string>
     <string name="sign_up_button">Regístrate!</string>
-
+    <string name="welcome">Bienvenido a TeamUp</string>
+    <string name="welcome2">Empieza ya!</string>
+    <string name="login_button">Login</string>
+    <string name="welcome_back">Bienvenido de nuevo!</string>
+    <string name="already_txt">¿No tienes un usuario? Registraté!</string>
 </resources>

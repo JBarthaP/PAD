@@ -10,6 +10,8 @@ public interface UserRepository {
 
     User findUserById(int userId);
 
+    User findUserByNameAndPassword(String name, String password);
+
     void insertUser(User user);
 
     void updateUser(User user);

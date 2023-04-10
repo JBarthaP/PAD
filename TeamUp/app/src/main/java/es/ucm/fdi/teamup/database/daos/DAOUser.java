@@ -25,6 +25,10 @@ public interface DAOUser {
             "last_name LIKE :last LIMIT 1")
     User findByName(String first, String last);
 
+    @Query("SELECT * FROM users WHERE username LIKE :name AND " +
+            "password LIKE :password LIMIT 1")
+    User findByNameAndPassword(String name, String password);
+
     @Insert
     void insertAll(User... users);
 

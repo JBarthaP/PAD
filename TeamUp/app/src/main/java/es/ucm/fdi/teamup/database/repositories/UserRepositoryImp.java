@@ -24,6 +24,11 @@ public class UserRepositoryImp implements UserRepository{
     }
 
     @Override
+    public User findUserByNameAndPassword(String name, String password) {
+        return daoUser.findByNameAndPassword(name,password);
+    }
+
+    @Override
     public void insertUser(User user) {
         daoUser.insertUser(user);
     }

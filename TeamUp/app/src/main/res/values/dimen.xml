@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titleDP">36dp</dimen>
+    <dimen name="welcome">16dp</dimen>
+    <dimen name="welcome_back">56sp</dimen>
+</resources>

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import es.ucm.fdi.teamup.activities.CustomTeamInputActivity;
 import es.ucm.fdi.teamup.activities.RandomTeamInputActivity;
+import es.ucm.fdi.teamup.database.entities.User;
 import es.ucm.fdi.teamup.models.Game;
 import es.ucm.fdi.teamup.models.GameTeam;
 import es.ucm.fdi.teamup.models.Team;
@@ -23,6 +24,8 @@ public class Controlador extends Application {
     private TeamManager teamManager;
 
     private Game actualGame;
+
+    private User userLogged;
 
     public static enum Evento {
 
@@ -44,6 +47,14 @@ public class Controlador extends Application {
 
     public void setTeamManager(TeamManager teamManager) {
         this.teamManager = teamManager;
+    }
+
+    public User getUserLogged() {
+        return userLogged;
+    }
+
+    public void setUserLogged(User userLogged) {
+        this.userLogged = userLogged;
     }
 
     public void generateCustomTeamsListener(TextInputLayout teams_input, TextInputLayout members_input){
