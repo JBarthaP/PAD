@@ -1,6 +1,7 @@
 package es.ucm.fdi.teamup.models;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
@@ -11,6 +12,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -47,6 +51,20 @@ public class ViewUtils {
         function.aply(editText);
         return editText;
     }
+
+    public static TextInputLayout createStyledTextInputLayout(Context context, String label, Function<TextInputEditText> function){
+        TextInputLayout textInputLayout = new TextInputLayout(context);
+        TextInputEditText textInputEditText = new TextInputEditText(textInputLayout.getContext());
+        textInputEditText.setHint(label);
+        textInputLayout.addView(textInputEditText);
+        textInputLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        textInputLayout.setDefaultHintTextColor(ColorStateList.valueOf(Color.BLACK));
+        textInputEditText.setTextColor(Color.BLACK);
+        textInputLayout.setBoxBackgroundColor(Color.TRANSPARENT);
+        function.aply(textInputEditText);
+        return textInputLayout;
+    }
+
 
     public static TextView createStyledTextView(Context context, String label, Function<TextView> function){
         TextView textView = new TextView(context);
