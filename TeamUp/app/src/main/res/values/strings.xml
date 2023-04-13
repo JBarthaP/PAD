@@ -29,5 +29,7 @@
     <string name="welcome2">Empieza ya!</string>
     <string name="login_button">Login</string>
     <string name="welcome_back">Bienvenido de nuevo!</string>
-    <string name="already_txt">¿No tienes un usuario? Registraté!</string>
+    <string name="already_txt">¿No tienes un usuario? Regístrate!</string>
+    <string name="register_title">Registro</string>
+
 </resources>

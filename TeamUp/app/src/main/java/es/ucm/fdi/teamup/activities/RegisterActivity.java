@@ -2,10 +2,13 @@ package es.ucm.fdi.teamup.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -23,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public final static String TAG = RegisterActivity.class.getSimpleName();
 
-    Button insertButton;
+    ImageView insertButton;
 
     Controlador controlador;
 
@@ -33,11 +36,15 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputLayout passwordTxt;
     TextInputLayout password2Txt;
 
+    private TextView error_message;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        error_message = findViewById(R.id.error_message);
 
         AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
 
@@ -66,6 +73,8 @@ public class RegisterActivity extends AppCompatActivity {
             password2Txt = findViewById(R.id.password2Txt);
             String password2 = Utils.getInputValueAsString(password2Txt);
 
+            controlador = (Controlador) getApplication();
+
 
             if (!userName.equals("") && !password.equals("")) {
                 //En el caso que son correctos crear usuario
@@ -74,14 +83,20 @@ public class RegisterActivity extends AppCompatActivity {
                     userRepo.insertUser(user);
                     Log.d(TAG, firstName + lastName + userName + password + password2);
                     Log.d(TAG, "Usuario creado correctamente");
+
+                    controlador.setUserLogged(user);
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     Log.e(TAG, "Contraseñas no iguales"); //TODO hacer un mensaje de error y intentar hacer algo parecido a required
+                    error_message.setText("Contraseñas no iguales");
                 }
 
             } else {
                 //En el caso que no mensaje de error con que campo falla
                 Log.e(TAG, "El usuario o la contraseña estan vacias");
+                error_message.setText("El usuario o la contraseña estan vacias");
             }
         });
 

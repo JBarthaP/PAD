@@ -31,6 +31,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView register_text;
 
+    private TextView error_message;
+
+
     private Controlador controlador;
 
     @Override
@@ -48,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordTxt = findViewById(R.id.passwordTxt);
         login_check = findViewById(R.id.login_check);
         register_text = findViewById(R.id.register_text);
+        error_message = findViewById(R.id.error_message);
         controlador = (Controlador) getApplication();
 
         login_check.setOnClickListener(view -> {
@@ -62,10 +66,12 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Log.e(TAG, "Error en el usuario o contraseña introducidas");
+                    error_message.setText("Error en el usuario o contraseña introducidas");
                 }
 
             } else {
                 Log.e(TAG, "El usuario o la contraseña estan vacias");
+                error_message.setText("El usuario o la contraseña estan vacias");
             }
         });
 
