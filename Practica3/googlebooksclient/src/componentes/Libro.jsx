@@ -11,10 +11,9 @@ const Libro = ({ info }) => {
                 }
             </a>
             <div className="info">
-                {infoDeseada.title.length < 80 ? <h3>{infoDeseada.title}</h3> :  
-                <h3>{infoDeseada.title.substring(0,80)+"..."}</h3>}
-                
-                <p>{infoDeseada.authors}</p>
+                {infoDeseada.title && <h3>{infoDeseada.title}</h3>}
+
+                {infoDeseada.authors && <p>{infoDeseada.authors.map(author => author + " ")}</p>}
             </div>
 
 

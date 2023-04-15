@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Google Books Client",
+  "name": "A simple book client app to use React",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +18,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "scope": "/",
+  "orientarion": "portrait-primary"
 }
