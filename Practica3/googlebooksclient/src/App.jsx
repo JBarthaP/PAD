@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Resultados from './componentes/Resultados';
-import { axios_call } from './utils/AsyncUtils';
+import { buildURI } from './utils/AsyncUtils';
+import axios from "axios"
+
 import './App.css';
 
 function App() {
@@ -9,6 +11,32 @@ function App() {
   const [autores, setAutores] = useState("")
   const [libros, setLibros] = useState(null)
   const [mensaje, setMensaje] = useState("Resultados")
+
+  const buscarLibros = (queryString) => {
+    const builtURI = buildURI(queryString);
+    setMensaje("Cargando...")
+    axios.get(builtURI)
+      .then(function (response) {
+        // handle success
+        if (response.data.items) {
+          setLibros(response.data.items)
+          setMensaje("Resultados")
+        }
+        else {
+          setMensaje("No hay resultados")
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        setMensaje("Hubo un error en la búsqueda, pruebe más adelante")
+      })
+      .finally(function () {
+        // always executed
+      });
+
+
+  }
+
 
   const onBusquedaLibros = () => {
     let queryString = ""
@@ -22,28 +50,33 @@ function App() {
       }
       queryString += `inauthor:${autores}`;
     }
-    console.log(queryString);
-    const libros_nuevos = axios_call(queryString)
-    setLibros(libros_nuevos)
+    buscarLibros(queryString)
+
+
   }
 
   return (
-    <div className="App">
-      <h1>Busque sus revistas o libros</h1>
+    <div>
+      <header>
+        <h1 className='title'>Busque sus revistas o libros</h1>
 
-      <input type="text" placeholder="Titulo" onChange={(e) => setTitulo(e.target.value)}></input>
 
-      <input type="text" placeholder="Autores" onChange={(e) => setAutores(e.target.value)}></input>
+        <div className='busqueda'>
+          <input type="text" placeholder="Titulo" onChange={(e) => setTitulo(e.target.value)}></input>
 
-      <button type="button" onClick={onBusquedaLibros}>Buscar</button>
+          <input type="text" placeholder="Autores" onChange={(e) => setAutores(e.target.value)}></input>
 
-      <h2>{mensaje}</h2>
+          <button type="button" className='fas fa-search' onClick={onBusquedaLibros}>Buscar</button>
+        </div>
 
-      {libros !== null && <Resultados libros={libros} />}
+        <h2 className='message'>{mensaje}</h2>
+      </header>
 
+        {libros !== null && <Resultados libros={libros} />}
+        
     </div>
   );
-  
+
 }
 
 export default App;

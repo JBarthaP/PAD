@@ -1,4 +1,3 @@
-import axios from "axios"
 
 const KEY_VALUE = "AIzaSyAXEcmlI4XnU3lADHcwZGBiIemMm8zXjzw";
 
@@ -16,7 +15,7 @@ const KEY = "key";
 
 const MAX_RESULTS_VALUE = "40";
 
-const buildURI = (query) => {
+export const buildURI = (query) => {
     const buildURI = new URL(BASE_URL)
     buildURI.searchParams.append(QUERY_PARAM, query);
     buildURI.searchParams.append(PRINT_TYPES, PRINT_TYPES_VALUE);
@@ -26,20 +25,4 @@ const buildURI = (query) => {
     return buildURI;
 }
 
-export function axios_call(query) {
-    const builtURI = buildURI(query);
-    axios.get(builtURI)
-        .then(function (response) {
-            // handle success
-            console.log(response.data.items); 
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-        .finally(function () {
-            // always executed
-        });
-
-}
 
