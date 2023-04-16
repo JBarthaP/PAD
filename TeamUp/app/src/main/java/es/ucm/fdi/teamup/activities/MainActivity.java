@@ -5,18 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import es.ucm.fdi.teamup.Controlador;
 import es.ucm.fdi.teamup.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button createTeamsButton;
+    LinearLayout createTeamsButton;
+    LinearLayout createGameButton;
+    LinearLayout registerButton;
+    LinearLayout settingsButton;
 
     Controlador controller;
-    Button createGameButton;
-
-    Button registerButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, IntroActivity.class);
+            startActivity(intent);
+        });
+
+        settingsButton = findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SelectionTournamentActivity.class);
             startActivity(intent);
         });
 

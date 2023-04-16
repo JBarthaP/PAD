@@ -2,6 +2,9 @@
     <string name="app_name">TeamUp</string>
     <string name="createGameButton">Crear Partida</string>
     <string name="createTeamsButton">Crear Equipos</string>
+    <string name="createTournament">Crear Torneo</string>
+    <string name="account">Cuenta</string>
+    <string name="settings">Ajustes</string>
     <string name="total_members_label">Numero de participantes totales: </string>
     <string name="team_number_label">Número de equipos: </string>
     <string name="generate_custom_teams_button">Generar equipos personalizados </string>
@@ -31,5 +34,7 @@
     <string name="welcome_back">Bienvenido de nuevo!</string>
     <string name="already_txt">¿No tienes un usuario? Regístrate!</string>
     <string name="register_title">Registro</string>
+    <string name="tournament_team">Por equipos</string>
+    <string name="tournament_individual">Individual</string>
 
 </resources>
