@@ -21,9 +21,8 @@ public interface DAOUser {
     @Query("SELECT * FROM users WHERE  userId = :userId")
     User findById(int userId);
 
-    @Query("SELECT * FROM users WHERE first_name LIKE :first AND " +
-            "last_name LIKE :last LIMIT 1")
-    User findByName(String first, String last);
+    @Query("SELECT * FROM users WHERE username LIKE :username LIMIT 1")
+    User findByUsername(String username);
 
     @Query("SELECT * FROM users WHERE username LIKE :name AND " +
             "password LIKE :password LIMIT 1")

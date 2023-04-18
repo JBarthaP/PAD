@@ -11,12 +11,6 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     int userId;
 
-    @ColumnInfo(name = "first_name")
-    private String firstName;
-
-    @ColumnInfo(name = "last_name")
-    private String lastName;
-
     @ColumnInfo(name = "username")
     @NonNull
     private String username;
@@ -27,17 +21,13 @@ public class User {
 
     public User() {}
 
-    public User(int userId, String firstName, String lastName, String username, String password) {
+    public User(int userId, String username, String password) {
         this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.username = username;
         this.password = password;
     }
 
-    public User(String firstName, String lastName, @NonNull String username, @NonNull String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User( @NonNull String username, @NonNull String password) {
         this.username = username;
         this.password = password;
     }
@@ -58,22 +48,6 @@ public class User {
         this.username = username;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -86,8 +60,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';

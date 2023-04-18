@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,8 +28,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     Controlador controlador;
 
-    TextInputLayout first_nameTxt;
-    TextInputLayout last_nameTxt;
     TextInputLayout usernameTxt;
     TextInputLayout passwordTxt;
     TextInputLayout password2Txt;
@@ -57,13 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         insertButton.setOnClickListener(view -> {
 
-            //Comprobar datos del formulario
-            first_nameTxt = findViewById(R.id.firstNameTxt);
-            String firstName = Utils.getInputValueAsString(first_nameTxt);
-
-            last_nameTxt = findViewById(R.id.lastNameTxt);
-            String lastName = Utils.getInputValueAsString(last_nameTxt);
-
             usernameTxt = findViewById(R.id.userNameTxt);
             String userName = Utils.getInputValueAsString(usernameTxt);
 
@@ -79,9 +68,9 @@ public class RegisterActivity extends AppCompatActivity {
             if (!userName.equals("") && !password.equals("")) {
                 //En el caso que son correctos crear usuario
                 if (password.equals(password2)) {
-                    User user = new User(firstName, lastName, userName, password);
+                    User user = new User(userName, password);
                     userRepo.insertUser(user);
-                    Log.d(TAG, firstName + lastName + userName + password + password2);
+                    Log.d(TAG, userName + password + password2);
                     Log.d(TAG, "Usuario creado correctamente");
 
                     controlador.setUserLogged(user);
@@ -89,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Log.e(TAG, "Contraseñas no iguales"); //TODO hacer un mensaje de error y intentar hacer algo parecido a required
+                    Log.e(TAG, "Contraseñas no iguales");
                     error_message.setText("Contraseñas no iguales");
                 }
 

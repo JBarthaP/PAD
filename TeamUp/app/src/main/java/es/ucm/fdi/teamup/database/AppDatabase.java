@@ -11,7 +11,7 @@ import es.ucm.fdi.teamup.database.entities.User;
 
 @Database(entities = {
         User.class
-}, version = 1)
+}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static AppDatabase INSTANCE;
