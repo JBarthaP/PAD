@@ -36,6 +36,9 @@ public class GameActivity extends AppCompatActivity {
     Button createAgainButton;
     Button storeGameButton;
 
+    Button modalStoreGameButton;
+    Button modalDiscardButton;
+
     Resources res;
     TextView gameName;
     Controlador controller;
@@ -54,16 +57,32 @@ public class GameActivity extends AppCompatActivity {
         modal = this.createDialog();
         modal.setContentView(R.layout.save_game_modal);
         this.insertPositionInput(modal.findViewById(R.id.gameResultLayout));
+        modalStoreGameButton = modal.findViewById(R.id.modalSaveButton);
+        modalDiscardButton = modal.findViewById(R.id.modalDiscardButton);
+
         this.createTeamsLayout();
         createAgainButton = findViewById(R.id.createAgainButton);
         storeGameButton = findViewById(R.id.storeGameButton);
         createAgainButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, RandomTeamResultActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });
 
         storeGameButton.setOnClickListener(view -> {
             modal.show();
+        });
+
+        modalStoreGameButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
+
+        modalDiscardButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
     }
 
@@ -175,6 +194,13 @@ public class GameActivity extends AppCompatActivity {
                     // Aquí se ejecuta el código si no se selecciona ningún elemento del Spinner
                 }
             });
+        }
+    }
+    protected void onDestroy() {
+        super.onDestroy();
+        if (modal != null) {
+            modal.dismiss();
+            modal = null;
         }
     }
 

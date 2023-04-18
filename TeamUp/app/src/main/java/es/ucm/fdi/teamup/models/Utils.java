@@ -13,7 +13,7 @@ public class Utils {
 
     @FunctionalInterface
     public interface Function<T, R>{
-        R aply(T element);
+        R apply(T element);
     }
 
     public static int getInputValueAsInt(TextInputLayout input) {
@@ -41,7 +41,7 @@ public class Utils {
     public static <T, R>ArrayList<R> map(ArrayList<T> list, Function<T,R> function){
         ArrayList<R> newlist = new ArrayList<>();
         for(T element: list){
-            newlist.add(function.aply(element));
+            newlist.add(function.apply(element));
         }
         return newlist;
     }

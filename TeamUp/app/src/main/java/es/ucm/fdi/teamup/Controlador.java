@@ -6,6 +6,8 @@ import android.app.Application;
 import android.content.Intent;
 import android.widget.EditText;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -57,41 +59,7 @@ public class Controlador extends Application {
         this.userLogged = userLogged;
     }
 
-    public void generateCustomTeamsListener(TextInputLayout teams_input, TextInputLayout members_input){
 
-
-        int teamNumber = Utils.getInputValueAsInt(teams_input);
-        int memberNumber =  Utils.getInputValueAsInt(members_input);
-        //Log.d(TAG, "" + teamNumber);
-        //Caso que los inputs no sean correctos
-        if (teamNumber == -1 || memberNumber == -1) {
-            return;
-            //TODO hacer popup o algo vistoso
-        }
-        Intent intent = new Intent(this, CustomTeamInputActivity.class);
-        intent.putExtra("team_number", teamNumber);
-        intent.putExtra("member_number", memberNumber);
-        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    public void generateRandomTeamsListener(TextInputLayout teams_input, TextInputLayout members_input){
-
-
-        int teamNumber = Utils.getInputValueAsInt(teams_input);
-        int memberNumber =  Utils.getInputValueAsInt(members_input);
-        //Log.d(TAG, "" + teamNumber);
-        //Caso que los inputs no sean correctos
-        if (teamNumber == -1 || memberNumber == -1) {
-            return;
-            //TODO hacer popup o algo vistoso
-        }
-        Intent intent = new Intent(this, RandomTeamInputActivity.class);
-        intent.putExtra("team_number", teamNumber);
-        intent.putExtra("member_number", memberNumber);
-        intent.addFlags(FLAG_ACTIVITY_NEW_TASK); //FLAG para iniciar actividades desde fuera de una actividad
-        startActivity(intent);
-    }
 
     public void deleteTeams(){
         this.teamManager = new TeamManager();

@@ -27,13 +27,15 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="339dp"
-        android:layout_height="457dp"
+        android:layout_width="337dp"
+        android:layout_height="529dp"
         android:layout_marginTop="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/continueToTeamsButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.37"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameNameInput">
+        app:layout_constraintTop_toBottomOf="@+id/gameNameInput"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,13 +47,13 @@
         android:id="@+id/continueToTeamsButton"
         android:layout_width="267dp"
         android:layout_height="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginBottom="36dp"
         android:backgroundTint="#EA8E07"
         android:text="@string/continue_to_teams_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.785"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintHorizontal_bias="0.769"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
