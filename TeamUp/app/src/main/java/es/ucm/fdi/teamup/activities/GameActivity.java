@@ -3,30 +3,46 @@ package es.ucm.fdi.teamup.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.text.PrecomputedTextCompat;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import es.ucm.fdi.teamup.Controlador;
 import es.ucm.fdi.teamup.R;
+import es.ucm.fdi.teamup.api.VideogameInfo;
+import es.ucm.fdi.teamup.api.VideogameLoaderCallbacks;
+import es.ucm.fdi.teamup.api.VideogameResultListAdapter;
 import es.ucm.fdi.teamup.database.AppDatabase;
 import es.ucm.fdi.teamup.database.daos.DAOGame;
 import es.ucm.fdi.teamup.database.daos.DAOUser;
@@ -43,6 +59,8 @@ import es.ucm.fdi.teamup.models.ViewUtils;
 
 public class GameActivity extends AppCompatActivity {
 
+    private static final int VIDEOGAME_LOADER_ID = 0;
+
     LinearLayout teamsLayout;
     Button createAgainButton;
     Button storeGameButton;
@@ -53,6 +71,14 @@ public class GameActivity extends AppCompatActivity {
     Resources res;
     TextView gameName;
     Controlador controller;
+
+    private ArrayList<VideogameInfo> myVideogameList;
+    private VideogameResultListAdapter videogameAdapter;
+    private RecyclerView recyclerView;
+    VideogameLoaderCallbacks videogameLoaderCallbacks;
+    Button searchButton;
+
+    LinearLayout videogameSpinnerLayout;
 
     Dialog modal;
     @Override
@@ -77,6 +103,23 @@ public class GameActivity extends AppCompatActivity {
         this.insertPositionInput(modal.findViewById(R.id.gameResultLayout));
         modalStoreGameButton = modal.findViewById(R.id.modalSaveButton);
         modalDiscardButton = modal.findViewById(R.id.modalDiscardButton);
+
+        myVideogameList = new ArrayList<>();
+        //videogameAdapter = new VideogameResultListAdapter(this, myVideogameList);
+        //recyclerView.setAdapter(videogameAdapter);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        videogameLoaderCallbacks = new VideogameLoaderCallbacks(this);
+        LoaderManager loaderManager = LoaderManager.getInstance(this);
+        if(loaderManager.getLoader(VIDEOGAME_LOADER_ID) != null){
+            loaderManager.initLoader(VIDEOGAME_LOADER_ID, null, videogameLoaderCallbacks);
+        }
+
+        searchButton = modal.findViewById(R.id.searchButton);
+
+        searchButton.setOnClickListener(view -> {
+            this.searchVideogames(view);
+        });
+
 
         this.createTeamsLayout();
         createAgainButton = findViewById(R.id.createAgainButton);
@@ -104,6 +147,8 @@ public class GameActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });
+
+
     }
 
     private void createTeamsLayout(){
@@ -222,6 +267,97 @@ public class GameActivity extends AppCompatActivity {
             modal.dismiss();
             modal = null;
         }
+    }
+
+    public void searchVideogames(View view){
+
+        String queryString = "";
+
+        EditText searchBar = modal.findViewById(R.id.searchBar);
+
+        String tituloBuscador = searchBar.getText().toString();
+
+        queryString = tituloBuscador;
+
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        if(inputManager != null){
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = null;
+
+        if(connMgr != null){
+            networkInfo = connMgr.getActiveNetworkInfo();
+        }
+
+        if(networkInfo != null && networkInfo.isConnected() && queryString.length() != 0){
+
+            Bundle queryBundle = new Bundle();
+            queryBundle.putString(VideogameLoaderCallbacks.EXTRA_QUERY, queryString);
+            LoaderManager.getInstance(this).restartLoader(VIDEOGAME_LOADER_ID, queryBundle, videogameLoaderCallbacks);
+
+        }
+        else{
+            //no esta conectado a internet
+        }
+
+    }
+
+    public void updateVideogameResultList(List<VideogameInfo> videogameInfos){
+
+        if(videogameInfos == null || videogameInfos.size() == 0){
+
+            LinearLayout layout = modal.findViewById(R.id.searchResultLayout);
+
+            TextView textView = new TextView(this);
+            textView.setText("No hay resultados");
+
+            layout.addView(textView);
+
+        }
+        else{
+
+            ArrayList<String> videogameNames = Utils.map((ArrayList<VideogameInfo>) videogameInfos, (videogame) -> {
+                return videogame.getTitle();
+            });
+
+
+            LinearLayout layout = modal.findViewById(R.id.searchResultLayout);
+
+            if(videogameSpinnerLayout == null){
+
+                videogameSpinnerLayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e)->{
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) e.getLayoutParams();
+                    params.setMargins(0,30,0,0);
+                    e.setLayoutParams(params);
+                });
+
+                layout.addView(videogameSpinnerLayout);
+
+            }
+
+            videogameSpinnerLayout.removeAllViewsInLayout();
+
+            Spinner spinner = ViewUtils.createSpinner(this, videogameNames , (e)->{
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) e.getLayoutParams();
+                params.width = LinearLayout.LayoutParams.MATCH_PARENT;
+                params.height = LinearLayout.LayoutParams.MATCH_PARENT;
+                params.setMargins(50,0,0,0);
+                e.setLayoutParams(params);
+            });
+
+            spinner.setBackground(ViewUtils.createBorder(2,Color.BLACK,(e->{
+                e.setCornerRadius(16f);
+            })));
+
+            videogameSpinnerLayout.addView(spinner);
+
+
+
+        }
+
     }
 
 }
