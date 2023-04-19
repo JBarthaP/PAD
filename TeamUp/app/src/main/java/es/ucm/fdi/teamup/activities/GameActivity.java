@@ -21,10 +21,21 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import es.ucm.fdi.teamup.Controlador;
 import es.ucm.fdi.teamup.R;
+import es.ucm.fdi.teamup.database.AppDatabase;
+import es.ucm.fdi.teamup.database.daos.DAOGame;
+import es.ucm.fdi.teamup.database.daos.DAOUser;
+import es.ucm.fdi.teamup.database.entities.GameEntity;
+import es.ucm.fdi.teamup.database.repositories.GameRepository;
+import es.ucm.fdi.teamup.database.repositories.GameRepositoryImp;
+import es.ucm.fdi.teamup.database.repositories.UserRepository;
+import es.ucm.fdi.teamup.database.repositories.UserRepositoryImp;
+import es.ucm.fdi.teamup.models.Game;
 import es.ucm.fdi.teamup.models.GameTeam;
 import es.ucm.fdi.teamup.models.Team;
 import es.ucm.fdi.teamup.models.Utils;
@@ -48,6 +59,13 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+
+        AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
+
+        DAOGame daoGame = db.daoGame();
+
+        GameRepository gameRepository = new GameRepositoryImp(daoGame);
 
         controller = (Controlador) getApplication();
         teamsLayout = findViewById(R.id.gameTeamLayout);
@@ -74,6 +92,8 @@ public class GameActivity extends AppCompatActivity {
         });
 
         modalStoreGameButton.setOnClickListener(view -> {
+            GameEntity gameEntity = new GameEntity(controller.getActualGame().getName(), Calendar.getInstance().getTime(), "Team 1");
+            gameRepository.insertGameEntity(gameEntity);
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

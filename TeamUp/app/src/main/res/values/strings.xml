@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TeamUp</string>
     <string name="createGameButton">Crear Partida</string>
-    <string name="createTeamsButton">Crear Equipos</string>
+    <string name="createTeamsButton">Crear partida/equipos</string>
     <string name="createTournament">Crear Torneo</string>
     <string name="account">Cuenta</string>
     <string name="settings">Ajustes</string>

@@ -66,8 +66,7 @@ public class TeamsActivity extends AppCompatActivity {
                 TapTargetView.showFor(this, TapTarget.forView(teams_input, "Informacion faltante", "Por favor rellene la información necesaria"));
             }
             return;
-            //TODO hacer popup o algo vistoso
-        }
+            }
         Intent intent = new Intent(this, CustomTeamInputActivity.class);
         intent.putExtra("team_number", teamNumber);
         intent.putExtra("member_number", memberNumber);

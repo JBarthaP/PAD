@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         controller = (Controlador) getApplication();
         createTeamsButton = findViewById(R.id.createTeamButton);
         createTeamsButton.setOnClickListener((view)->{
-            Intent intent = new Intent(this, TeamsActivity.class);
+            Intent intent = new Intent(this, SelectionTournamentActivity.class);
             startActivity(intent);
         });
 
