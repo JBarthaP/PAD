@@ -105,12 +105,14 @@ public class GameActivity extends AppCompatActivity {
         modalStoreGameButton.setOnClickListener(view -> {
             GameEntity gameEntity = new GameEntity(controller.getActualGame().getName(), Calendar.getInstance().getTime(), "Team 1");
             gameRepository.insertGameEntity(gameEntity);
+            controller.finishGame();
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });
 
         modalDiscardButton.setOnClickListener(view -> {
+            controller.finishGame();
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

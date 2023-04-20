@@ -76,6 +76,8 @@ public class Controlador extends Application {
 
     public void finishGame(){
         this.actualGame = null;
+        this.teamManager.setTeams(new ArrayList<>());
+        this.teamManager.setMembers(new ArrayList<>());
     }
 
     public Game getActualGame(){
