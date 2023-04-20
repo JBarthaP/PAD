@@ -59,6 +59,8 @@ public class GameStartActivity extends AppCompatActivity {
         Button continueButton = findViewById(R.id.continueToTeamsButton);
 
 
+        videogameSpinnerLayout = findViewById(R.id.videogameSpinnerLayout);
+
         videogameLoaderCallbacks = new VideogameLoaderCallbacks(this);
         LoaderManager loaderManager = LoaderManager.getInstance(this);
         if(loaderManager.getLoader(VIDEOGAME_LOADER_ID) != null){
@@ -124,6 +126,9 @@ public class GameStartActivity extends AppCompatActivity {
         }
         else{
             //no esta conectado a internet
+            Log.d(TAG, "no hay internet");
+            this.videogameResultListShowErrorMessage("No hay conexion");
+
         }
 
     }
@@ -132,12 +137,7 @@ public class GameStartActivity extends AppCompatActivity {
 
         if(videogameInfos == null || videogameInfos.size() == 0){
 
-            LinearLayout layout = findViewById(R.id.searchResultLayout);
-
-            TextView textView = new TextView(this);
-            textView.setText("No hay resultados");
-
-            layout.addView(textView);
+            this.videogameResultListShowErrorMessage("No hay resultados");
 
         }
         else{
@@ -147,9 +147,9 @@ public class GameStartActivity extends AppCompatActivity {
             });
 
 
-            LinearLayout layout = findViewById(R.id.searchResultLayout);
+            //LinearLayout layout = findViewById(R.id.searchResultLayout);
 
-            if(videogameSpinnerLayout == null){
+            /*if(videogameSpinnerLayout == null){
 
                 videogameSpinnerLayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e)->{
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) e.getLayoutParams();
@@ -159,7 +159,7 @@ public class GameStartActivity extends AppCompatActivity {
 
                 layout.addView(videogameSpinnerLayout);
 
-            }
+            }*/
 
             videogameSpinnerLayout.removeAllViewsInLayout();
 
@@ -178,6 +178,20 @@ public class GameStartActivity extends AppCompatActivity {
             videogameSpinnerLayout.addView(spinner);
 
         }
+
+    }
+
+
+    public void videogameResultListShowErrorMessage(String errorMessage){
+
+        videogameSpinnerLayout.removeAllViewsInLayout();
+
+        TextView textView = new TextView(this);
+        textView.setText(errorMessage);
+
+        videogameSpinnerLayout.addView(textView);
+
+
 
     }
 

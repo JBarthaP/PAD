@@ -64,6 +64,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/search_videogames" />
+
+            <LinearLayout
+                android:id="@+id/videogameSpinnerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
     </ScrollView>
 
