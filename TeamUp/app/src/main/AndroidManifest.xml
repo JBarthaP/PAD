@@ -38,6 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.GameActivity"
+            android:theme="@style/Theme.TeamUp.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".activities.CustomTeamInputActivity"

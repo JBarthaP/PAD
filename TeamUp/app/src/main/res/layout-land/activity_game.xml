@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.GameActivity">
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="847dp"
+        android:layout_height="61dp"
+        android:background="@color/orange"
+        android:backgroundTint="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/gameName"
+        android:layout_width="396dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="4dp"
+        android:text="Partida"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintWidth_percent="0.85">
+
+        <LinearLayout
+            android:id="@+id/gameTeamLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/createAgainButton"
+        android:layout_width="236dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#EA8E07"
+        android:text="Generar equipos de nuevo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/storeGameButton"
+        android:layout_width="236dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#EA8E07"
+        android:text="Guardar partida"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toEndOf="@+id/createAgainButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

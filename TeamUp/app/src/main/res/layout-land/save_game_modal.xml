@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/search"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,14 +16,14 @@
 
     <Button
         android:id="@+id/modalSaveButton"
-        android:layout_width="160dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="140dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
         android:backgroundTint="@color/orange"
         android:text="@string/saveText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        app:layout_constraintTop_toBottomOf="@+id/modalDiscardButton" />
 
     <TextView
         android:id="@+id/textView"
@@ -40,45 +39,55 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="308dp"
-        android:layout_height="376dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.188"
+        android:layout_width="379dp"
+        android:layout_height="229dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/modalDiscardButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
+            android:id="@+id/gameResultLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/gameResultLayout"
+            <TextView
+                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/positions"
-                    android:textSize="24sp" />
-            </LinearLayout>
-
+                android:text="@string/positions"
+                android:textSize="24sp" />
         </LinearLayout>
     </ScrollView>
 
     <Button
         android:id="@+id/modalDiscardButton"
-        android:layout_width="150dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="130dp"
+        android:layout_height="91dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="44dp"
         android:backgroundTint="@color/red"
         android:text="@string/discard_game"
-        app:layout_constraintEnd_toStartOf="@+id/modalSaveButton"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="553dp"
+        android:layout_height="13dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/item_box"
+        tools:layout_editor_absoluteX="28dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="16dp"
+        android:layout_height="260dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/item_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

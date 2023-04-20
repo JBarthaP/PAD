@@ -71,11 +71,7 @@ public class Controlador extends Application {
     }
 
     public void startGame(){
-        ArrayList<GameTeam> teams = new ArrayList<>();
-        for(Team team: teamManager.getTeams()){
-            teams.add(new GameTeam(team));
-        }
-        this.actualGame.setTeams(teams);
+        this.actualGame.setTeams(Utils.map(teamManager.getTeams(), (team)-> new GameTeam(team)));
     }
 
     public void finishGame(){

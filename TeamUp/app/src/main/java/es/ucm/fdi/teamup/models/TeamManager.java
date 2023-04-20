@@ -28,6 +28,7 @@ public class TeamManager {
     public TeamManager() {
         this.members = new ArrayList<>();
         this.nTeams = 0;
+        this.teams = new ArrayList<>();
     }
 
     public TeamManager(int nTeams) {
