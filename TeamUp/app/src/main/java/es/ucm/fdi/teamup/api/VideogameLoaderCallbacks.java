@@ -11,6 +11,7 @@ import androidx.loader.content.Loader;
 import java.util.List;
 
 import es.ucm.fdi.teamup.activities.GameActivity;
+import es.ucm.fdi.teamup.activities.GameStartActivity;
 
 public class VideogameLoaderCallbacks implements LoaderManager.LoaderCallbacks<List<VideogameInfo>> {
 
@@ -39,7 +40,8 @@ public class VideogameLoaderCallbacks implements LoaderManager.LoaderCallbacks<L
     @Override
     public void onLoadFinished(@NonNull Loader<List<VideogameInfo>> loader, List<VideogameInfo> data){
 
-        GameActivity activity = (GameActivity) context;
+        GameStartActivity activity = (GameStartActivity) context;
+
         activity.updateVideogameResultList(data);
     }
 

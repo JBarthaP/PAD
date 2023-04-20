@@ -7,6 +7,8 @@ public class Game {
 
     private String name;
 
+    private String videogameName;
+
     public Game(){}
 
     public Game(String name){
@@ -27,5 +29,13 @@ public class Game {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getVideogameName() {
+        return videogameName;
+    }
+
+    public void setVideogameName(String videogameName) {
+        this.videogameName = videogameName;
     }
 }
