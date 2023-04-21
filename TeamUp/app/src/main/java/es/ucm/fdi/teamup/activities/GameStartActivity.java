@@ -11,10 +11,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -167,7 +169,7 @@ public class GameStartActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) e.getLayoutParams();
                 params.width = LinearLayout.LayoutParams.MATCH_PARENT;
                 params.height = LinearLayout.LayoutParams.MATCH_PARENT;
-                params.setMargins(50,0,0,0);
+                params.setMargins(0,0,0,0);
                 e.setLayoutParams(params);
             });
 
@@ -186,12 +188,17 @@ public class GameStartActivity extends AppCompatActivity {
 
         videogameSpinnerLayout.removeAllViewsInLayout();
 
+        ImageView icon = new ImageView(this);
+        icon.setImageResource(R.drawable.error_icon);
+        icon.setPadding(0,50,0,0);
+
         TextView textView = new TextView(this);
         textView.setText(errorMessage);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setPadding(50,50,50,50);
 
+        videogameSpinnerLayout.addView(icon);
         videogameSpinnerLayout.addView(textView);
-
-
 
     }
 
