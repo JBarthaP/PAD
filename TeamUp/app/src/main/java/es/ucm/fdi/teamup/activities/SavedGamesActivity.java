@@ -14,6 +14,7 @@ import es.ucm.fdi.teamup.models.Utils;
 import es.ucm.fdi.teamup.models.ViewUtils;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class SavedGamesActivity extends AppCompatActivity {
 
     private TextInputLayout ganador;
 
+    private ImageView returnButton;
     private  TextInputLayout juego;
     private Resources res;
     private boolean filterclosed;
@@ -76,8 +78,8 @@ public class SavedGamesActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
         DAOGame daoGame = db.daoGame();
         GameRepository gameRepository = new GameRepositoryImp(daoGame);
-        gameEntities = gameRepository.getAllGameEntitys();
-
+        gameEntities = gameRepository.getGamesByUser(controller.getUserLogged().getUserId());
+        returnButton = findViewById(R.id.gameListReturn);
         createGamesLayout();
 
         anim.setDuration(600);
@@ -88,7 +90,15 @@ public class SavedGamesActivity extends AppCompatActivity {
             desplegable2.setLayoutParams(layoutParams);
         });
 
+
+
         filterButton.setOnClickListener((e)->{createFilteredGamesLayout();});
+        
+        returnButton.setOnClickListener((e)->{
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
 
     }
 

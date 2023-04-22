@@ -122,10 +122,10 @@ public class GameActivity extends AppCompatActivity {
                 position += "/";
             }
             position = position.substring(0, position.length() - 1);
-
-            GameEntity gameEntity = new GameEntity(controller.getActualGame().getName(), Calendar.getInstance().getTime(), position, user.getUserId(), controller.getActualGame().getVideogameName());
-
-            gameRepository.insertGameEntity(gameEntity);
+            if(user != null){
+                GameEntity gameEntity = new GameEntity(controller.getActualGame().getName(), Calendar.getInstance().getTime(), position, user.getUserId(), controller.getActualGame().getVideogameName());
+                gameRepository.insertGameEntity(gameEntity);
+            }
             controller.finishGame();
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

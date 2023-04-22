@@ -19,6 +19,12 @@ public class GameRepositoryImp implements GameRepository{
     }
 
     @Override
+    public List<GameEntity> getGamesByUser(int id) {
+        return daoGame.getGamesByUser(id);
+    }
+
+
+    @Override
     public void insertGameEntity(GameEntity GameEntity) {
         daoGame.insertGame(GameEntity);
     }

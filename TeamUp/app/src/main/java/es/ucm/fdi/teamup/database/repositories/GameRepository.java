@@ -8,6 +8,8 @@ public interface GameRepository {
 
     List<GameEntity> getAllGameEntitys();
 
+    List<GameEntity> getGamesByUser(int id);
+
     void insertGameEntity(GameEntity GameEntity);
 
     void updateGameEntity(GameEntity GameEntity);
