@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import es.ucm.fdi.teamup.Controlador;
@@ -50,13 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, SelectionTournamentActivity.class);
+            Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         });
-
-
-
-
     }
 
 
