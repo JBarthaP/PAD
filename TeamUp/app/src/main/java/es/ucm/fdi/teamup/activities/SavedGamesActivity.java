@@ -15,6 +15,7 @@ import es.ucm.fdi.teamup.models.ViewUtils;
 
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -55,6 +56,8 @@ public class SavedGamesActivity extends AppCompatActivity {
     private boolean filterclosed;
     ValueAnimator anim;
 
+    int heightValue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -68,7 +71,12 @@ public class SavedGamesActivity extends AppCompatActivity {
         collapsibleButton.setOnClickListener((view)->{
             makeAnimation();
         });
-        anim = ValueAnimator.ofInt(500,0);
+
+        heightValue = 500;
+        Configuration config = getResources().getConfiguration();
+        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) heightValue = 250;
+
+        anim = ValueAnimator.ofInt(heightValue,0);
         filterclosed = true;
         gamesLayout = findViewById(R.id.gameListContainer);
         filterButton = findViewById(R.id.filterButton);
@@ -93,7 +101,7 @@ public class SavedGamesActivity extends AppCompatActivity {
 
 
         filterButton.setOnClickListener((e)->{createFilteredGamesLayout();});
-        
+
         returnButton.setOnClickListener((e)->{
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -104,15 +112,17 @@ public class SavedGamesActivity extends AppCompatActivity {
 
     public void makeAnimation(){
         if(anim.isRunning()) return;
+
+
         anim.start();
         collapsibleButton.animate().rotationBy(180).setDuration(500).start();
 
         if(filterclosed){
-            anim.setIntValues(500,0);
+            anim.setIntValues(heightValue,0);
             filterclosed = false;
         }
         else {
-            anim.setIntValues(0,500);
+            anim.setIntValues(0,heightValue);
             filterclosed = true;
         }
 
