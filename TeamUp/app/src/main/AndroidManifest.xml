@@ -15,21 +15,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamUp"
         tools:targetApi="31">
+
+        <activity
+            android:name=".activities.SavedGamesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TeamUp.NoActionBar" />
         <activity
             android:name=".activities.SelectionTournamentActivity"
             android:exported="false" />
         <activity
             android:name=".activities.IntroActivity"
-            android:theme="@style/Theme.TeamUp.FullScreen"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TeamUp.FullScreen" />
         <activity
             android:name=".activities.LoginActivity"
-            android:theme="@style/Theme.TeamUp.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TeamUp.NoActionBar" />
         <activity
             android:name=".activities.RegisterActivity"
-            android:theme="@style/Theme.TeamUp.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TeamUp.NoActionBar" />
         <activity
             android:name=".activities.StoreActivity"
             android:exported="false" />
@@ -38,8 +43,8 @@
             android:exported="false" />
         <activity
             android:name=".activities.GameActivity"
-            android:theme="@style/Theme.TeamUp.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TeamUp.NoActionBar" />
         <activity
             android:name=".activities.CustomTeamInputActivity"
             android:exported="false" />

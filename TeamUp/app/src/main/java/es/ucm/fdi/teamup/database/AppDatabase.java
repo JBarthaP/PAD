@@ -15,7 +15,7 @@ import es.ucm.fdi.teamup.database.entities.User;
 @Database(entities = {
         User.class,
         GameEntity.class
-}, version = 4)
+}, version = 5)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 

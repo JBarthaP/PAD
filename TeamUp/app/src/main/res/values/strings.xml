@@ -38,5 +38,10 @@
     <string name="tournament_individual">Individual</string>
     <string name="search_videogames">Buscar</string>
     <string name="search_videogames_title">Seleccionar videojuego</string>
-
+    <string name="played_games">Partidas jugadas</string>
+    <string name="winner_text">Ganador</string>
+    <string name="members_text">Participantes</string>
+    <string name="date_text">Fecha</string>
+    <string name="game_type_text">Juego</string>
+    <string name="filter">Filtrar</string>
 </resources>

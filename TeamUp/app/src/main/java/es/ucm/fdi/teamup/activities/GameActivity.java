@@ -40,6 +40,7 @@ import es.ucm.fdi.teamup.database.AppDatabase;
 import es.ucm.fdi.teamup.database.daos.DAOGame;
 import es.ucm.fdi.teamup.database.daos.DAOUser;
 import es.ucm.fdi.teamup.database.entities.GameEntity;
+import es.ucm.fdi.teamup.database.entities.User;
 import es.ucm.fdi.teamup.database.repositories.GameRepository;
 import es.ucm.fdi.teamup.database.repositories.GameRepositoryImp;
 import es.ucm.fdi.teamup.database.repositories.UserRepository;
@@ -62,6 +63,8 @@ public class GameActivity extends AppCompatActivity {
     Resources res;
     TextView gameName;
     Controlador controller;
+
+    ArrayList<Spinner> posSpinners;
 
 
     Dialog modal;
@@ -103,7 +106,25 @@ public class GameActivity extends AppCompatActivity {
         });
 
         modalStoreGameButton.setOnClickListener(view -> {
-            GameEntity gameEntity = new GameEntity(controller.getActualGame().getName(), Calendar.getInstance().getTime(), "Team 1");
+            String position = "";
+            User user = controller.getUserLogged();
+            for (Spinner sp: posSpinners){
+                int selection = sp.getSelectedItemPosition();
+                if(selection == 0){
+                    return;
+                }
+                Team team = controller.getActualGame().getTeams().get(selection-1).getTeam();
+                position += team.getName() + ":";
+                for (String member:team.getMembers()){
+                    position += member + ",";
+                }
+                position = position.substring(0, position.length() - 1);
+                position += "/";
+            }
+            position = position.substring(0, position.length() - 1);
+
+            GameEntity gameEntity = new GameEntity(controller.getActualGame().getName(), Calendar.getInstance().getTime(), position, user.getUserId());
+
             gameRepository.insertGameEntity(gameEntity);
             controller.finishGame();
             Intent intent = new Intent(this, MainActivity.class);
@@ -175,7 +196,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void insertPositionInput(LinearLayout layout){
-        ArrayList<Spinner> spinners = new ArrayList<>();
+        posSpinners = new ArrayList<>();
         int i = 0;
         for(GameTeam team: controller.getActualGame().getTeams()){
             LinearLayout horizlayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e)->{
@@ -209,15 +230,15 @@ public class GameActivity extends AppCompatActivity {
             horizlayout.addView(spinner);
 
             layout.addView(horizlayout);
-            spinners.add(spinner);
+            posSpinners.add(spinner);
             i++;
         }
-        for(Spinner spinner: spinners){
+        for(Spinner spinner: posSpinners){
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     // Aquí se ejecuta el código al seleccionar un elemento del Spinner
-                    for(Spinner sp: spinners){
+                    for(Spinner sp: posSpinners){
                         if(sp.getSelectedItemPosition() == position && !spinner.equals(sp)){
                             sp.setSelection(0);
                         }

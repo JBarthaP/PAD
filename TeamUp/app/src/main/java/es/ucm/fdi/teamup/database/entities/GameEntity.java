@@ -4,11 +4,13 @@ package es.ucm.fdi.teamup.database.entities;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "games")
+@Entity(tableName = "games",
+        foreignKeys = @ForeignKey(entity = User.class, parentColumns = "userId", childColumns = "userId"))
 public class GameEntity {
 
     @PrimaryKey(autoGenerate = true)
@@ -21,13 +23,29 @@ public class GameEntity {
     @ColumnInfo(name = "date")
     private Date fecha;
 
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    private int userId;
+
+
     @ColumnInfo(name = "ganador")
     private String ganador;
 
-    public GameEntity(@NonNull String game_name, Date fecha, String ganador) {
+
+    private String positionString;
+
+    public GameEntity(@NonNull String game_name, Date fecha, String positionString, int userId) {
         this.game_name = game_name;
         this.fecha = fecha;
-        this.ganador = ganador;
+        this.positionString = positionString;
+        this.userId = userId;
     }
 
     public int getGameId() {
@@ -61,5 +79,13 @@ public class GameEntity {
 
     public void setGanador(String ganador) {
         this.ganador = ganador;
+    }
+
+    public String getPositionString() {
+        return positionString;
+    }
+
+    public void setPositionString(String positionString) {
+        this.positionString = positionString;
     }
 }

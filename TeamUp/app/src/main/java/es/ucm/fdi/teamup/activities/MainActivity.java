@@ -37,8 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
         registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, IntroActivity.class);
+            Intent intent;
+            if(controller.getUserLogged() == null){
+                intent = new Intent(this, SavedGamesActivity.class);
+            }
+            else {
+                intent = new Intent(this, IntroActivity.class);
+            }
             startActivity(intent);
+
         });
 
         settingsButton = findViewById(R.id.settingsButton);

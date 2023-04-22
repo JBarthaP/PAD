@@ -7,6 +7,8 @@ public class Game {
 
     private String name;
 
+
+
     private String videogameName;
 
     public Game(){}
