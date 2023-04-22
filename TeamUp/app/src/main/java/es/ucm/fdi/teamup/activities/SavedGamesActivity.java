@@ -40,13 +40,12 @@ public class SavedGamesActivity extends AppCompatActivity {
         });
         anim = ValueAnimator.ofInt(500,0);
         filterclosed = true;
-        System.out.println("-----------" + desplegable.getHeight() + "-----------");
+
         anim.setDuration(600);
         anim.addUpdateListener(valueAnimator -> {
             int value = (int) valueAnimator.getAnimatedValue();
             ViewGroup.LayoutParams layoutParams = desplegable2.getLayoutParams();
             layoutParams.height = value;
-            System.out.println("-------" + value + "--------");
             desplegable2.setLayoutParams(layoutParams);
         });
 
