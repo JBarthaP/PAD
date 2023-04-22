@@ -37,7 +37,7 @@ public class ViewUtils {
     public static LinearLayout createStyledHorizontalLinearLayout(Context context, Function<LinearLayout> function){
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
         linearLayout.setLayoutParams(params);
         function.aply(linearLayout);
         return linearLayout;

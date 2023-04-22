@@ -38,14 +38,26 @@ public class GameEntity {
     @ColumnInfo(name = "ganador")
     private String ganador;
 
+    public String getVideogameName() {
+        return videogameName;
+    }
+
+    public void setVideogameName(String videogameName) {
+        this.videogameName = videogameName;
+    }
+
+    @ColumnInfo(name = "videoGameName")
+    private String videogameName;
+
 
     private String positionString;
 
-    public GameEntity(@NonNull String game_name, Date fecha, String positionString, int userId) {
+    public GameEntity(@NonNull String game_name, Date fecha, String positionString, int userId, String videogameName) {
         this.game_name = game_name;
         this.fecha = fecha;
         this.positionString = positionString;
         this.userId = userId;
+        this.videogameName = videogameName;
     }
 
     public int getGameId() {

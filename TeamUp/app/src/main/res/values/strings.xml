@@ -45,11 +45,11 @@
     <string name="date_text">Fecha</string>
     <string name="game_type_text">Juego</string>
     <string name="filter">Filtrar</string>
+    <string name="gameName">Nombre partida</string>
     <string-array name="languages">
         <item>Español(España)</item>
         <item>Inglés(UK)</item>
     </string-array>
     <string name="languagetxt">Idioma</string>
     <string name="change_button">Cambiar</string>
-
 </resources>

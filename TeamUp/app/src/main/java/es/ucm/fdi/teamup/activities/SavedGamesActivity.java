@@ -1,29 +1,55 @@
 package es.ucm.fdi.teamup.activities;
 
-import static android.view.FrameMetrics.ANIMATION_DURATION;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import es.ucm.fdi.teamup.Controlador;
 import es.ucm.fdi.teamup.R;
+import es.ucm.fdi.teamup.database.AppDatabase;
+import es.ucm.fdi.teamup.database.daos.DAOGame;
+import es.ucm.fdi.teamup.database.entities.GameEntity;
+import es.ucm.fdi.teamup.database.repositories.GameRepository;
+import es.ucm.fdi.teamup.database.repositories.GameRepositoryImp;
+import es.ucm.fdi.teamup.models.Utils;
+import es.ucm.fdi.teamup.models.ViewUtils;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 
 public class SavedGamesActivity extends AppCompatActivity {
     private FrameLayout desplegable;
 
+    private Controlador controller;
     private ConstraintLayout desplegable2;
     private ImageView collapsibleButton;
 
+    private LinearLayout gamesLayout;
+
+    private List<GameEntity> gameEntities;
+
+    private Button filterButton;
+
+    private TextInputLayout participantes;
+
+    private TextInputLayout ganador;
+
+    private  TextInputLayout juego;
+    private Resources res;
     private boolean filterclosed;
     ValueAnimator anim;
 
@@ -32,6 +58,8 @@ public class SavedGamesActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_games);
+        res = getResources();
+        controller = (Controlador) getApplication();
         desplegable = findViewById(R.id.filterFrame);
         desplegable2 = findViewById(R.id.filterInteriorContainer);
         collapsibleButton = findViewById(R.id.collapsibleButton);
@@ -40,6 +68,17 @@ public class SavedGamesActivity extends AppCompatActivity {
         });
         anim = ValueAnimator.ofInt(500,0);
         filterclosed = true;
+        gamesLayout = findViewById(R.id.gameListContainer);
+        filterButton = findViewById(R.id.filterButton);
+        participantes = findViewById(R.id.search_name_games);
+        juego = findViewById(R.id.search_type_games);
+        ganador = findViewById(R.id.search_winner_games);
+        AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
+        DAOGame daoGame = db.daoGame();
+        GameRepository gameRepository = new GameRepositoryImp(daoGame);
+        gameEntities = gameRepository.getAllGameEntitys();
+
+        createGamesLayout();
 
         anim.setDuration(600);
         anim.addUpdateListener(valueAnimator -> {
@@ -48,6 +87,8 @@ public class SavedGamesActivity extends AppCompatActivity {
             layoutParams.height = value;
             desplegable2.setLayoutParams(layoutParams);
         });
+
+        filterButton.setOnClickListener((e)->{createFilteredGamesLayout();});
 
     }
 
@@ -66,6 +107,131 @@ public class SavedGamesActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public void createGamesLayout(){
+
+        for(GameEntity game: gameEntities){
+            LinearLayout verticalLayout = ViewUtils.createStyledLinearLayout(this, (e)->{});
+            verticalLayout.addView(ViewUtils.createStyledTextView(this, game.getGame_name(), (e)->{
+                e.setHeight(90);
+                e.setTextSize(20);
+                e.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                e.setBackgroundColor(res.getColor(R.color.orange));
+                e.setTextColor(res.getColor(R.color.white));
+                e.setClipToOutline(true);
+                e.setPadding(20,0,0,0);
+                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element)->{
+                    element.setColor(res.getColor(R.color.orange));
+                }));
+            }));
+            LinearLayout horizLayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e)->{});
+            String winners = game.getPositionString().split("/")[0];
+            String winnerTeam = winners.split(":")[0];
+            String winnerMembersString = winners.split(":")[1];
+            String[] winnerMembers = winnerMembersString.split(",");
+            LinearLayout verticalLayout2 = ViewUtils.createStyledLinearLayout(this,(e)->{});
+            LinearLayout verticalLayout3 = ViewUtils.createStyledLinearLayout(this,(e)->{e.setPadding(40, 0, 0, 0);});
+
+
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this,"Game: " + game.getVideogameName(), (e)->{
+                e.setPadding(30, 10, 20, 30);
+                e.setTextSize(16);
+            }));
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this, "Date: " + sdf.format(game.getFecha()), (e)->{
+                e.setPadding(30, 10, 20, 30);
+                e.setTextSize(16);
+            }));
+
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, "Winner: " + winnerTeam, (e)->{
+                e.setTextSize(16);
+            }));
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, "Members: ", (e)->{}));
+            for(String member: winnerMembers){
+                verticalLayout3.addView(ViewUtils.createStyledTextView(this,"- " + member, (e)->{
+
+                }));
+            }
+            horizLayout.addView(verticalLayout2);
+            horizLayout.addView(verticalLayout3);
+
+
+            verticalLayout.addView(horizLayout);
+            verticalLayout.setOnClickListener((view -> {
+                controller.setSelectedGame(game);
+            }));
+            gamesLayout.addView(verticalLayout);
+            gamesLayout.addView(ViewUtils.createSeparator(this, 3));
+        }
+    }
+    public void createFilteredGamesLayout(){
+        gamesLayout.removeAllViews();
+        String winnerFilter = Utils.getInputValueAsString(ganador);
+        String nameFilter = Utils.getInputValueAsString(participantes);
+        String typeFilter = Utils.getInputValueAsString(juego);
+
+        for(GameEntity game: gameEntities){
+
+            if(!typeFilter.equals("") && (!game.getVideogameName().contains(typeFilter))) continue;
+            if((!nameFilter.equals("")) && !game.getGame_name().contains(nameFilter)) continue;
+            boolean isWinner = false;
+
+            LinearLayout verticalLayout = ViewUtils.createStyledLinearLayout(this, (e)->{});
+            verticalLayout.addView(ViewUtils.createStyledTextView(this, game.getGame_name(), (e)->{
+                e.setHeight(90);
+                e.setTextSize(20);
+                e.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                e.setBackgroundColor(res.getColor(R.color.orange));
+                e.setTextColor(res.getColor(R.color.white));
+                e.setClipToOutline(true);
+                e.setPadding(20,0,0,0);
+                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element)->{
+                    element.setColor(res.getColor(R.color.orange));
+                }));
+            }));
+            LinearLayout horizLayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e)->{});
+            String winners = game.getPositionString().split("/")[0];
+            String winnerTeam = winners.split(":")[0];
+            String winnerMembersString = winners.split(":")[1];
+            String[] winnerMembers = winnerMembersString.split(",");
+            LinearLayout verticalLayout2 = ViewUtils.createStyledLinearLayout(this,(e)->{});
+            LinearLayout verticalLayout3 = ViewUtils.createStyledLinearLayout(this,(e)->{e.setPadding(40, 0, 0, 0);});
+
+
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this,"Game: " + game.getVideogameName(), (e)->{
+                e.setPadding(30, 10, 20, 30);
+                e.setTextSize(16);
+            }));
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this, "Date: " + sdf.format(game.getFecha()), (e)->{
+                e.setPadding(30, 10, 20, 30);
+                e.setTextSize(16);
+            }));
+
+            if(winnerTeam.contains(winnerFilter)) isWinner = true;
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, "Winner: " + winnerTeam, (e)->{
+                e.setTextSize(16);
+            }));
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, "Members: ", (e)->{}));
+            for(String member: winnerMembers){
+                verticalLayout3.addView(ViewUtils.createStyledTextView(this,"- " + member, (e)->{}));
+                if(member.contains(winnerFilter)) isWinner = true;
+            }
+            if(!isWinner) continue;
+            horizLayout.addView(verticalLayout2);
+            horizLayout.addView(verticalLayout3);
+
+
+            verticalLayout.addView(horizLayout);
+            verticalLayout.setOnClickListener((view -> {
+                controller.setSelectedGame(game);
+            }));
+            gamesLayout.addView(verticalLayout);
+            gamesLayout.addView(ViewUtils.createSeparator(this, 3));
+        }
     }
 }
 

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import es.ucm.fdi.teamup.activities.CustomTeamInputActivity;
 import es.ucm.fdi.teamup.activities.RandomTeamInputActivity;
+import es.ucm.fdi.teamup.database.entities.GameEntity;
 import es.ucm.fdi.teamup.database.entities.User;
 import es.ucm.fdi.teamup.models.Game;
 import es.ucm.fdi.teamup.models.GameTeam;
@@ -28,6 +29,16 @@ public class Controlador extends Application {
     private Game actualGame;
 
     private User userLogged;
+
+    public GameEntity getSelectedGame() {
+        return selectedGame;
+    }
+
+    public void setSelectedGame(GameEntity selectedGame) {
+        this.selectedGame = selectedGame;
+    }
+
+    private GameEntity selectedGame;
 
     public static enum Evento {
 

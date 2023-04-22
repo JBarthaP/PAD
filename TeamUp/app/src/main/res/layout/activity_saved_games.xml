@@ -64,12 +64,13 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:textSize="12sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/filterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -96,12 +97,13 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:inputType="number" />
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:textSize="12sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/search_member_games"
+                android:id="@+id/search_name_games"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="161dp"
                 android:layout_height="47dp"
@@ -109,7 +111,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:ems="10"
-                android:hint="@string/members_text"
+                android:hint="@string/gameName"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -118,8 +120,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:inputType="number" />
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:textSize="12sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
