@@ -79,13 +79,13 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else {
                     Log.e(TAG, "Contraseñas no iguales");
-                    error_message.setText("Contraseñas no iguales");
+                    error_message.setText(getString(R.string.different_passwords));
                 }
 
             } else {
                 //En el caso que no mensaje de error con que campo falla
                 Log.e(TAG, "El usuario o la contraseña estan vacias");
-                error_message.setText("El usuario o la contraseña estan vacias");
+                error_message.setText(getString(R.string.empty_inputs));
             }
         });
 

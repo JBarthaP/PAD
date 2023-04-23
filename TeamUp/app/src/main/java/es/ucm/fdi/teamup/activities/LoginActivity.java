@@ -66,12 +66,12 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Log.e(TAG, "Error en el usuario o contraseña introducidas");
-                    error_message.setText("Error en el usuario o contraseña introducidas");
+                    error_message.setText(getString(R.string.generic_error_login));
                 }
 
             } else {
                 Log.e(TAG, "El usuario o la contraseña estan vacias");
-                error_message.setText("El usuario o la contraseña estan vacias");
+                error_message.setText(getString(R.string.empty_inputs));
             }
         });
 

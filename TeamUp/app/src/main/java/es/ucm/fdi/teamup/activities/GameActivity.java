@@ -108,28 +108,36 @@ public class GameActivity extends AppCompatActivity {
         modalStoreGameButton.setOnClickListener(view -> {
             String position = "";
             User user = controller.getUserLogged();
-            for (Spinner sp: posSpinners){
-                int selection = sp.getSelectedItemPosition();
-                if(selection == 0){
-                    return;
-                }
-                Team team = controller.getActualGame().getTeams().get(selection-1).getTeam();
-                position += team.getName() + ":";
-                for (String member:team.getMembers()){
-                    position += member + ",";
+            if( user != null) {
+                for (Spinner sp : posSpinners) {
+                    int selection = sp.getSelectedItemPosition();
+                    if (selection == 0) {
+                        return;
+                    }
+                    Team team = controller.getActualGame().getTeams().get(selection - 1).getTeam();
+                    position += team.getName() + ":";
+                    for (String member : team.getMembers()) {
+                        position += member + ",";
+                    }
+                    position = position.substring(0, position.length() - 1);
+                    position += "/";
                 }
                 position = position.substring(0, position.length() - 1);
-                position += "/";
+                if (user != null) {
+                    GameEntity gameEntity = new GameEntity(controller.getActualGame().getName(), Calendar.getInstance().getTime(), position, user.getUserId(), controller.getActualGame().getVideogameName());
+                    gameRepository.insertGameEntity(gameEntity);
+                }
+                controller.finishGame();
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
-            position = position.substring(0, position.length() - 1);
-            if(user != null){
-                GameEntity gameEntity = new GameEntity(controller.getActualGame().getName(), Calendar.getInstance().getTime(), position, user.getUserId(), controller.getActualGame().getVideogameName());
-                gameRepository.insertGameEntity(gameEntity);
+            else {
+                controller.finishGame();
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
-            controller.finishGame();
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
         });
 
         modalDiscardButton.setOnClickListener(view -> {

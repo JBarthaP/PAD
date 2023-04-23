@@ -56,7 +56,7 @@ public class GameStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_start);
         controller = (Controlador) getApplication();
         TextInputLayout gameName = findViewById(R.id.gameNameInput);
-        String name = "Partida: " + Utils.getActualDateString();
+        String name = getString(R.string.game_type_text)+": " + Utils.getActualDateString();
         gameName.getEditText().setText(name);
         Button continueButton = findViewById(R.id.continueToTeamsButton);
 
@@ -80,7 +80,7 @@ public class GameStartActivity extends AppCompatActivity {
             String resultName = Utils.getInputValueAsString(gameName);
             if(resultName.equals("")){
 
-                TapTargetView.showFor(this, TapTarget.forView(gameName, "Informacion faltante", "Por favor rellene la información necesaria"));
+                TapTargetView.showFor(this, TapTarget.forView(gameName, getString(R.string.missing_information), getString(R.string.missing_information_complete)));
                 return;
             }
             controller.createGame(resultName);
@@ -90,6 +90,8 @@ public class GameStartActivity extends AppCompatActivity {
                 controller.getActualGame().setVideogameName(videogameSelected);
 
                 Log.d(TAG, videogameSelected);
+            } else {
+                controller.getActualGame().setVideogameName("N/A");
             }
 
             Intent intent = new Intent(this, TeamsActivity.class);
@@ -129,7 +131,7 @@ public class GameStartActivity extends AppCompatActivity {
         else{
             //no esta conectado a internet
             Log.d(TAG, "no hay internet");
-            this.videogameResultListShowErrorMessage("No hay conexion");
+            this.videogameResultListShowErrorMessage(getString(R.string.no_conexion));
 
         }
 
@@ -139,7 +141,7 @@ public class GameStartActivity extends AppCompatActivity {
 
         if(videogameInfos == null || videogameInfos.size() == 0){
 
-            this.videogameResultListShowErrorMessage("No hay resultados");
+            this.videogameResultListShowErrorMessage(getString(R.string.no_results));
 
         }
         else{

@@ -30,30 +30,22 @@ public class Controlador extends Application {
 
     private User userLogged;
 
-    public GameEntity getSelectedGame() {
-        return selectedGame;
-    }
-
-    public void setSelectedGame(GameEntity selectedGame) {
-        this.selectedGame = selectedGame;
-    }
-
     private GameEntity selectedGame;
 
     public static enum Evento {
 
-    }
 
+        }
     public Controlador() {
         teamManager = new TeamManager();
     }
+
 
 //    public void tratarEvento(Evento event, Object[] data) {
 //        switch(event) {
 //            case Evento.GENERARQUIPOS: teamManager.generarEquipos()
 //        }
 //    }
-
     public TeamManager getTeamManager() {
         return teamManager;
     }
@@ -70,6 +62,13 @@ public class Controlador extends Application {
         this.userLogged = userLogged;
     }
 
+    public GameEntity getSelectedGame() {
+        return selectedGame;
+    }
+
+    public void setSelectedGame(GameEntity selectedGame) {
+        this.selectedGame = selectedGame;
+    }
 
 
     public void deleteTeams(){

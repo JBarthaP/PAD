@@ -137,7 +137,7 @@ public class GameDetailsActivity extends AppCompatActivity {
             CardView card = ViewUtils.createStyledCardView(this, (e)->{});
             card.addView(layout);
             int finalPosition = position;
-            positionContainer.addView(ViewUtils.createStyledTextView(this, position + "º Position", (view)->{
+            positionContainer.addView(ViewUtils.createStyledTextView(this, position + getString(R.string.position_gamedetails), (view)->{
                 view.setPadding(10,40,0,20);
                 view.setTextSize(24);
                 if(finalPosition == 1){

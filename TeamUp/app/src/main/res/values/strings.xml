@@ -46,9 +46,9 @@
     <string name="game_type_text">Juego</string>
     <string name="filter">Filtrar</string>
     <string name="gameName">Nombre partida</string>
-    <string name="fecha">Fecha</string>
     <string name="podium">Podio</string>
     <string name="hour">Hora</string>
+    <string name="position_gamedetails">º Posición</string>
     <string-array name="languages">
         <item>Español(España)</item>
         <item>Inglés(UK)</item>
@@ -56,4 +56,12 @@
     <string name="languagetxt">Idioma</string>
     <string name="change_button">Cambiar</string>
     <string name="user_not_logged_in_settings">No logueado</string>
+    <string name="missing_information">Información faltante</string>
+    <string name="missing_information_complete">Por favor rellene la información necesaria</string>
+    <string name="no_conexion">No hay conexión</string>
+    <string name="no_results">No hay resultados</string>
+    <string name="generic_error_login">Error en el usuario o contraseña introducidas</string>
+    <string name="empty_inputs">El usuario o la contraseña están vacias</string>
+    <string name="different_passwords">Contraseñas no iguales</string>
+x
 </resources>

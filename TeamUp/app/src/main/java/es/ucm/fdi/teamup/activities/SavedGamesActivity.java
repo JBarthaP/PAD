@@ -154,21 +154,21 @@ public class SavedGamesActivity extends AppCompatActivity {
             LinearLayout verticalLayout3 = ViewUtils.createStyledLinearLayout(this,(e)->{e.setPadding(40, 0, 0, 0);});
 
 
-            verticalLayout2.addView(ViewUtils.createStyledTextView(this,"Game: " + game.getVideogameName(), (e)->{
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this,getString(R.string.game_type_text)+": " + game.getVideogameName(), (e)->{
                 e.setPadding(30, 10, 20, 30);
                 e.setTextSize(16);
             }));
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-            verticalLayout2.addView(ViewUtils.createStyledTextView(this, "Date: " + sdf.format(game.getFecha()), (e)->{
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this, getString(R.string.date_text)+": " + sdf.format(game.getFecha()), (e)->{
                 e.setPadding(30, 10, 20, 30);
                 e.setTextSize(16);
             }));
 
-            verticalLayout3.addView(ViewUtils.createStyledTextView(this, "Winner: " + winnerTeam, (e)->{
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.winner_text)+": " + winnerTeam, (e)->{
                 e.setTextSize(16);
             }));
-            verticalLayout3.addView(ViewUtils.createStyledTextView(this, "Members: ", (e)->{}));
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.members_text)+": ", (e)->{}));
             for(String member: winnerMembers){
                 verticalLayout3.addView(ViewUtils.createStyledTextView(this,"- " + member, (e)->{
 
@@ -222,22 +222,22 @@ public class SavedGamesActivity extends AppCompatActivity {
             LinearLayout verticalLayout3 = ViewUtils.createStyledLinearLayout(this,(e)->{e.setPadding(40, 0, 0, 0);});
 
 
-            verticalLayout2.addView(ViewUtils.createStyledTextView(this,"Game: " + game.getVideogameName(), (e)->{
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this,getString(R.string.game_type_text)+": " + game.getVideogameName(), (e)->{
                 e.setPadding(30, 10, 20, 30);
                 e.setTextSize(16);
             }));
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-            verticalLayout2.addView(ViewUtils.createStyledTextView(this, "Date: " + sdf.format(game.getFecha()), (e)->{
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this, getString(R.string.date_text)+": " + sdf.format(game.getFecha()), (e)->{
                 e.setPadding(30, 10, 20, 30);
                 e.setTextSize(16);
             }));
 
             if(winnerTeam.contains(winnerFilter)) isWinner = true;
-            verticalLayout3.addView(ViewUtils.createStyledTextView(this, "Winner: " + winnerTeam, (e)->{
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.winner_text)+": " + winnerTeam, (e)->{
                 e.setTextSize(16);
             }));
-            verticalLayout3.addView(ViewUtils.createStyledTextView(this, "Members: ", (e)->{}));
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.members_text)+": ", (e)->{}));
             for(String member: winnerMembers){
                 verticalLayout3.addView(ViewUtils.createStyledTextView(this,"- " + member, (e)->{}));
                 if(member.contains(winnerFilter)) isWinner = true;
