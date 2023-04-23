@@ -6,19 +6,27 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Locale;
 
+import es.ucm.fdi.teamup.Controlador;
 import es.ucm.fdi.teamup.R;
+import es.ucm.fdi.teamup.database.entities.User;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    private static final String TAG = GameStartActivity.class.getSimpleName();
 
     Spinner language_dropdown;
 
     Button change_language;
+
+    Controlador controller;
 
 
     @Override
@@ -46,6 +54,18 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(getIntent());
         });
 
+
+        controller = (Controlador) getApplication();
+        User user = controller.getUserLogged();
+        TextView username = findViewById(R.id.username);
+
+        if(user == null){
+            Log.d(TAG, "El usuario no esta logueado");
+        }
+        else{
+            Log.d(TAG, user.getUsername());
+            username.setText(user.getUsername());
+        }
 
 
     }

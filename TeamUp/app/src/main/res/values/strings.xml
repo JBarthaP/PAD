@@ -52,4 +52,5 @@
     </string-array>
     <string name="languagetxt">Idioma</string>
     <string name="change_button">Cambiar</string>
+    <string name="user_not_logged_in_settings">No logueado</string>
 </resources>
