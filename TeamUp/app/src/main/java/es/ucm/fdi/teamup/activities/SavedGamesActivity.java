@@ -181,6 +181,8 @@ public class SavedGamesActivity extends AppCompatActivity {
             verticalLayout.addView(horizLayout);
             verticalLayout.setOnClickListener((view -> {
                 controller.setSelectedGame(game);
+                Intent intent = new Intent(this, GameDetailsActivity.class);
+                startActivity(intent);
             }));
             gamesLayout.addView(verticalLayout);
             gamesLayout.addView(ViewUtils.createSeparator(this, 3));
@@ -248,6 +250,8 @@ public class SavedGamesActivity extends AppCompatActivity {
             verticalLayout.addView(horizLayout);
             verticalLayout.setOnClickListener((view -> {
                 controller.setSelectedGame(game);
+                Intent intent = new Intent(this, GameDetailsActivity.class);
+                startActivity(intent);
             }));
             gamesLayout.addView(verticalLayout);
             gamesLayout.addView(ViewUtils.createSeparator(this, 3));
