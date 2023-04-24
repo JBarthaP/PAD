@@ -196,7 +196,10 @@ public class SavedGamesActivity extends AppCompatActivity {
 
         for(GameEntity game: gameEntities){
 
-            if(!typeFilter.equals("") && (!game.getVideogameName().contains(typeFilter))) continue;
+            if(!typeFilter.equals("")){
+                if(game.getVideogameName() == null) continue;
+                else if(!game.getVideogameName().contains(typeFilter)) continue;
+            }
             if((!nameFilter.equals("")) && !game.getGame_name().contains(nameFilter)) continue;
             boolean isWinner = false;
 
