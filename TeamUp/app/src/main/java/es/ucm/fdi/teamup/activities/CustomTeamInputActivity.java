@@ -56,7 +56,7 @@ public class CustomTeamInputActivity extends AppCompatActivity {
         res = getResources();
         controller = (Controlador) getApplication();
         actualIntent = getIntent();
-        teamManager = controller.getTeamManager();
+        //teamManager = controller.getTeamManager();
         teamsLayout = findViewById(R.id.custom_teams_input_layout);
         continue_button = findViewById(R.id.continue_button);
         teamNamesInput = new ArrayList<>();
@@ -64,7 +64,7 @@ public class CustomTeamInputActivity extends AppCompatActivity {
 
         team_number = actualIntent.getIntExtra("team_number", 0);
         member_number = actualIntent.getIntExtra("member_number", 0);
-        teamManager.setnTeams(team_number);
+        //teamManager.setnTeams(team_number);
 
         this.createTeamsLayout();
 
@@ -80,26 +80,32 @@ public class CustomTeamInputActivity extends AppCompatActivity {
 
 
     public boolean createTeams(){
-        for(int i = 0; i < teamNamesInput.size(); i++){
-            ArrayList<String> members = new ArrayList<>();
+       // if (controller.getTeamManager().getnTeams() != team_number)
+            controller.setTeamManager(new TeamManager());
+            teamManager = controller.getTeamManager();
+            teamManager.setnTeams(team_number);
 
-            String teamName = teamNamesInput.get(i).getText().toString();
-            if(teamName.equals("")){
-                TapTargetView.showFor(this, TapTarget.forView(teamNamesInput.get(i), "Informacion faltante", "Por favor rellene la información necesaria"));
-                return false;
-            }
-            for(EditText memberInput:memberNamesInput.get(i)){
-                String member = memberInput.getText().toString();
-                if(member.equals("")){
-                    TapTargetView.showFor(this, TapTarget.forView(memberInput, "Informacion faltante", "Por favor rellene la información necesaria"));
+            for (int i = 0; i < teamNamesInput.size(); i++) {
+                ArrayList<String> members = new ArrayList<>();
+
+                String teamName = teamNamesInput.get(i).getText().toString();
+                if (teamName.equals("")) {
+                    TapTargetView.showFor(this, TapTarget.forView(teamNamesInput.get(i), "Informacion faltante", "Por favor rellene la información necesaria"));
                     return false;
                 }
-                members.add(member);
-                teamManager.addMember(member);
+                for (EditText memberInput : memberNamesInput.get(i)) {
+                    String member = memberInput.getText().toString();
+                    if (member.equals("")) {
+                        TapTargetView.showFor(this, TapTarget.forView(memberInput, "Informacion faltante", "Por favor rellene la información necesaria"));
+                        return false;
+                    }
+                    members.add(member);
+                    teamManager.addMember(member);
+                }
+                //if (teamManager.getTeams().size() < team_number)
+                    teamManager.addTeam(new Team(teamName, members));
             }
 
-            teamManager.addTeam(new Team(teamName,members));
-        }
         return true;
     }
 
