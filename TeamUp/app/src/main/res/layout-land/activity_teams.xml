@@ -6,35 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.TeamsActivity">
 
-    <!--
-    <EditText
-        android:id="@+id/team_number_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team_number_label" />
--->
-
-
-    <!--
-    <EditText
-        android:id="@+id/total_members_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/total_members_label" />
--->
-
     <TextView
         android:id="@+id/total_members_label"
         android:layout_width="wrap_content"

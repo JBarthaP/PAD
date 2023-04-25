@@ -39,12 +39,12 @@ public class RandomTeamInputActivity extends AppCompatActivity {
         int team_number = actualIntent.getIntExtra("team_number", 0);
         int member_number = actualIntent.getIntExtra("member_number", 0);
         for (int i = 0; i < member_number; i++) {
-            EditText inputText = ViewUtils.createStyledEditText(this, "", (e)->{
+            EditText inputText = ViewUtils.createStyledEditText(this, "", (e) -> {
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) e.getLayoutParams();
-                params.setMargins(0,20,0,20);
+                params.setMargins(0, 20, 0, 20);
                 e.setLayoutParams(params);
-                e.setPadding(30,30,30,30);
-                e.setBackground(ViewUtils.createBorder(2, Color.BLACK, (element)->{
+                e.setPadding(30, 30, 30, 30);
+                e.setBackground(ViewUtils.createBorder(2, Color.BLACK, (element) -> {
                     element.setCornerRadius(16);
                 }));
             });

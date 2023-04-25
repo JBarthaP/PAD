@@ -34,32 +34,31 @@ public class VideogameLoader extends AsyncTaskLoader<List<VideogameInfo>> {
 
     private String queryString;
 
-    public VideogameLoader(@NonNull Context context, String queryString){
+    public VideogameLoader(@NonNull Context context, String queryString) {
         super(context);
         this.queryString = queryString;
     }
 
-    private List<VideogameInfo> fromJsonResponse(String data){
+    private List<VideogameInfo> fromJsonResponse(String data) {
 
         List<VideogameInfo> newData = new ArrayList<>();
 
-        try{
+        try {
             JSONObject jsonObject = new JSONObject(data);
             JSONArray itemsArray = jsonObject.getJSONArray("results");
 
             int i = 0;
             String title = null;
 
-            while(i < itemsArray.length()){
+            while (i < itemsArray.length()) {
 
                 JSONObject videojuego = itemsArray.getJSONObject(i);
 
-                try{
+                try {
                     title = videojuego.getString("name");
 
                     newData.add(new VideogameInfo(title));
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -68,8 +67,7 @@ public class VideogameLoader extends AsyncTaskLoader<List<VideogameInfo>> {
 
             return newData;
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -78,9 +76,9 @@ public class VideogameLoader extends AsyncTaskLoader<List<VideogameInfo>> {
     }
 
 
-    private URL builtUrl(String queryText){
+    private URL builtUrl(String queryText) {
 
-        try{
+        try {
 
             Uri builtURI = Uri.parse(BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, queryText)
@@ -92,8 +90,7 @@ public class VideogameLoader extends AsyncTaskLoader<List<VideogameInfo>> {
 
             return requestURL;
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -120,13 +117,13 @@ public class VideogameLoader extends AsyncTaskLoader<List<VideogameInfo>> {
         return null;
     }
 
-    private List<VideogameInfo> getVideogameInfoJson(String queryString){
+    private List<VideogameInfo> getVideogameInfoJson(String queryString) {
 
         URL requestURL = builtUrl(queryString);
         HttpURLConnection conn = null;
         InputStream is = null;
 
-        try{
+        try {
             conn = (HttpURLConnection) requestURL.openConnection();
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
@@ -140,20 +137,17 @@ public class VideogameLoader extends AsyncTaskLoader<List<VideogameInfo>> {
 
             return fromJsonResponse(contentAsString);
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
 
-            if(conn != null){
+            if (conn != null) {
                 conn.disconnect();
             }
-            if(is != null){
-                try{
+            if (is != null) {
+                try {
                     is.close();
-                }
-                catch(IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -165,7 +159,7 @@ public class VideogameLoader extends AsyncTaskLoader<List<VideogameInfo>> {
     }
 
     @Override
-    public List<VideogameInfo> loadInBackground(){
+    public List<VideogameInfo> loadInBackground() {
         return getVideogameInfoJson(queryString);
     }
 

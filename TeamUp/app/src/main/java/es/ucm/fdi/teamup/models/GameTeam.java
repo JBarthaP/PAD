@@ -3,7 +3,8 @@ package es.ucm.fdi.teamup.models;
 public class GameTeam {
     private Team team;
     private int position;
-    public GameTeam(Team team){
+
+    public GameTeam(Team team) {
         this.team = team;
     }
 

@@ -68,28 +68,25 @@ public class GameDetailsActivity extends AppCompatActivity {
 
         teams = gameInfo.getPositionString().split("/");
 
-        if(teams.length >= 1){
+        if (teams.length >= 1) {
             first.setText(teams[0].split(":")[0]);
-        }
-        else {
+        } else {
             first.setText("-");
         }
-        if(teams.length >= 2){
+        if (teams.length >= 2) {
             second.setText(teams[1].split(":")[0]);
-        }
-        else {
+        } else {
             second.setText("-");
         }
-        if(teams.length >= 3){
+        if (teams.length >= 3) {
             third.setText(teams[2].split(":")[0]);
-        }
-        else {
+        } else {
             third.setText("-");
         }
 
         createPositions();
 
-        returnButton.setOnClickListener((e)->{
+        returnButton.setOnClickListener((e) -> {
             Intent intent = new Intent(this, SavedGamesActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -97,59 +94,57 @@ public class GameDetailsActivity extends AppCompatActivity {
 
     }
 
-    public void createPositions(){
+    public void createPositions() {
         int position = 0;
-        for(String team: teams){
+        for (String team : teams) {
             position++;
             String[] splittedteam = team.split(":");
             String[] members = splittedteam[1].split(",");
 
-            LinearLayout layout = ViewUtils.createStyledLinearLayout(this, (e)->{
+            LinearLayout layout = ViewUtils.createStyledLinearLayout(this, (e) -> {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(0,50,0,40);
+                params.setMargins(0, 50, 0, 40);
                 e.setLayoutParams(params);
-                e.setBackground(ViewUtils.createBorder(4, Color.BLACK, (element)->{
+                e.setBackground(ViewUtils.createBorder(4, Color.BLACK, (element) -> {
                     element.setCornerRadius(16f);
                 }));
-                e.setPadding(4,4,4,4);
+                e.setPadding(4, 4, 4, 4);
             });
 
-            layout.addView(ViewUtils.createStyledTextView(this, splittedteam[0],(e)->{
+            layout.addView(ViewUtils.createStyledTextView(this, splittedteam[0], (e) -> {
                 e.setHeight(70);
                 e.setTextSize(20);
                 e.setBackgroundColor(res.getColor(R.color.orange));
                 e.setTextColor(res.getColor(R.color.white));
                 e.setClipToOutline(true);
-                e.setPadding(20,0,0,0);
-                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element)->{
+                e.setPadding(20, 0, 0, 0);
+                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element) -> {
                     element.setCornerRadii(new float[]{16, 16, 16, 16, 0, 0, 0, 0});
                     element.setColor(res.getColor(R.color.orange));
                 }));
             }));
 
-            for(String member: members){
+            for (String member : members) {
                 layout.addView(ViewUtils.createSeparator(this, 2));
-                layout.addView(ViewUtils.createStyledTextView(this, member, (e)->{
-                    e.setPadding(20,0,0,0);
+                layout.addView(ViewUtils.createStyledTextView(this, member, (e) -> {
+                    e.setPadding(20, 0, 0, 0);
                     e.setTextSize(18);
                 }));
             }
-            CardView card = ViewUtils.createStyledCardView(this, (e)->{});
+            CardView card = ViewUtils.createStyledCardView(this, (e) -> {
+            });
             card.addView(layout);
             int finalPosition = position;
-            positionContainer.addView(ViewUtils.createStyledTextView(this, position + getString(R.string.position_gamedetails), (view)->{
-                view.setPadding(10,40,0,20);
+            positionContainer.addView(ViewUtils.createStyledTextView(this, position + getString(R.string.position_gamedetails), (view) -> {
+                view.setPadding(10, 40, 0, 20);
                 view.setTextSize(24);
-                if(finalPosition == 1){
+                if (finalPosition == 1) {
                     view.setTextColor(getResources().getColor(R.color.gold));
-                }
-                else if(finalPosition == 2){
+                } else if (finalPosition == 2) {
                     view.setTextColor(getResources().getColor(R.color.silver));
-                }
-                else if (finalPosition == 3) {
+                } else if (finalPosition == 3) {
                     view.setTextColor(getResources().getColor(R.color.bronze));
-                }
-                else {
+                } else {
                     view.setTextColor(Color.BLACK);
                 }
             }));

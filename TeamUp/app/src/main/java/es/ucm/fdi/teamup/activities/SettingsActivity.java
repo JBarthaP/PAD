@@ -35,19 +35,21 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         language_dropdown = findViewById(R.id.language_spinner);
         change_language = findViewById(R.id.change_language);
-        ArrayAdapter<CharSequence>adapter= ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         language_dropdown.setAdapter(adapter);
 
         change_language.setOnClickListener(view -> {
             String language_choose = "";
-            switch(language_dropdown.getSelectedItemPosition()) {
+            switch (language_dropdown.getSelectedItemPosition()) {
                 case 0: {
                     language_choose = "es";
-                }break;
+                }
+                break;
                 case 1: {
                     language_choose = "en";
-                }break;
+                }
+                break;
             }
             setLocale(language_choose);
             finish();
@@ -59,18 +61,18 @@ public class SettingsActivity extends AppCompatActivity {
         User user = controller.getUserLogged();
         TextView username = findViewById(R.id.username);
 
-        if(user == null){
+        if (user == null) {
             Log.d(TAG, "El usuario no esta logueado");
-        }
-        else{
+        } else {
             Log.d(TAG, user.getUsername());
             username.setText(user.getUsername());
         }
 
 
     }
+
     private void setLocale(String language) {
-        Locale locale= new Locale(language);
+        Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Resources resources = getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();

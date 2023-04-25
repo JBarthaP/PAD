@@ -13,7 +13,7 @@ public class TeamManager {
     private ArrayList<Team> teams;
 
 
-    public static Triple<Integer, Integer, Integer> getTeamsSize(int nTeams, int nMembers){
+    public static Triple<Integer, Integer, Integer> getTeamsSize(int nTeams, int nMembers) {
         int membersPerGroup = (int) Math.ceil((double) nMembers / (double) nTeams);
         int bigTeams = nTeams;
         int smallTeams = 0;
@@ -23,8 +23,9 @@ public class TeamManager {
             bigTeams = nMembers - ((membersPerGroup - 1) * nTeams);
             smallTeams = nTeams - bigTeams;
         }
-        return new Triple(membersPerGroup,bigTeams,smallTeams);
+        return new Triple(membersPerGroup, bigTeams, smallTeams);
     }
+
     public TeamManager() {
         this.members = new ArrayList<>();
         this.nTeams = 0;
@@ -76,7 +77,7 @@ public class TeamManager {
     }
 
 
-    public void addTeam(Team team){
+    public void addTeam(Team team) {
         teams.add(team);
     }
 

@@ -68,6 +68,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     Dialog modal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +109,7 @@ public class GameActivity extends AppCompatActivity {
         modalStoreGameButton.setOnClickListener(view -> {
             String position = "";
             User user = controller.getUserLogged();
-            if( user != null) {
+            if (user != null) {
                 for (Spinner sp : posSpinners) {
                     int selection = sp.getSelectedItemPosition();
                     if (selection == 0) {
@@ -131,8 +132,7 @@ public class GameActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-            }
-            else {
+            } else {
                 controller.finishGame();
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -150,52 +150,53 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    private void createTeamsLayout(){
+    private void createTeamsLayout() {
 
-        for(GameTeam gameteam: controller.getActualGame().getTeams()){
+        for (GameTeam gameteam : controller.getActualGame().getTeams()) {
             Team team = gameteam.getTeam();
-            LinearLayout layout = ViewUtils.createStyledLinearLayout(this, (e)->{
+            LinearLayout layout = ViewUtils.createStyledLinearLayout(this, (e) -> {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(0,50,0,0);
+                params.setMargins(0, 50, 0, 0);
                 e.setLayoutParams(params);
-                e.setBackground(ViewUtils.createBorder(4, Color.BLACK, (element)->{
+                e.setBackground(ViewUtils.createBorder(4, Color.BLACK, (element) -> {
                     element.setCornerRadius(16f);
                 }));
-                e.setPadding(4,4,4,4);
+                e.setPadding(4, 4, 4, 4);
             });
 
-            layout.addView(ViewUtils.createStyledTextView(this, team.getName(),(e)->{
+            layout.addView(ViewUtils.createStyledTextView(this, team.getName(), (e) -> {
                 e.setHeight(70);
                 e.setTextSize(20);
                 e.setBackgroundColor(res.getColor(R.color.orange));
                 e.setTextColor(res.getColor(R.color.white));
                 e.setClipToOutline(true);
-                e.setPadding(20,0,0,0);
-                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element)->{
+                e.setPadding(20, 0, 0, 0);
+                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element) -> {
                     element.setCornerRadii(new float[]{16, 16, 16, 16, 0, 0, 0, 0});
                     element.setColor(res.getColor(R.color.orange));
                 }));
             }));
 
-            for(String member: team.getMembers()){
+            for (String member : team.getMembers()) {
                 layout.addView(ViewUtils.createSeparator(this, 2));
-                layout.addView(ViewUtils.createStyledTextView(this, member, (e)->{
-                    e.setPadding(20,0,0,0);
+                layout.addView(ViewUtils.createStyledTextView(this, member, (e) -> {
+                    e.setPadding(20, 0, 0, 0);
                     e.setTextSize(18);
                 }));
             }
-            CardView card = ViewUtils.createStyledCardView(this, (e)->{});
+            CardView card = ViewUtils.createStyledCardView(this, (e) -> {
+            });
             card.addView(layout);
             teamsLayout.addView(card);
             ImageView imageView = new ImageView(this);
             imageView.setImageResource(R.drawable.versus_icon_small);
-            imageView.setPadding(0,50,0,0);
+            imageView.setPadding(0, 50, 0, 0);
             teamsLayout.addView(imageView);
         }
-        teamsLayout.removeViewAt(teamsLayout.getChildCount()-1);
+        teamsLayout.removeViewAt(teamsLayout.getChildCount() - 1);
     }
 
-    private Dialog createDialog(){
+    private Dialog createDialog() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.save_game_modal);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -203,35 +204,37 @@ public class GameActivity extends AppCompatActivity {
         return dialog;
     }
 
-    private void insertPositionInput(LinearLayout layout){
+    private void insertPositionInput(LinearLayout layout) {
         posSpinners = new ArrayList<>();
         int i = 0;
-        for(GameTeam team: controller.getActualGame().getTeams()){
-            LinearLayout horizlayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e)->{
+        for (GameTeam team : controller.getActualGame().getTeams()) {
+            LinearLayout horizlayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e) -> {
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) e.getLayoutParams();
-                params.setMargins(0,30,0,0);
+                params.setMargins(0, 30, 0, 0);
                 e.setLayoutParams(params);
             });
             int finalI = i;
-            horizlayout.addView(ViewUtils.createStyledTextView(this, ((i+1)+"º-"), (e)->{
-                if(finalI == 0) e.setTextColor(res.getColor(R.color.gold));
-                else if(finalI == 1) e.setTextColor(res.getColor(R.color.silver));
-                else if(finalI == 2) e.setTextColor(res.getColor(R.color.bronze));
+            horizlayout.addView(ViewUtils.createStyledTextView(this, ((i + 1) + "º-"), (e) -> {
+                if (finalI == 0) e.setTextColor(res.getColor(R.color.gold));
+                else if (finalI == 1) e.setTextColor(res.getColor(R.color.silver));
+                else if (finalI == 2) e.setTextColor(res.getColor(R.color.bronze));
                 e.setTextSize(30);
                 e.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
             }));
 
-            ArrayList<String> teamNames = Utils.map(controller.getActualGame().getTeams(), (e)->{return e.getTeam().getName();});
-            teamNames.add(0,"None");
-            Spinner spinner = ViewUtils.createSpinner(this, teamNames , (e)->{
+            ArrayList<String> teamNames = Utils.map(controller.getActualGame().getTeams(), (e) -> {
+                return e.getTeam().getName();
+            });
+            teamNames.add(0, "None");
+            Spinner spinner = ViewUtils.createSpinner(this, teamNames, (e) -> {
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) e.getLayoutParams();
                 params.width = LinearLayout.LayoutParams.WRAP_CONTENT;
                 params.height = LinearLayout.LayoutParams.MATCH_PARENT;
-                params.setMargins(50,0,0,0);
+                params.setMargins(50, 0, 0, 0);
                 e.setLayoutParams(params);
             });
 
-            spinner.setBackground(ViewUtils.createBorder(2,Color.BLACK,(e->{
+            spinner.setBackground(ViewUtils.createBorder(2, Color.BLACK, (e -> {
                 e.setCornerRadius(16f);
             })));
 
@@ -241,13 +244,13 @@ public class GameActivity extends AppCompatActivity {
             posSpinners.add(spinner);
             i++;
         }
-        for(Spinner spinner: posSpinners){
+        for (Spinner spinner : posSpinners) {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     // Aquí se ejecuta el código al seleccionar un elemento del Spinner
-                    for(Spinner sp: posSpinners){
-                        if(sp.getSelectedItemPosition() == position && !spinner.equals(sp)){
+                    for (Spinner sp : posSpinners) {
+                        if (sp.getSelectedItemPosition() == position && !spinner.equals(sp)) {
                             sp.setSelection(0);
                         }
                     }
@@ -260,6 +263,7 @@ public class GameActivity extends AppCompatActivity {
             });
         }
     }
+
     protected void onDestroy() {
         super.onDestroy();
         if (modal != null) {

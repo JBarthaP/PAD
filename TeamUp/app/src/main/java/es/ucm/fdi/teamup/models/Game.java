@@ -8,12 +8,12 @@ public class Game {
     private String name;
 
 
-
     private String videogameName;
 
-    public Game(){}
+    public Game() {
+    }
 
-    public Game(String name){
+    public Game(String name) {
         this.name = name;
     }
 

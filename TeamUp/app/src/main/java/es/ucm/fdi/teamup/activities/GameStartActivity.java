@@ -38,7 +38,6 @@ import com.getkeepsafe.taptargetview.TapTargetView;
 import com.getkeepsafe.taptargetview.TapTarget;
 
 
-
 public class GameStartActivity extends AppCompatActivity {
 
     private static final String TAG = GameStartActivity.class.getSimpleName();
@@ -50,13 +49,14 @@ public class GameStartActivity extends AppCompatActivity {
     Spinner spinner;
 
     private Controlador controller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_start);
         controller = (Controlador) getApplication();
         TextInputLayout gameName = findViewById(R.id.gameNameInput);
-        String name = getString(R.string.game_type_text)+": " + Utils.getActualDateString();
+        String name = getString(R.string.game_type_text) + ": " + Utils.getActualDateString();
         gameName.getEditText().setText(name);
         Button continueButton = findViewById(R.id.continueToTeamsButton);
 
@@ -65,7 +65,7 @@ public class GameStartActivity extends AppCompatActivity {
 
         videogameLoaderCallbacks = new VideogameLoaderCallbacks(this);
         LoaderManager loaderManager = LoaderManager.getInstance(this);
-        if(loaderManager.getLoader(VIDEOGAME_LOADER_ID) != null){
+        if (loaderManager.getLoader(VIDEOGAME_LOADER_ID) != null) {
             loaderManager.initLoader(VIDEOGAME_LOADER_ID, null, videogameLoaderCallbacks);
         }
 
@@ -76,16 +76,16 @@ public class GameStartActivity extends AppCompatActivity {
         });
 
 
-        continueButton.setOnClickListener((view)->{
+        continueButton.setOnClickListener((view) -> {
             String resultName = Utils.getInputValueAsString(gameName);
-            if(resultName.equals("")){
+            if (resultName.equals("")) {
 
                 TapTargetView.showFor(this, TapTarget.forView(gameName, getString(R.string.missing_information), getString(R.string.missing_information_complete)));
                 return;
             }
             controller.createGame(resultName);
 
-            if(spinner != null){
+            if (spinner != null) {
                 String videogameSelected = spinner.getSelectedItem().toString();
                 controller.getActualGame().setVideogameName(videogameSelected);
 
@@ -100,7 +100,7 @@ public class GameStartActivity extends AppCompatActivity {
     }
 
 
-    public void searchVideogames(View view){
+    public void searchVideogames(View view) {
 
         String queryString = "";
 
@@ -110,25 +110,24 @@ public class GameStartActivity extends AppCompatActivity {
 
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        if(inputManager != null){
+        if (inputManager != null) {
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = null;
 
-        if(connMgr != null){
+        if (connMgr != null) {
             networkInfo = connMgr.getActiveNetworkInfo();
         }
 
-        if(networkInfo != null && networkInfo.isConnected() && queryString.length() != 0){
+        if (networkInfo != null && networkInfo.isConnected() && queryString.length() != 0) {
 
             Bundle queryBundle = new Bundle();
             queryBundle.putString(VideogameLoaderCallbacks.EXTRA_QUERY, queryString);
             LoaderManager.getInstance(this).restartLoader(VIDEOGAME_LOADER_ID, queryBundle, videogameLoaderCallbacks);
 
-        }
-        else{
+        } else {
             //no esta conectado a internet
             Log.d(TAG, "no hay internet");
             this.videogameResultListShowErrorMessage(getString(R.string.no_conexion));
@@ -137,14 +136,13 @@ public class GameStartActivity extends AppCompatActivity {
 
     }
 
-    public void updateVideogameResultList(List<VideogameInfo> videogameInfos){
+    public void updateVideogameResultList(List<VideogameInfo> videogameInfos) {
 
-        if(videogameInfos == null || videogameInfos.size() == 0){
+        if (videogameInfos == null || videogameInfos.size() == 0) {
 
             this.videogameResultListShowErrorMessage(getString(R.string.no_results));
 
-        }
-        else{
+        } else {
 
             ArrayList<String> videogameNames = Utils.map((ArrayList<VideogameInfo>) videogameInfos, (videogame) -> {
                 return videogame.getTitle();
@@ -167,15 +165,15 @@ public class GameStartActivity extends AppCompatActivity {
 
             videogameSpinnerLayout.removeAllViewsInLayout();
 
-            spinner = ViewUtils.createSpinner(this, videogameNames , (e)->{
+            spinner = ViewUtils.createSpinner(this, videogameNames, (e) -> {
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) e.getLayoutParams();
                 params.width = LinearLayout.LayoutParams.MATCH_PARENT;
                 params.height = LinearLayout.LayoutParams.MATCH_PARENT;
-                params.setMargins(0,0,0,0);
+                params.setMargins(0, 0, 0, 0);
                 e.setLayoutParams(params);
             });
 
-            spinner.setBackground(ViewUtils.createBorder(2, Color.BLACK,(e->{
+            spinner.setBackground(ViewUtils.createBorder(2, Color.BLACK, (e -> {
                 e.setCornerRadius(16f);
             })));
 
@@ -186,24 +184,23 @@ public class GameStartActivity extends AppCompatActivity {
     }
 
 
-    public void videogameResultListShowErrorMessage(String errorMessage){
+    public void videogameResultListShowErrorMessage(String errorMessage) {
 
         videogameSpinnerLayout.removeAllViewsInLayout();
 
         ImageView icon = new ImageView(this);
         icon.setImageResource(R.drawable.error_icon);
-        icon.setPadding(0,50,0,0);
+        icon.setPadding(0, 50, 0, 0);
 
         TextView textView = new TextView(this);
         textView.setText(errorMessage);
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
-        textView.setPadding(50,50,50,50);
+        textView.setPadding(50, 50, 50, 50);
 
         videogameSpinnerLayout.addView(icon);
         videogameSpinnerLayout.addView(textView);
 
     }
-
 
 
 }

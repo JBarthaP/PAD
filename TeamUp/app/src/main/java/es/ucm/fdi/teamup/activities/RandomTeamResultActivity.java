@@ -38,6 +38,7 @@ public class RandomTeamResultActivity extends AppCompatActivity {
 
     Resources res;
     ArrayList<EditText> teamNameInputs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +60,9 @@ public class RandomTeamResultActivity extends AppCompatActivity {
 
         finishTeams.setOnClickListener((view -> {
             ArrayList<String> names = new ArrayList<>();
-            for(EditText t: teamNameInputs){
+            for (EditText t : teamNameInputs) {
                 String name = t.getText().toString();
-                if(name.equals("")) return;
+                if (name.equals("")) return;
                 names.add(name);
             }
             controller.changeTeamNames(names);
@@ -73,30 +74,29 @@ public class RandomTeamResultActivity extends AppCompatActivity {
     }
 
 
-
-    private void createResultTeamsView(){
+    private void createResultTeamsView() {
         teamsLayout.removeAllViews();
         teamNameInputs = new ArrayList<>();
         ArrayList<Team> teams = teamManager.getTeams();
         for (Team team : teams) {
 
-            LinearLayout layout = ViewUtils.createStyledLinearLayout(this, (e)->{
+            LinearLayout layout = ViewUtils.createStyledLinearLayout(this, (e) -> {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(0,50,0,0);
+                params.setMargins(0, 50, 0, 0);
                 e.setLayoutParams(params);
-                e.setBackground(ViewUtils.createBorder(4, Color.BLACK, (element)->{
+                e.setBackground(ViewUtils.createBorder(4, Color.BLACK, (element) -> {
                     element.setCornerRadius(16f);
                 }));
-                e.setPadding(4,4,4,4);
+                e.setPadding(4, 4, 4, 4);
             });
-            EditText teamName = ViewUtils.createStyledEditText(this, team.getName(),(e)->{
+            EditText teamName = ViewUtils.createStyledEditText(this, team.getName(), (e) -> {
                 e.setHeight(70);
                 e.setTextSize(20);
                 e.setBackgroundColor(res.getColor(R.color.orange));
                 e.setTextColor(res.getColor(R.color.white));
                 e.setClipToOutline(true);
-                e.setPadding(20,0,0,0);
-                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element)->{
+                e.setPadding(20, 0, 0, 0);
+                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element) -> {
                     element.setCornerRadii(new float[]{16, 16, 16, 16, 0, 0, 0, 0});
                     element.setColor(res.getColor(R.color.orange));
                 }));
@@ -104,14 +104,15 @@ public class RandomTeamResultActivity extends AppCompatActivity {
             layout.addView(teamName);
             teamNameInputs.add(teamName);
 
-            for(String member: team.getMembers()){
+            for (String member : team.getMembers()) {
                 layout.addView(ViewUtils.createSeparator(this, 2));
-                layout.addView(ViewUtils.createStyledTextView(this, member, (e)->{
-                    e.setPadding(20,0,0,0);
+                layout.addView(ViewUtils.createStyledTextView(this, member, (e) -> {
+                    e.setPadding(20, 0, 0, 0);
                     e.setTextSize(18);
                 }));
             }
-            CardView card = ViewUtils.createStyledCardView(this, (e)->{});
+            CardView card = ViewUtils.createStyledCardView(this, (e) -> {
+            });
             card.addView(layout);
             teamsLayout.addView(card);
         }

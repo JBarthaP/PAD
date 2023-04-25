@@ -23,6 +23,8 @@
     <string name="example_team_label">Example: 4</string>
     <string name="example_members_label">Example: 12</string>
     <string name="positions">Positions</string>
+    <string name="team_label">Team</string>
+    <string name="member_label">Member</string>
     <string name="discard_game">Discard game</string>
     <string name="first_name_hint">First Name</string>
     <string name="last_name_hint">Last Name</string>

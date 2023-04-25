@@ -2,6 +2,7 @@ package es.ucm.fdi.teamup.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
 import android.content.res.Resources;
 import android.content.Intent;
 import android.graphics.Color;
@@ -48,7 +49,6 @@ public class CustomTeamInputActivity extends AppCompatActivity {
     private Resources res;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,67 +77,65 @@ public class CustomTeamInputActivity extends AppCompatActivity {
     }
 
 
+    public boolean createTeams() {
+        // if (controller.getTeamManager().getnTeams() != team_number)
+        controller.setTeamManager(new TeamManager());
+        teamManager = controller.getTeamManager();
+        teamManager.setnTeams(team_number);
 
+        for (int i = 0; i < teamNamesInput.size(); i++) {
+            ArrayList<String> members = new ArrayList<>();
 
-    public boolean createTeams(){
-       // if (controller.getTeamManager().getnTeams() != team_number)
-            controller.setTeamManager(new TeamManager());
-            teamManager = controller.getTeamManager();
-            teamManager.setnTeams(team_number);
-
-            for (int i = 0; i < teamNamesInput.size(); i++) {
-                ArrayList<String> members = new ArrayList<>();
-
-                String teamName = teamNamesInput.get(i).getText().toString();
-                if (teamName.equals("")) {
-                    TapTargetView.showFor(this, TapTarget.forView(teamNamesInput.get(i), "Informacion faltante", "Por favor rellene la información necesaria"));
+            String teamName = teamNamesInput.get(i).getText().toString();
+            if (teamName.equals("")) {
+                TapTargetView.showFor(this, TapTarget.forView(teamNamesInput.get(i), getString(R.string.missing_information), getString(R.string.missing_information_complete)));
+                return false;
+            }
+            for (EditText memberInput : memberNamesInput.get(i)) {
+                String member = memberInput.getText().toString();
+                if (member.equals("")) {
+                    TapTargetView.showFor(this, TapTarget.forView(memberInput, getString(R.string.missing_information), getString(R.string.missing_information_complete)));
                     return false;
                 }
-                for (EditText memberInput : memberNamesInput.get(i)) {
-                    String member = memberInput.getText().toString();
-                    if (member.equals("")) {
-                        TapTargetView.showFor(this, TapTarget.forView(memberInput, "Informacion faltante", "Por favor rellene la información necesaria"));
-                        return false;
-                    }
-                    members.add(member);
-                    teamManager.addMember(member);
-                }
-                //if (teamManager.getTeams().size() < team_number)
-                    teamManager.addTeam(new Team(teamName, members));
+                members.add(member);
+                teamManager.addMember(member);
             }
+            //if (teamManager.getTeams().size() < team_number)
+            teamManager.addTeam(new Team(teamName, members));
+        }
 
         return true;
     }
 
-    private void createTeamsLayout(){
+    private void createTeamsLayout() {
 
-        Triple<Integer,Integer,Integer> teamSize = TeamManager.getTeamsSize(team_number, member_number);
+        Triple<Integer, Integer, Integer> teamSize = TeamManager.getTeamsSize(team_number, member_number);
         int membersPerGroup = teamSize.getFirst();
         int bigTeams = teamSize.getSecond();
         int smallTeams = teamSize.getThird();
         teamNamesInput = new ArrayList<>();
         memberNamesInput = new ArrayList<>();
 
-        for (int i = 0; i < bigTeams+smallTeams; i++) {
+        for (int i = 0; i < bigTeams + smallTeams; i++) {
 
-            LinearLayout layout = ViewUtils.createStyledLinearLayout(this, (e)->{
+            LinearLayout layout = ViewUtils.createStyledLinearLayout(this, (e) -> {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(0,50,0,0);
+                params.setMargins(0, 50, 0, 0);
                 e.setLayoutParams(params);
-                e.setBackground(ViewUtils.createBorder(4, Color.BLACK, (element)->{
+                e.setBackground(ViewUtils.createBorder(4, Color.BLACK, (element) -> {
                     element.setCornerRadius(16f);
                 }));
-                e.setPadding(4,4,4,4);
+                e.setPadding(4, 4, 4, 4);
             });
 
-            EditText teamText = ViewUtils.createStyledEditText(this, "Team " + (i+1) ,(e)->{
+            EditText teamText = ViewUtils.createStyledEditText(this, getString(R.string.team_label) + " " + (i + 1), (e) -> {
                 e.setHeight(70);
                 e.setTextSize(20);
                 e.setBackgroundColor(res.getColor(R.color.orange));
                 e.setTextColor(res.getColor(R.color.white));
                 e.setClipToOutline(true);
-                e.setPadding(20,0,0,0);
-                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element)->{
+                e.setPadding(20, 0, 0, 0);
+                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element) -> {
                     element.setCornerRadii(new float[]{16, 16, 16, 16, 0, 0, 0, 0});
                     element.setColor(res.getColor(R.color.orange));
                 }));
@@ -146,20 +144,21 @@ public class CustomTeamInputActivity extends AppCompatActivity {
             teamNamesInput.add(teamText);
             layout.addView(teamText);
 
-            if(i == bigTeams) membersPerGroup--;
+            if (i == bigTeams) membersPerGroup--;
             memberNamesInput.add(new ArrayList<>());
             for (int j = 0; j < membersPerGroup; j++) {
 
                 layout.addView(ViewUtils.createSeparator(this, 2));
-                EditText member = ViewUtils.createStyledEditText(this, "Member " + (j+1), (e) -> {
-                    e.setBackgroundColor(Color.argb(0,0,0,0));
-                    e.setPadding(20,0,0,0);
+                EditText member = ViewUtils.createStyledEditText(this, getString(R.string.member_label) + " " + (j + 1), (e) -> {
+                    e.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                    e.setPadding(20, 0, 0, 0);
                     e.setTextSize(18);
                 });
                 memberNamesInput.get(i).add(member);
                 layout.addView(member);
             }
-            CardView card = ViewUtils.createStyledCardView(this, (e)->{});
+            CardView card = ViewUtils.createStyledCardView(this, (e) -> {
+            });
             card.addView(layout);
             teamsLayout.addView(card);
 

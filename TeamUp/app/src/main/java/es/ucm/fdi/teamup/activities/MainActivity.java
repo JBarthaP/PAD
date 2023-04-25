@@ -17,13 +17,14 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout settingsButton;
 
     Controlador controller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         controller = (Controlador) getApplication();
         createTeamsButton = findViewById(R.id.createTeamButton);
-        createTeamsButton.setOnClickListener((view)->{
+        createTeamsButton.setOnClickListener((view) -> {
             Intent intent = new Intent(this, SelectionTournamentActivity.class);
             startActivity(intent);
         });
@@ -37,10 +38,9 @@ public class MainActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(view -> {
             Intent intent;
-            if(controller.getUserLogged() != null){
+            if (controller.getUserLogged() != null) {
                 intent = new Intent(this, SavedGamesActivity.class);
-            }
-            else {
+            } else {
                 intent = new Intent(this, IntroActivity.class);
             }
             startActivity(intent);

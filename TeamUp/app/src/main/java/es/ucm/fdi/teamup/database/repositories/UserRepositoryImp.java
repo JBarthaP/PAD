@@ -5,7 +5,7 @@ import java.util.List;
 import es.ucm.fdi.teamup.database.daos.DAOUser;
 import es.ucm.fdi.teamup.database.entities.User;
 
-public class UserRepositoryImp implements UserRepository{
+public class UserRepositoryImp implements UserRepository {
 
     private DAOUser daoUser;
 
@@ -25,7 +25,7 @@ public class UserRepositoryImp implements UserRepository{
 
     @Override
     public User findUserByNameAndPassword(String name, String password) {
-        return daoUser.findByNameAndPassword(name,password);
+        return daoUser.findByNameAndPassword(name, password);
     }
 
     @Override

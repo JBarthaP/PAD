@@ -40,31 +40,30 @@ public class TeamsActivity extends AppCompatActivity {
 
 
         generate_random.setOnClickListener((view) -> {
-            generateRandomTeamsListener(teams_input,members_input);
+            generateRandomTeamsListener(teams_input, members_input);
         });
 
         generate_custom.setOnClickListener((view -> {
-            generateCustomTeamsListener(teams_input,members_input);
+            generateCustomTeamsListener(teams_input, members_input);
         }));
 
     }
 
-    public void generateCustomTeamsListener(TextInputLayout teams_input, TextInputLayout members_input){
+    public void generateCustomTeamsListener(TextInputLayout teams_input, TextInputLayout members_input) {
 
 
         int teamNumber = Utils.getInputValueAsInt(teams_input);
-        int memberNumber =  Utils.getInputValueAsInt(members_input);
+        int memberNumber = Utils.getInputValueAsInt(members_input);
         //Log.d(TAG, "" + teamNumber);
         //Caso que los inputs no sean correctos
         if (teamNumber == -1 || memberNumber == -1) {
-            if(memberNumber == -1){
-                TapTargetView.showFor(this, TapTarget.forView(members_input, "Informacion faltante", "Por favor rellene la información necesaria"));
-            }
-            else{
-                TapTargetView.showFor(this, TapTarget.forView(teams_input, "Informacion faltante", "Por favor rellene la información necesaria"));
+            if (memberNumber == -1) {
+                TapTargetView.showFor(this, TapTarget.forView(members_input, getString(R.string.missing_information), getString(R.string.missing_information_complete)));
+            } else {
+                TapTargetView.showFor(this, TapTarget.forView(teams_input, getString(R.string.missing_information), getString(R.string.missing_information)));
             }
             return;
-            }
+        }
         Intent intent = new Intent(this, CustomTeamInputActivity.class);
         intent.putExtra("team_number", teamNumber);
         intent.putExtra("member_number", memberNumber);
@@ -72,19 +71,18 @@ public class TeamsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void generateRandomTeamsListener(TextInputLayout teams_input, TextInputLayout members_input){
+    public void generateRandomTeamsListener(TextInputLayout teams_input, TextInputLayout members_input) {
 
 
         int teamNumber = Utils.getInputValueAsInt(teams_input);
-        int memberNumber =  Utils.getInputValueAsInt(members_input);
+        int memberNumber = Utils.getInputValueAsInt(members_input);
         //Log.d(TAG, "" + teamNumber);
         //Caso que los inputs no sean correctos
         if (teamNumber == -1 || memberNumber == -1) {
-            if(memberNumber == -1){
-                TapTargetView.showFor(this, TapTarget.forView(members_input, "Informacion faltante", "Por favor rellene la información necesaria"));
-            }
-            else{
-                TapTargetView.showFor(this, TapTarget.forView(teams_input, "Informacion faltante", "Por favor rellene la información necesaria"));
+            if (memberNumber == -1) {
+                TapTargetView.showFor(this, TapTarget.forView(members_input, getString(R.string.missing_information), getString(R.string.missing_information)));
+            } else {
+                TapTargetView.showFor(this, TapTarget.forView(teams_input, getString(R.string.missing_information), getString(R.string.missing_information)));
             }
             return;
             //TODO hacer popup o algo vistoso

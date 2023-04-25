@@ -12,7 +12,7 @@ import kotlin.Triple;
 public class Utils {
 
     @FunctionalInterface
-    public interface Function<T, R>{
+    public interface Function<T, R> {
         R apply(T element);
     }
 
@@ -28,19 +28,19 @@ public class Utils {
         return inputString;
     }
 
-    public static String getActualDateString(){
+    public static String getActualDateString() {
         Calendar calendar = Calendar.getInstance();
-        return (calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH)+1) + "/" + calendar.get(Calendar.YEAR));
+        return (calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.YEAR));
     }
 
-    public static Triple<Integer, Integer, Integer> getActualDate(){
+    public static Triple<Integer, Integer, Integer> getActualDate() {
         Calendar calendar = Calendar.getInstance();
-        return new Triple<>(calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.YEAR));
+        return new Triple<>(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
     }
 
-    public static <T, R>ArrayList<R> map(ArrayList<T> list, Function<T,R> function){
+    public static <T, R> ArrayList<R> map(ArrayList<T> list, Function<T, R> function) {
         ArrayList<R> newlist = new ArrayList<>();
-        for(T element: list){
+        for (T element : list) {
             newlist.add(function.apply(element));
         }
         return newlist;

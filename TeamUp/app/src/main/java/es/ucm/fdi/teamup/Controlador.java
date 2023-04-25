@@ -35,13 +35,14 @@ public class Controlador extends Application {
     public static enum Evento {
 
 
-        }
+    }
+
     public Controlador() {
         teamManager = new TeamManager();
     }
 
 
-//    public void tratarEvento(Evento event, Object[] data) {
+    //    public void tratarEvento(Evento event, Object[] data) {
 //        switch(event) {
 //            case Evento.GENERARQUIPOS: teamManager.generarEquipos()
 //        }
@@ -71,31 +72,31 @@ public class Controlador extends Application {
     }
 
 
-    public void deleteTeams(){
+    public void deleteTeams() {
         this.teamManager = new TeamManager();
     }
 
 
-    public void createGame(String name){
+    public void createGame(String name) {
         this.actualGame = new Game(name);
     }
 
-    public void startGame(){
-        this.actualGame.setTeams(Utils.map(teamManager.getTeams(), (team)-> new GameTeam(team)));
+    public void startGame() {
+        this.actualGame.setTeams(Utils.map(teamManager.getTeams(), (team) -> new GameTeam(team)));
     }
 
-    public void finishGame(){
+    public void finishGame() {
         this.actualGame = null;
         this.teamManager.setTeams(new ArrayList<>());
         this.teamManager.setMembers(new ArrayList<>());
     }
 
-    public Game getActualGame(){
+    public Game getActualGame() {
         return this.actualGame;
     }
 
-    public void changeTeamNames(ArrayList<String> newNames){
-        for(int i = 0; i < this.teamManager.getTeams().size(); i++){
+    public void changeTeamNames(ArrayList<String> newNames) {
+        for (int i = 0; i < this.teamManager.getTeams().size(); i++) {
             this.teamManager.getTeams().get(i).setName(newNames.get(i));
         }
     }

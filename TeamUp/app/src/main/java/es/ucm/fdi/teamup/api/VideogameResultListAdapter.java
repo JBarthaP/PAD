@@ -29,7 +29,7 @@ public class VideogameResultListAdapter extends RecyclerView.Adapter<VideogameRe
 
         private VideogameResultListAdapter mAdapter;
 
-        public VideogameViewHolder(View itemView, VideogameResultListAdapter adapter){
+        public VideogameViewHolder(View itemView, VideogameResultListAdapter adapter) {
 
             super(itemView);
 
@@ -43,20 +43,20 @@ public class VideogameResultListAdapter extends RecyclerView.Adapter<VideogameRe
         }
 
         @Override
-        public void onClick(View view){
+        public void onClick(View view) {
 
         }
 
     }
 
-    public VideogameResultListAdapter(Context context, ArrayList<VideogameInfo> mVideogamesData){
+    public VideogameResultListAdapter(Context context, ArrayList<VideogameInfo> mVideogamesData) {
         this.mVideogamesData = mVideogamesData;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public VideogameResultListAdapter.VideogameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+    public VideogameResultListAdapter.VideogameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         //View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.element_recyclerview, parent, false);
         View mItemView = new TextView(parent.getContext());
@@ -65,7 +65,7 @@ public class VideogameResultListAdapter extends RecyclerView.Adapter<VideogameRe
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VideogameResultListAdapter.VideogameViewHolder holder, int position){
+    public void onBindViewHolder(@NonNull VideogameResultListAdapter.VideogameViewHolder holder, int position) {
 
         VideogameInfo currentVideogame = mVideogamesData.get(position);
         String mCurrent = currentVideogame.toString();
@@ -78,15 +78,15 @@ public class VideogameResultListAdapter extends RecyclerView.Adapter<VideogameRe
     }
 
     @Override
-    public int getItemCount(){
+    public int getItemCount() {
         return mVideogamesData.size();
     }
 
-    public void setVideogamesData(List<VideogameInfo> data){
+    public void setVideogamesData(List<VideogameInfo> data) {
         mVideogamesData = new ArrayList<VideogameInfo>(data);
     }
 
-    public ArrayList<VideogameInfo> getmVideogamesData(){
+    public ArrayList<VideogameInfo> getmVideogamesData() {
         return mVideogamesData;
     }
 

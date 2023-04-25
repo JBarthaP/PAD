@@ -7,7 +7,8 @@ import java.util.Objects;
 public class Team implements Serializable {
     String name;
     ArrayList<String> members;
-    public Team(String name, ArrayList<String> members){
+
+    public Team(String name, ArrayList<String> members) {
         this.name = name;
         this.members = members;
     }

@@ -22,6 +22,8 @@
     <string name="example_team_label">Ejemplo: 4</string>
     <string name="example_members_label">Ejemplo: 12</string>
     <string name="positions">Posiciones</string>
+    <string name="team_label">Equipo</string>
+    <string name="member_label">Participante</string>
     <string name="discard_game">Descartar partida</string>
     <string name="first_name_hint">Nombre</string>
     <string name="last_name_hint">Apellidos</string>
@@ -63,5 +65,5 @@
     <string name="generic_error_login">Error en el usuario o contraseña introducidas</string>
     <string name="empty_inputs">El usuario o la contraseña están vacias</string>
     <string name="different_passwords">Contraseñas no iguales</string>
-x
+    x
 </resources>

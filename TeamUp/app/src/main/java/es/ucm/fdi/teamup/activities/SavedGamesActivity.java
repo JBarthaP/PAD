@@ -51,7 +51,7 @@ public class SavedGamesActivity extends AppCompatActivity {
     private TextInputLayout ganador;
 
     private ImageView returnButton;
-    private  TextInputLayout juego;
+    private TextInputLayout juego;
     private Resources res;
     private boolean filterclosed;
     ValueAnimator anim;
@@ -68,7 +68,7 @@ public class SavedGamesActivity extends AppCompatActivity {
         desplegable = findViewById(R.id.filterFrame);
         desplegable2 = findViewById(R.id.filterInteriorContainer);
         collapsibleButton = findViewById(R.id.collapsibleButton);
-        collapsibleButton.setOnClickListener((view)->{
+        collapsibleButton.setOnClickListener((view) -> {
             makeAnimation();
         });
 
@@ -76,7 +76,7 @@ public class SavedGamesActivity extends AppCompatActivity {
         Configuration config = getResources().getConfiguration();
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) heightValue = 250;
 
-        anim = ValueAnimator.ofInt(heightValue,0);
+        anim = ValueAnimator.ofInt(heightValue, 0);
         filterclosed = true;
         gamesLayout = findViewById(R.id.gameListContainer);
         filterButton = findViewById(R.id.filterButton);
@@ -99,10 +99,11 @@ public class SavedGamesActivity extends AppCompatActivity {
         });
 
 
+        filterButton.setOnClickListener((e) -> {
+            createFilteredGamesLayout();
+        });
 
-        filterButton.setOnClickListener((e)->{createFilteredGamesLayout();});
-
-        returnButton.setOnClickListener((e)->{
+        returnButton.setOnClickListener((e) -> {
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -110,67 +111,72 @@ public class SavedGamesActivity extends AppCompatActivity {
 
     }
 
-    public void makeAnimation(){
-        if(anim.isRunning()) return;
+    public void makeAnimation() {
+        if (anim.isRunning()) return;
 
 
         anim.start();
         collapsibleButton.animate().rotationBy(180).setDuration(500).start();
 
-        if(filterclosed){
-            anim.setIntValues(heightValue,0);
+        if (filterclosed) {
+            anim.setIntValues(heightValue, 0);
             filterclosed = false;
-        }
-        else {
-            anim.setIntValues(0,heightValue);
+        } else {
+            anim.setIntValues(0, heightValue);
             filterclosed = true;
         }
 
 
     }
 
-    public void createGamesLayout(){
+    public void createGamesLayout() {
 
-        for(GameEntity game: gameEntities){
-            LinearLayout verticalLayout = ViewUtils.createStyledLinearLayout(this, (e)->{});
-            verticalLayout.addView(ViewUtils.createStyledTextView(this, game.getGame_name(), (e)->{
+        for (GameEntity game : gameEntities) {
+            LinearLayout verticalLayout = ViewUtils.createStyledLinearLayout(this, (e) -> {
+            });
+            verticalLayout.addView(ViewUtils.createStyledTextView(this, game.getGame_name(), (e) -> {
                 e.setHeight(90);
                 e.setTextSize(20);
                 e.setGravity(View.TEXT_ALIGNMENT_CENTER);
                 e.setBackgroundColor(res.getColor(R.color.orange));
                 e.setTextColor(res.getColor(R.color.white));
                 e.setClipToOutline(true);
-                e.setPadding(20,0,0,0);
-                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element)->{
+                e.setPadding(20, 0, 0, 0);
+                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element) -> {
                     element.setColor(res.getColor(R.color.orange));
                 }));
             }));
-            LinearLayout horizLayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e)->{});
+            LinearLayout horizLayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e) -> {
+            });
             String winners = game.getPositionString().split("/")[0];
             String winnerTeam = winners.split(":")[0];
             String winnerMembersString = winners.split(":")[1];
             String[] winnerMembers = winnerMembersString.split(",");
-            LinearLayout verticalLayout2 = ViewUtils.createStyledLinearLayout(this,(e)->{});
-            LinearLayout verticalLayout3 = ViewUtils.createStyledLinearLayout(this,(e)->{e.setPadding(40, 0, 0, 0);});
+            LinearLayout verticalLayout2 = ViewUtils.createStyledLinearLayout(this, (e) -> {
+            });
+            LinearLayout verticalLayout3 = ViewUtils.createStyledLinearLayout(this, (e) -> {
+                e.setPadding(40, 0, 0, 0);
+            });
 
 
-            verticalLayout2.addView(ViewUtils.createStyledTextView(this,getString(R.string.game_type_text)+": " + game.getVideogameName(), (e)->{
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this, getString(R.string.game_type_text) + ": " + game.getVideogameName(), (e) -> {
                 e.setPadding(30, 10, 20, 30);
                 e.setTextSize(16);
             }));
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-            verticalLayout2.addView(ViewUtils.createStyledTextView(this, getString(R.string.date_text)+": " + sdf.format(game.getFecha()), (e)->{
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this, getString(R.string.date_text) + ": " + sdf.format(game.getFecha()), (e) -> {
                 e.setPadding(30, 10, 20, 30);
                 e.setTextSize(16);
             }));
 
-            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.winner_text)+": " + winnerTeam, (e)->{
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.winner_text) + ": " + winnerTeam, (e) -> {
                 e.setTextSize(16);
             }));
-            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.members_text)+": ", (e)->{}));
-            for(String member: winnerMembers){
-                verticalLayout3.addView(ViewUtils.createStyledTextView(this,"- " + member, (e)->{
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.members_text) + ": ", (e) -> {
+            }));
+            for (String member : winnerMembers) {
+                verticalLayout3.addView(ViewUtils.createStyledTextView(this, "- " + member, (e) -> {
 
                 }));
             }
@@ -188,64 +194,72 @@ public class SavedGamesActivity extends AppCompatActivity {
             gamesLayout.addView(ViewUtils.createSeparator(this, 3));
         }
     }
-    public void createFilteredGamesLayout(){
+
+    public void createFilteredGamesLayout() {
         gamesLayout.removeAllViews();
         String winnerFilter = Utils.getInputValueAsString(ganador);
         String nameFilter = Utils.getInputValueAsString(participantes);
         String typeFilter = Utils.getInputValueAsString(juego);
 
-        for(GameEntity game: gameEntities){
+        for (GameEntity game : gameEntities) {
 
-            if(!typeFilter.equals("")){
-                if(game.getVideogameName() == null) continue;
-                else if(!game.getVideogameName().contains(typeFilter)) continue;
+            if (!typeFilter.equals("")) {
+                if (game.getVideogameName() == null) continue;
+                else if (!game.getVideogameName().contains(typeFilter)) continue;
             }
-            if((!nameFilter.equals("")) && !game.getGame_name().contains(nameFilter)) continue;
+            if ((!nameFilter.equals("")) && !game.getGame_name().contains(nameFilter)) continue;
             boolean isWinner = false;
 
-            LinearLayout verticalLayout = ViewUtils.createStyledLinearLayout(this, (e)->{});
-            verticalLayout.addView(ViewUtils.createStyledTextView(this, game.getGame_name(), (e)->{
+            LinearLayout verticalLayout = ViewUtils.createStyledLinearLayout(this, (e) -> {
+            });
+            verticalLayout.addView(ViewUtils.createStyledTextView(this, game.getGame_name(), (e) -> {
                 e.setHeight(90);
                 e.setTextSize(20);
                 e.setGravity(View.TEXT_ALIGNMENT_CENTER);
                 e.setBackgroundColor(res.getColor(R.color.orange));
                 e.setTextColor(res.getColor(R.color.white));
                 e.setClipToOutline(true);
-                e.setPadding(20,0,0,0);
-                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element)->{
+                e.setPadding(20, 0, 0, 0);
+                e.setBackground(ViewUtils.createBorder(0, Color.BLACK, (element) -> {
                     element.setColor(res.getColor(R.color.orange));
                 }));
             }));
-            LinearLayout horizLayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e)->{});
+            LinearLayout horizLayout = ViewUtils.createStyledHorizontalLinearLayout(this, (e) -> {
+            });
             String winners = game.getPositionString().split("/")[0];
             String winnerTeam = winners.split(":")[0];
             String winnerMembersString = winners.split(":")[1];
             String[] winnerMembers = winnerMembersString.split(",");
-            LinearLayout verticalLayout2 = ViewUtils.createStyledLinearLayout(this,(e)->{});
-            LinearLayout verticalLayout3 = ViewUtils.createStyledLinearLayout(this,(e)->{e.setPadding(40, 0, 0, 0);});
+            LinearLayout verticalLayout2 = ViewUtils.createStyledLinearLayout(this, (e) -> {
+            });
+            LinearLayout verticalLayout3 = ViewUtils.createStyledLinearLayout(this, (e) -> {
+                e.setPadding(40, 0, 0, 0);
+            });
 
 
-            verticalLayout2.addView(ViewUtils.createStyledTextView(this,getString(R.string.game_type_text)+": " + game.getVideogameName(), (e)->{
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this, getString(R.string.game_type_text) + ": " + game.getVideogameName(), (e) -> {
                 e.setPadding(30, 10, 20, 30);
                 e.setTextSize(16);
             }));
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-            verticalLayout2.addView(ViewUtils.createStyledTextView(this, getString(R.string.date_text)+": " + sdf.format(game.getFecha()), (e)->{
+            verticalLayout2.addView(ViewUtils.createStyledTextView(this, getString(R.string.date_text) + ": " + sdf.format(game.getFecha()), (e) -> {
                 e.setPadding(30, 10, 20, 30);
                 e.setTextSize(16);
             }));
 
-            if(winnerTeam.contains(winnerFilter)) isWinner = true;
-            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.winner_text)+": " + winnerTeam, (e)->{
+            if (winnerTeam.contains(winnerFilter)) isWinner = true;
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.winner_text) + ": " + winnerTeam, (e) -> {
                 e.setTextSize(16);
             }));
-            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.members_text)+": ", (e)->{}));
-            for(String member: winnerMembers){
-                verticalLayout3.addView(ViewUtils.createStyledTextView(this,"- " + member, (e)->{}));
-                if(member.contains(winnerFilter)) isWinner = true;
+            verticalLayout3.addView(ViewUtils.createStyledTextView(this, getString(R.string.members_text) + ": ", (e) -> {
+            }));
+            for (String member : winnerMembers) {
+                verticalLayout3.addView(ViewUtils.createStyledTextView(this, "- " + member, (e) -> {
+                }));
+                if (member.contains(winnerFilter)) isWinner = true;
             }
-            if(!isWinner) continue;
+            if (!isWinner) continue;
             horizLayout.addView(verticalLayout2);
             horizLayout.addView(verticalLayout3);
 

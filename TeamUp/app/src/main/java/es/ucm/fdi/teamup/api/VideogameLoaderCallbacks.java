@@ -19,17 +19,17 @@ public class VideogameLoaderCallbacks implements LoaderManager.LoaderCallbacks<L
 
     private Context context;
 
-    public VideogameLoaderCallbacks(Context context){
+    public VideogameLoaderCallbacks(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
-    public Loader<List<VideogameInfo>> onCreateLoader(int id, @Nullable Bundle args){
+    public Loader<List<VideogameInfo>> onCreateLoader(int id, @Nullable Bundle args) {
 
         String queryString = "";
 
-        if(args != null){
+        if (args != null) {
             queryString = args.getString(EXTRA_QUERY);
         }
 
@@ -38,7 +38,7 @@ public class VideogameLoaderCallbacks implements LoaderManager.LoaderCallbacks<L
     }
 
     @Override
-    public void onLoadFinished(@NonNull Loader<List<VideogameInfo>> loader, List<VideogameInfo> data){
+    public void onLoadFinished(@NonNull Loader<List<VideogameInfo>> loader, List<VideogameInfo> data) {
 
         GameStartActivity activity = (GameStartActivity) context;
 
@@ -46,7 +46,7 @@ public class VideogameLoaderCallbacks implements LoaderManager.LoaderCallbacks<L
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<List<VideogameInfo>> loader){
+    public void onLoaderReset(@NonNull Loader<List<VideogameInfo>> loader) {
 
     }
 

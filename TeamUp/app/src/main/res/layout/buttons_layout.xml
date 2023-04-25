@@ -30,8 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:textSize="@dimen/welcome"
-            android:text="@string/createTeamsButton" />
+            android:text="@string/createTeamsButton"
+            android:textSize="@dimen/welcome" />
 
     </LinearLayout>
 
@@ -61,8 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:textSize="@dimen/welcome"
-            android:text="@string/createTournament" />
+            android:text="@string/createTournament"
+            android:textSize="@dimen/welcome" />
     </LinearLayout>
 
     <LinearLayout
@@ -90,8 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:textSize="@dimen/welcome"
-            android:text="@string/account" />
+            android:text="@string/account"
+            android:textSize="@dimen/welcome" />
 
     </LinearLayout>
 
@@ -117,8 +117,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="@dimen/welcome"
-            android:text="@string/settings" />
+            android:text="@string/settings"
+            android:textSize="@dimen/welcome" />
 
     </LinearLayout>
 

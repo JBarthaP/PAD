@@ -21,11 +21,11 @@ import java.util.ArrayList;
 public class ViewUtils {
 
     @FunctionalInterface
-    public interface Function<T>{
+    public interface Function<T> {
         void aply(T element);
     }
 
-    public static LinearLayout createStyledLinearLayout(Context context, Function<LinearLayout> function){
+    public static LinearLayout createStyledLinearLayout(Context context, Function<LinearLayout> function) {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -34,7 +34,7 @@ public class ViewUtils {
         return linearLayout;
     }
 
-    public static LinearLayout createStyledHorizontalLinearLayout(Context context, Function<LinearLayout> function){
+    public static LinearLayout createStyledHorizontalLinearLayout(Context context, Function<LinearLayout> function) {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -43,7 +43,7 @@ public class ViewUtils {
         return linearLayout;
     }
 
-    public static EditText createStyledEditText(Context context, String label, Function<EditText> function){
+    public static EditText createStyledEditText(Context context, String label, Function<EditText> function) {
         EditText editText = new EditText(context);
         editText.setText(label);
         editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -52,7 +52,7 @@ public class ViewUtils {
         return editText;
     }
 
-    public static TextInputLayout createStyledTextInputLayout(Context context, String label, Function<TextInputEditText> function){
+    public static TextInputLayout createStyledTextInputLayout(Context context, String label, Function<TextInputEditText> function) {
         TextInputLayout textInputLayout = new TextInputLayout(context);
         TextInputEditText textInputEditText = new TextInputEditText(textInputLayout.getContext());
         textInputEditText.setHint(label);
@@ -66,7 +66,7 @@ public class ViewUtils {
     }
 
 
-    public static TextView createStyledTextView(Context context, String label, Function<TextView> function){
+    public static TextView createStyledTextView(Context context, String label, Function<TextView> function) {
         TextView textView = new TextView(context);
         textView.setText(label);
         textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -76,23 +76,22 @@ public class ViewUtils {
     }
 
 
-
-    public  static CardView createStyledCardView(Context context, Function<CardView> function){
+    public static CardView createStyledCardView(Context context, Function<CardView> function) {
         CardView cardView = new CardView(context);
         function.aply(cardView);
-        return  cardView;
+        return cardView;
     }
 
 
-    public static GradientDrawable createBorder(int width, int color, Function<GradientDrawable> function){
+    public static GradientDrawable createBorder(int width, int color, Function<GradientDrawable> function) {
         GradientDrawable border = new GradientDrawable();
-        border.setColor(Color.argb(0,0,0,0));
+        border.setColor(Color.argb(0, 0, 0, 0));
         border.setStroke(width, color);
         function.aply(border);
         return border;
     }
 
-    public static View createSeparator(Context context, int height){
+    public static View createSeparator(Context context, int height) {
         View separator = new View(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -103,7 +102,7 @@ public class ViewUtils {
         return separator;
     }
 
-    public static Spinner createSpinner(Context context, ArrayList<String> options, Function<Spinner> function){
+    public static Spinner createSpinner(Context context, ArrayList<String> options, Function<Spinner> function) {
         Spinner spinner = new Spinner(context);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

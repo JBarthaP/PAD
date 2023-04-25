@@ -5,7 +5,7 @@ import java.util.List;
 import es.ucm.fdi.teamup.database.daos.DAOGame;
 import es.ucm.fdi.teamup.database.entities.GameEntity;
 
-public class GameRepositoryImp implements GameRepository{
+public class GameRepositoryImp implements GameRepository {
 
     private DAOGame daoGame;
 

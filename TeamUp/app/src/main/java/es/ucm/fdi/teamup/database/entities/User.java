@@ -15,11 +15,12 @@ public class User {
     @NonNull
     private String username;
 
-    @ColumnInfo(name= "password")
+    @ColumnInfo(name = "password")
     @NonNull
     private String password;
 
-    public User() {}
+    public User() {
+    }
 
     public User(int userId, String username, String password) {
         this.userId = userId;
@@ -27,7 +28,7 @@ public class User {
         this.password = password;
     }
 
-    public User( @NonNull String username, @NonNull String password) {
+    public User(@NonNull String username, @NonNull String password) {
         this.username = username;
         this.password = password;
     }

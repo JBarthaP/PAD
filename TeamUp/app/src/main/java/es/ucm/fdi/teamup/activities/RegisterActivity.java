@@ -76,8 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                     controlador.setUserLogged(user);
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     Log.e(TAG, "Contraseñas no iguales");
                     error_message.setText(getString(R.string.different_passwords));
                 }
