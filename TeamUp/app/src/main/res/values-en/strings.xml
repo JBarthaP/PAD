@@ -66,4 +66,5 @@
     <string name="generic_error_login">Error with the user or password entered</string>
     <string name="empty_inputs">The user or password are empty</string>
     <string name="different_passwords">Passwords are not the same</string>
+    <string name="regenerate_teams">Generate teams again</string>
 </resources>

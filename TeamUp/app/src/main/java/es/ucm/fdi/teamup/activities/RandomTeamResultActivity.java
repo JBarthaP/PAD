@@ -54,7 +54,7 @@ public class RandomTeamResultActivity extends AppCompatActivity {
         this.createResultTeamsView();
 
         reGenerateTeams.setOnClickListener((view) -> {
-            teamManager.generateRandomTeams();
+            teamManager.generateRandomTeams(getResources().getString(R.string.team_label));
             this.createResultTeamsView();
         });
 

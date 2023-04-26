@@ -16,6 +16,7 @@
     <string name="generated_teams_label">Equipos generados: </string>
     <string name="continue_text">Continuar</string>
     <string name="continue_to_teams_text">Continuar a crear equipos</string>
+    <string name="regenerate_teams">Generar equipos de nuevo</string>
     <string name="gameNameText">Nombre de la partida:</string>
     <string name="game_search_title">Titulo</string>
     <string name="saveText">Guardar partida</string>

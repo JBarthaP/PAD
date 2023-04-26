@@ -1,8 +1,9 @@
 package es.ucm.fdi.teamup.models;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Random;
+import android.content.res.Resources;
 
 import kotlin.Triple;
 
@@ -45,7 +46,7 @@ public class TeamManager {
         members.add(member);
     }
 
-    public void generateRandomTeams() {
+    public void generateRandomTeams(String teamText) {
 
         Triple<Integer, Integer, Integer> teamSize = TeamManager.getTeamsSize(this.nTeams, this.members.size());
         int membersPerGroup = teamSize.getFirst();
@@ -63,7 +64,7 @@ public class TeamManager {
                 team.add(membersBag.get(index));
                 membersBag.remove(index);
             }
-            this.teams.add(new Team("Team " + (i + 1), team));
+            this.teams.add(new Team(teamText + " " +  (i + 1), team));
         }
         for (int i = 0; i < smallTeams; i++) {
             ArrayList<String> team = new ArrayList<>();
@@ -72,7 +73,7 @@ public class TeamManager {
                 team.add(membersBag.get(index));
                 membersBag.remove(index);
             }
-            this.teams.add(new Team("Team " + (i + bigTeams + 1), team));
+            this.teams.add(new Team(teamText + " " + (i + bigTeams + 1), team));
         }
     }
 

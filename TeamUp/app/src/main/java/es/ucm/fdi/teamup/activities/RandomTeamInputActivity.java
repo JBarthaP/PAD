@@ -60,7 +60,7 @@ public class RandomTeamInputActivity extends AppCompatActivity {
             for (EditText input : allMemberInputs) {
                 teamManager.addMember(input.getText().toString());
             }
-            teamManager.generateRandomTeams();
+            teamManager.generateRandomTeams(getResources().getString(R.string.team_label));
             Intent intent = new Intent(this, RandomTeamResultActivity.class);
             startActivity(intent);
         }));
