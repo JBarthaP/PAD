@@ -66,4 +66,5 @@
     <string name="generic_error_login">Error en el usuario o contraseña introducidas</string>
     <string name="empty_inputs">El usuario o la contraseña están vacias</string>
     <string name="different_passwords">Contraseñas no iguales</string>
+    <string name="logout">Cerrar sesión</string>
 </resources>
