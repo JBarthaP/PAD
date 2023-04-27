@@ -23,28 +23,10 @@ public class GameEntity {
     @ColumnInfo(name = "date")
     private Date fecha;
 
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     private int userId;
-
 
     @ColumnInfo(name = "ganador")
     private String ganador;
-
-    public String getVideogameName() {
-        return videogameName;
-    }
-
-    public void setVideogameName(String videogameName) {
-        this.videogameName = videogameName;
-    }
 
     @ColumnInfo(name = "videoGameName")
     private String videogameName;
@@ -60,12 +42,28 @@ public class GameEntity {
         this.videogameName = videogameName;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public int getGameId() {
         return gameId;
     }
 
     public void setGameId(int gameId) {
         this.gameId = gameId;
+    }
+
+    public String getVideogameName() {
+        return videogameName;
+    }
+
+    public void setVideogameName(String videogameName) {
+        this.videogameName = videogameName;
     }
 
     @NonNull

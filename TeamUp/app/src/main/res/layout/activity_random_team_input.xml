@@ -43,7 +43,7 @@
             android:backgroundTint="#EA8E07"
             android:text="@string/generate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.664"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/custom_teams_input_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
