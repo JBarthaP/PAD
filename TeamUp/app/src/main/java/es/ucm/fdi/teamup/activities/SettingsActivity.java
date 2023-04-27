@@ -57,7 +57,9 @@ public class SettingsActivity extends AppCompatActivity {
             }
             setLocale(language_choose);
             finish();
-            startActivity(getIntent());
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
 
         logout.setOnClickListener((view -> {

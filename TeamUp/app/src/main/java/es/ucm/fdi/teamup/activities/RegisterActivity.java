@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userRepo.insertUser(user);
                     Log.d(TAG, userName + password + password2);
                     Log.d(TAG, "Usuario creado correctamente");
-
+                    user = userRepo.findUserByNameAndPassword(user.getUsername(), user.getPassword());
                     controlador.setUserLogged(user);
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
