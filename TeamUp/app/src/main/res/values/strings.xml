@@ -7,8 +7,8 @@
     <string name="settings">Ajustes</string>
     <string name="total_members_label">Numero de participantes totales: </string>
     <string name="team_number_label">Número de equipos: </string>
-    <string name="generate_custom_teams_button">Generar equipos personalizados </string>
-    <string name="generate_random_teams_button">Generar equipos aleatorios </string>
+    <string name="generate_custom_teams_button">Equipos personalizados </string>
+    <string name="generate_random_teams_button">Equipos aleatorios </string>
     <string name="introduce_members_label">Introduzca todos los miembros para formar los equipos </string>
     <string name="introduce_custom_teams_label">Introduzca los participantes y equipos correspondientes </string>
     <string name="generate">Generar equipos </string>
@@ -66,5 +66,4 @@
     <string name="generic_error_login">Error en el usuario o contraseña introducidas</string>
     <string name="empty_inputs">El usuario o la contraseña están vacias</string>
     <string name="different_passwords">Contraseñas no iguales</string>
-    x
 </resources>

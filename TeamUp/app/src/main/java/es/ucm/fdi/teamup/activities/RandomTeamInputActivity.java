@@ -57,6 +57,7 @@ public class RandomTeamInputActivity extends AppCompatActivity {
             }
             TeamManager teamManager = controller.getTeamManager();
             teamManager.setnTeams(team_number);
+            teamManager.setMembers(new ArrayList<>());
             for (EditText input : allMemberInputs) {
                 teamManager.addMember(input.getText().toString());
             }
