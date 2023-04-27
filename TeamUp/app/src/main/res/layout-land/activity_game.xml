@@ -10,7 +10,7 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="847dp"
+        android:layout_width="match_parent"
         android:layout_height="61dp"
         android:background="@color/orange"
         android:backgroundTint="@color/orange"
