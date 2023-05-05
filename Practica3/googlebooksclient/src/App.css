@@ -90,7 +90,7 @@ header {
 
 .libro img {
   max-width: 100%;
-  height: auto;
+  height: 100px;
   border-radius: 1rem 1rem 0 0;
 }
 
@@ -110,6 +110,18 @@ header {
   font-weight: bold;
   padding: 0.2rem;
   border-radius: 5px;
+}
+
+.botones {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.mensaje-warning{
+  font-size: 1.5em;
 }
 
 
